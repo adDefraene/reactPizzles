@@ -1231,7 +1231,7 @@ h4{
     color: var(--red);
 }
 
-.pizzles-resume{
+.pizzles-summary{
     position: relative;
     z-index: 100;
     height: auto;
@@ -1240,12 +1240,12 @@ h4{
     box-shadow: 0px 5px 10px 0px var(--grayOP);
 }
 
-.pizzles-resume .pizzles-resume-cell{
+.pizzles-summary .pizzles-summary-cell{
     display: flex;
     flex-direction: column;
     position: relative;
 }
-.pizzles-resume .pizzles-resume-items, .pizzles-resume .pizzles-resume-delivery, .pizzles-resume .pizzles-resume-hour 
+.pizzles-summary .pizzles-summary-items, .pizzles-summary .pizzles-summary-delivery, .pizzles-summary .pizzles-summary-hour 
 {
     background-color: var(--graylight);
     border-radius: 25px;
@@ -1253,7 +1253,7 @@ h4{
     position: relative;
     z-index: 102;
 }
-.pizzles-resume .pizzles-resume-recover{
+.pizzles-summary .pizzles-summary-recover{
     flex: initial;
     position: relative;
     z-index: 101;
@@ -1262,32 +1262,32 @@ h4{
     background-color: var(--yellow);
     border-radius: 25px;
 }
-.pizzles-resume .pizzles-resume-recover a{
+.pizzles-summary .pizzles-summary-recover a{
     line-height: 140px;
     color: var(--whitest);
     font-family: var(--fontMain);
     text-decoration: none;
 }
-.pizzles-resume .pizzles-resume-recover .fas{
+.pizzles-summary .pizzles-summary-recover .fas{
     margin-left: 10px;
 }
 
-.pizzles-resume p{
+.pizzles-summary p{
     font-size: var(--txt18);
 }
-.pizzles-resume p.pizzles-resume-subtitle{
+.pizzles-summary p.pizzles-summary-subtitle{
     font-family: var(--fontMain);
 }
 
-.pizzles-resume .pizzles-resume-items{
+.pizzles-summary .pizzles-summary-items{
     height: max-content;
 }
-.pizzles-resume .pizzles-resume-item .row{
+.pizzles-summary .pizzles-summary-item .row{
     height: 100%;
     flex-direction: column;
 }
 
-.pizzles-resume-total{
+.pizzles-summary-total{
     position: absolute;
     bottom: -30px;
     left: 50%;
@@ -1306,15 +1306,15 @@ h4{
 }
 
 @media all and (min-width : 993px){
-    .pizzles-resume .pizzles-resume-item.col-lg:nth-of-type(1n+2){
+    .pizzles-summary .pizzles-summary-item.col-lg:nth-of-type(1n+2){
         border-left: 1px solid var(--black);
     }
 }
 @media all and (max-width : 992px){
-    .pizzles-resume .pizzles-resume-item.col-6:nth-of-type(2n){
+    .pizzles-summary .pizzles-summary-item.col-6:nth-of-type(2n){
         border-left: 1px solid var(--black);
     }
-    .pizzles-resume .pizzles-resume-item.col-6:nth-of-type(1n+3){
+    .pizzles-summary .pizzles-summary-item.col-6:nth-of-type(1n+3){
         border-top: 1px solid var(--black);
     }
 }

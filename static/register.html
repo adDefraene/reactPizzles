@@ -1,0 +1,111 @@
+
+    <!-- CONTENT -->
+    <div class="container pizzles-first-container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="pizzles-title text-center mx-auto mb-4">Se créer un compte</h2>
+            </div>
+            <div class="col-12 col-md-10 offset-md-1 pizzles-register-box my-3 py-4 px-5">
+                <form class="row" action="#">
+                    <div class="col-12 col-md-6">
+                        <label for="registerName" class="form-label">Mon nom</label>
+                        <input type="text" class="form-control mb-4" id="registerName" name="registerName" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="registerSurname" class="form-label">Mon prénom</label>
+                        <input type="text" class="form-control mb-4" id="registerSurname" name="registerSurname" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="registerEmail" class="form-label">Mon adresse mail</label>
+                        <input type="email" class="form-control mb-4" id="registerEmail" name="registerEmail" aria-describedby="emailHelp" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="registerAddress" class="form-label">Mon adresse de livraison</label>
+                        <input type="text" class="form-control mb-4" id="registerAddress" name="registerAddress" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="registerPassword" class="form-label">Mon mot de passe</label>
+                        <div class="pizzles-register-password">
+                            <button type="button" id="register-reveal-password" class="btn btn-secondary">Vérifier<i class="fas fa-eye"></i></button>
+                            <input type="password" class="form-control mb-4 ml-2" id="registerPassword" name="registerPassword" required>
+                        </div>
+                    </div>
+                    <div class="col-12 pizzles-register-cgu px-5">
+                        <label for="registerCGU" class="form-label">J'accepte les condition générales d'utilisation</label>
+                        <button type="button" class="btn btn-secondary mx-2" data-bs-toggle="modal" id="buttonCGU" data-bs-target="#modal-cgu">Consulter les CGU<i class="fas fa-book-open"></i></button>
+                        <div class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" id="registerCGU" name="registerCGU" required>
+                        </div>
+                    </div>
+                    <button type="submit" id="registerSubmit" disabled class="submit-disabled pizzles-btn pizzles-btn-red mt-5 mb-2">S'enregistrer<i class="fas fas fa-pen-alt"></i></button>
+                  </div>
+                </form>
+            </div>
+            <div class="col-12 col-md-10 offset-md-1 mt-3 mb-5 pizzles-alternateLogin">
+                <p>Déjà un compte ?</p>
+                <a href="#" class="pizzles-btn pizzles-btn-white ml-auto">Se connecter<i class="fas fa-sign-in-alt"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL CGU -->
+    <div class="modal fade" id="modal-cgu" tabindex="-1" aria-labelledby="modal-cgu" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Conditions générales d'utilisation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <article class="modal-body">
+                    <b>Utilisation de mes données</b>
+                    <br>
+                    <i>J’accepte que mes informations soient utilisées dans le seul but de pouvoir me servir.</i>
+                    <br>
+                    <p>Votre nom et prénom serviront à vous reconnaître tout au long de l’utilisation de notre site, ainsi qu’à notre formulaire d’évaluation. Votre adresse mail est votre identifiant pour vous connecter, celle-ci est utilisée afin de vous envoyer des mails récapitulatifs de vos commandes. Votre adresse est celle où vous nous livrerons, si vous souhaiter vous faire livrer.</p>
+                    <br>
+                    <b>Conservation de vos données</b>
+                    <br>
+                    <i>Nous nous engageons à aucunement divulger vos informations</i>
+                    <br>
+                    <p>Vos informations seront stockées dans l’unique but de pouvoir faire fonctionner notre site, afin de pouvoir vous offrir nos services le plus correctement possible. Celles-ci ne seront pas vendues à un tiers, car nous souhaitont ne faire aucun profit sur vos données, ainsi que risquer de les compromettre.</p>
+                </article>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+    /*
+    document.querySelector("#register-reveal-password").addEventListener("mousedown", function(){
+        let password = document.querySelector("#registerPassword")
+        if(password.type === "password"){
+            this.innerHTML = 'Cacher<i class="fas fa-eye-slash"></i>'
+            password.type = "text"
+        }else{
+            this.innerHTML = 'Vérifier<i class="fas fa-eye"></i>'
+            password.type = "password"
+        }
+    })
+    */
+
+/* 
+    document.querySelector("#buttonCGU").addEventListener("shown.bs.modal", function(){
+        console.log(document.querySelector("#modal-cgu")).focus()
+    }) */
+
+    function verifyCheckCGU(){
+        let submit = document.querySelector("#registerSubmit")
+        console.log(this)
+        if(this.checked !== true){
+            submit.setAttribute("disabled", "")
+            submit.classList.add("submit-disabled")
+        }else{
+            submit.removeAttribute("disabled")
+            submit.classList.remove("submit-disabled")
+        }
+    }
+    document.querySelector("#registerCGU").addEventListener("click", verifyCheckCGU)
+
+    </script>

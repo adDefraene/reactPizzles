@@ -1,0 +1,1660 @@
+@import url('https://fonts.googleapis.com/css2?family=Days+One&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/****************************** VARS ******************************/
+
+:root{
+/***** COLOURS */
+    /* B&W COLOURS */
+    --whiteBG   : #f4f4f4;
+    --whitest   : #f8f8f8;
+    --graylight : #d2d2d2;
+    --graydark  : #545454;
+    --black     : #0d0d0d;
+
+    /* RGB COLOURS */
+    --reddark   : #751b13;
+    --red       : #f84030;
+    --redpale   : #f85748;
+    --orange    : #ff9c28;
+    --yellow    : #f2c434;
+    --yellowPale: #ffd86b;
+
+    /* OPACITY COLOURS */
+    --darkOP    : rgba(50, 50, 50, 0.75);
+    --blackOP   : rgba(85, 85, 85, 0.25);
+    --grayOP    : rgba(210, 210, 210, 0.5);
+    --whiteOP   : rgba(250, 250, 250, 0.5);
+    --redOPcart : rgba(248, 87, 72, 0.85);
+    --redOP     : rgba(248, 87, 72, 0.5);
+
+/***** FONT */
+    /* FONT FAMILIES */
+    --fontMain  : "Days One" ;
+    --fontTxt   : "Montserrat";
+    
+    /* FONT WEIGHTS */
+    --fontBold  : 700 ;
+    --fontReg   : 400;
+
+    /* FONT SIZES */
+    --txtBiggest: clamp(1.70rem, 1.8vw, 2.5rem);
+    --txtTitles : clamp(1.5rem, 1.4vw, 2rem);
+    --txt24     : clamp(1rem, 1vw, 1.8rem);
+    --txt18     : clamp(0.9rem, 0.8vw, 1.5rem);
+    --txtMenu   : clamp(0.6rem, 0.7vw, 2rem);
+}
+
+
+/**************************** MAIN PARAMS ***************************/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+hmtl, body{
+    height: 100%;
+    width: 100%;
+    background-color: var(--whiteBG);
+    color: var(--black);
+    font-family: var(--fontTxt);
+    font-weight: var(--fontReg);
+}
+
+html{
+    background-color: var(--graydark);
+}
+
+/****************************** GENERAL PARAMS *********************/
+
+.bazar{
+    height: 1500px;
+}
+
+/******************** Hx TEXT *******************/
+
+h1{
+    font-size: var(--txtBiggest);
+    font-family: var(--fontMain);
+    color: var(--whitest);
+    line-height: inherit;
+}
+
+h3{
+    padding-top: 5px;
+    font-size: var(--txtMenu);
+    font-family: var(--fontMain);
+    line-height: inherit;
+}
+
+h4{
+    font-size: var(--txt24);
+    font-weight: 700;
+}
+
+
+/******************** CUSTOM FEATURES *******************/
+
+.pizzles-first-container{
+    position: relative;
+    z-index: 1;
+    padding-top: 120px;
+    margin-bottom: 40px;
+}
+
+.pizzles-title{
+    display: block;
+    padding: 0 100px;
+    width: max-content;
+    height: 60px;
+    border-radius: 30px;
+    font-size: var(--txtTitles); 
+    font-family: var(--fontMain);
+    line-height: 60px;
+    background: var(--whitest);
+    color: var(--red);
+    box-shadow: 0px 0px 10px 0px var(--redOP);
+}
+
+.pizzles-subtitles{
+    font-family: var(--fontMain);
+    color: var(--black);
+    font-size: var(--txt24);
+}
+
+.pizzles-txt-title{
+    font-size: var(--txt18); 
+    font-family: var(--fontMain);
+    color: var(--red);
+}
+
+@media all and (max-width : 992px){
+    .pizzles-first-container{
+        padding-top: 80px;
+    }
+    
+    .pizzles-title{
+        padding: 0 75px;
+    }
+}
+@media all and (max-width : 768px){
+    .pizzles-first-container{
+        padding-top: 20px;
+    }
+    
+    .pizzles-title{
+        padding: 0 40px;
+    }
+}
+@media all and (max-width : 576px){
+    .pizzles-title{
+        padding: 0 20px;
+    }
+}
+
+@keyframes bubble-animation {
+    from {
+        width: 0;
+        padding-top: 0;
+        opacity: 0.75;
+    }
+    to {
+        width: 100%;
+        padding-top: 100%;
+        opacity: 0;
+    }
+}
+
+.pizzles-btn{
+    position: relative;
+    display: block;
+    padding: 0 50px;
+    width: max-content;
+    height: 50px;
+    text-align: center;
+    border-radius: 25px;
+    color: var(--whitest) !important;
+    text-decoration: none;
+    font-size: var(--txt18); 
+    font-family: var(--fontMain);
+    line-height: 50px;
+    z-index: 11;
+    overflow: hidden;
+    /* box-shadow: 0px 0px 10px 0px var(MY_COLOR); */
+}
+
+.pizzles-btn::content{
+    position: relative;
+    z-index: 13;
+}
+
+.pizzles-btn::after{
+    content: "";
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+    background-color: var(--redOPcart);
+    z-index: 12;
+}
+
+.pizzles-btn:hover::after{
+    animation-name: bubble-animation;
+    animation-duration: 0.75s;
+    animation-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+.pizzles-btn .fas{
+    margin-left: 10px;
+}
+
+.pizzles-btn-back{
+    background: var(--yellow);
+    box-shadow: 0px 0px 10px 0px var(--blackOP);
+}
+
+.pizzles-btn-red{
+    background: var(--red);
+    box-shadow: 0px 0px 10px 0px var(--red);
+    width: 100%;
+    font-size: var(--txt24);
+}
+
+.pizzles-btn-yellow{
+    background: var(--yellow);
+    box-shadow: 0px 0px 10px 0px var(--yellowPale);
+    width: 100%;
+    font-size: var(--txt24);
+}
+
+.pizzles-btn-white{
+    background: var(--whitest);
+    box-shadow: 0px 0px 10px 0px var(--grayOP);
+    color: var(--red) !important;
+}
+
+.pizzles-btn-back .fa-chevron-circle-left{
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.pizzles-article{
+    font-size: var(--txt18);
+    line-height: 2.4;
+}
+
+.pizzles-priceTag{
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    width: max-content;
+    padding: 0 25px;
+    border-radius: 12.5px;
+    background: var(--black);
+    color: var(--whitest);
+    font-size: var(--txt18);
+}
+
+/****************************** NAV ******************************/
+
+/******************** NAVBAR *******************/
+.pizzles-nav{
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    height: 70px;
+    /* 1440px = Wrapper size in xxl */
+    width: calc(1440px / 2); /* width = 1/2 size of the wrapper */
+    left: calc(50% - (1440px / 4)); /* left = 50% - 1/2 size of the navbar*/
+    background: var(--whitest);
+    border-radius: 0 0 100px 100px;
+    box-shadow: 0px 10px 20px 0px var(--blackOP);
+    z-index: 9000;
+}
+
+/******************** NAV LINKS *******************/
+.pizzles-nav .pizzles-nav-link, .pizzles-nav .pizzles-cart-icon{
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.pizzles-nav img{
+    height: 40px;
+    flex: initial;
+}
+
+.pizzles-nav h3{
+    color: var(--red);
+}
+
+/******************** NAV COLOURS ANIM *******************/
+.pizzles-nav .pizzles-nav-link{
+    padding: 4px 0;
+    height: 100%;
+    filter: grayscale(100%) brightness(0%);
+}
+
+.pizzles-nav .pizzles-nav-link:hover, .pizzles-nav .pizzles-nav-selectedPage{
+    filter: grayscale(0%) brightness(100%);
+}
+
+.pizzles-nav .pizzles-nav-selectedPage{    
+    cursor: default;
+}
+
+/******************** NAV CART *******************/
+.pizzles-nav .pizzles-cart-icon{
+    padding-top: 15px;
+    height: 90px;
+    width: 90px;
+    background-color: var(--redpale);
+    border-radius: 45px;
+    box-shadow: 0px 0px 10px 0px var(--redOP);
+    flex: inherit;
+}
+
+.pizzles-nav .pizzles-cart-icon:hover{
+    background-color: var(--whitest);
+}
+
+.pizzles-nav .pizzles-cart-icon img, .pizzles-nav .pizzles-cart-icon h3 {
+    filter:  contrast(0%) brightness(0%) invert(100%); 
+}
+
+.pizzles-nav .pizzles-cart-icon:hover img, .pizzles-nav .pizzles-cart-icon:hover h3{
+    filter:  contrast(100%) brightness(100%) invert(0%); 
+}
+
+/******************** NAV CART ITEMS COUNT *******************/
+.pizzles-nav .pizzles-cart-icon span{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: block;
+    height: 22px;
+    width: 22px;
+    border-radius: 11px;
+    color: var(--redpale);
+    font-size: 12px;
+    font-family: var(--fontMain);
+    line-height: 22px;
+    background: var(--whitest);
+    box-shadow: 0px 0px 10px 0px var(--redOP);
+}
+
+/******************** NAV RESPONSIVE *******************/
+/* LG */
+@media all and (max-width : 992px){
+    .pizzles-nav{
+        height: 50px;
+    }
+
+    .pizzles-nav img{
+        height: 25px;
+    }
+    
+    .pizzles-nav .pizzles-cart-icon{
+        width: 70px;
+        height: 70px;
+    }
+
+    .pizzles-nav .pizzles-cart-icon span{
+        bottom: -5px;
+        right: -5px;
+    }
+}
+/* MD */
+@media all and (max-width : 768px){
+    .pizzles-nav{
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        top : auto;
+        border-radius: 100px 100px 0 0;
+        box-shadow: 0px -10px 20px 0px var(--blackOP);
+    }
+
+    .pizzles-nav .pizzles-nav-link{
+        margin-top: 0px;
+    }
+
+    .pizzles-nav .pizzles-cart-icon{
+        margin-top: -20px;
+    }
+
+    .pizzles-nav .pizzles-cart-icon span{
+        top: 0;
+        right: 0;
+        bottom : auto;
+    }
+}
+
+/****************************** CART ******************************/
+
+.pizzles-cart{
+    padding: 2vw;
+    padding-top: 120px;
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 95%;
+    width: 90%;
+    z-index: 8000;
+    background: var(--redOPcart);
+    border-radius: 0 0 50px 50px;
+    display: block;
+    transition: top 0.5s ease-in-out;
+}
+.pizzles-cart.pizzles-cart-open{
+    top: 0;
+}
+/******************** DARK CACHE BEHIND CART ****************/
+.pizzles-darkCache{
+    position: fixed;
+    top: 0;
+    height: 0;
+    width: 100vw;
+    opacity: 0;
+    background: var(--darkOP);
+    content: "";
+    z-index: 7999;
+    /* TRANSITION WHEN CLOSING */
+    transition: opacity 0.5s ease-in-out 0s, height 0.01s linear 0.5s;
+}
+.pizzles-darkCache.active{
+    height: 100vh;
+    opacity: 1;
+    /* TRANSITION WHEN OPENING */
+    transition: opacity 0.5s ease-in-out 0s, height 0.01s linear 0s;
+}
+
+.pizzles-cart .row-cart{
+    height: 100%;
+    flex-flow: column;
+}
+
+.pizzles-cart-close{
+    display: block;
+    cursor: pointer;
+    height: 80px;
+    width: 80px;
+    border-radius: 40px;
+    line-height: 80px;
+    background: var(--whitest);
+    color: var(--red);
+    font-family: var(--fontMain);
+    font-size: var(--txtTitles);
+    box-shadow: 0 0 10px 0 var(--whiteOP);
+}
+
+/******************** CART ITEMS ********************/
+
+.pizzles-cart-content{
+    flex: 1;
+    overflow-y: scroll;
+    direction: rtl;
+    margin-left: 10px;
+}
+.pizzles-cart-content .container-fluid{
+    direction: ltr;
+}
+
+.pizzles-cart-item{
+    display: flex;
+    position: relative;
+    min-height: 100px;
+    width: calc(100% - 80px);
+}
+
+.pizzles-cart-item .row{
+    height: 100%;
+    background: var(--whitest);
+    border-radius: 25px;
+    z-index: 8002;
+}
+.pizzles-cart-item img{
+    max-height: 100%;
+    height: auto;
+    width: 100%;
+}
+
+.pizzles-cart-item p{
+    font-family: var(--fontMain);
+}
+.pizzles-cart-item .pizzles-cart-item-ingredients{
+    flex: 1;
+    border-bottom: none;
+    border-right: 1px solid var(--black);
+    border-top: none;
+    border-left: 1px solid var(--black);
+}
+.pizzles-cart-item .pizzles-cart-item-plus{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--txtTitles);
+}
+
+.pizzles-cart-item .pizzles-cart-item-delete{
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    align-items: center;
+    width: 100px;
+    height: 100%;
+    right: -80px;
+    border-radius: 0 25px 25px 0;
+    padding-right: 40px;
+    z-index: 8001;
+    background-color: var(--reddark);
+    font-family: var(--fontMain);
+    font-size: var(--txt24);
+    color: var(--whitest);
+    transition: all 0.5s ease-in-out;
+}
+.pizzles-cart-item .pizzles-cart-item-delete:hover{
+    background-color: black;
+    font-size: var(--txtTitles);
+}
+
+/******************** CART RESPONSIVE ********************/
+
+/* ONLY OVER LG */
+@media all and (max-width : 1920px) and (min-width : 993px){
+    .pizzles-cart-item .pizzles-cart-item-static.col-lg{
+        flex: initial;
+        width: max-content;
+    }
+}
+/* LG */
+@media all and (max-width : 992px){
+    .pizzles-cart-item .pizzles-cart-item-ingredients{
+        margin: 5px 0;
+        padding: 5px 0;
+        border-right: none;
+        border-bottom: none;
+        border-left: none;
+        border-top: 1px solid var(--black);
+    }
+    
+    .pizzles-cart-item .pizzles-cart-item-delete{
+        width: 70px;
+        right: -50px;
+        padding-right: 20px;
+    }
+    .pizzles-cart-item .pizzles-cart-item-total{
+        border-left: 1px solid var(--black);
+    }
+}
+
+/* MD */
+@media all and (max-width : 768px){
+    .pizzles-cart{
+        padding-top: inherit;
+        padding-bottom: 80px;
+        top: unset;
+        transition: bottom 0.5s ease-in-out;
+        bottom: -100%;
+        border-radius: 50px 50px 0 0;
+    }
+    .pizzles-cart.pizzles-cart-open{
+        top: unset;
+        bottom: 0;
+    }
+
+    .pizzles-cart-close{
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+    }
+
+    .pizzles-cart-total{
+        padding: 0 7.5vw !important;
+    }
+
+    .pizzles-cart-item{
+        width: calc(100% - 50px);
+    }
+    
+    .pizzles-cart-item .pizzles-cart-item-static{
+        width: 100%;
+    }
+    .pizzles-cart-item .pizzles-cart-item-ingredients{
+        margin: 5px 0;
+        padding: 5px 0;
+        border-right: none;
+        border-bottom: 1px solid var(--black);
+        border-left: none;
+        border-top: 1px solid var(--black);
+    }
+    .pizzles-cart-item .pizzles-cart-item-total{
+        border-left: none;
+    }
+    
+    .pizzles-cart-item .pizzles-cart-item-delete{
+        width: 70px;
+        right: -50px;
+        padding-right: 20px;
+    }
+}
+
+/****************************** HOMEPAGE ******************************/
+/******************** SVG ANIM *******************/
+@keyframes headerTransformSVG {
+    0%{transform: translateY(25px);}
+    100%{transform: translateY(0px);}
+}
+
+#eGriOWkwA2R1{
+    height: 40%;
+    width: auto;
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    animation-name: "headerTransformSVG";
+    animation-duration: 4s;
+    animation-delay: 3s;
+    animation-fill-mode: both;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    z-index:11;
+}
+
+@keyframes headerFillSVG {
+    0%{stroke-dashoffset: none;}
+    100%{stroke-dashoffset: 0;}
+}
+
+
+/* ALL */
+#eGriOWkwA2R4, #eGriOWkwA2R5, #eGriOWkwA2R6, #eGriOWkwA2R7, #eGriOWkwA2R8, #eGriOWkwA2R9, #eGriOWkwA2R10, #eGriOWkwA2R11, #eGriOWkwA2R12, #eGriOWkwA2R13{
+    animation-name: "headerFillSVG";
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+}
+
+/* PIZZA */
+#eGriOWkwA2R6, #eGriOWkwA2R7{animation-delay: 1s;}
+/* PEP 1 */
+#eGriOWkwA2R8, #eGriOWkwA2R9{animation-delay: 1.4s;}
+/* PEP 2 */
+#eGriOWkwA2R10, #eGriOWkwA2R11{animation-delay: 1.6s;}
+/* PEP 3 */
+#eGriOWkwA2R12, #eGriOWkwA2R13{animation-delay: 1.8s;}
+/* P' */
+#eGriOWkwA2R4, #eGriOWkwA2R5{animation-delay: 2s;}
+
+/******************** HOME MAIN SLIDE *******************/
+
+.pizzles-home-titles{
+    height: 100%;
+}
+
+.pizzles-mainLogo{
+    margin-top: 10vh;
+    width: 20vw;
+    height: auto;
+}
+
+.pizzles-mainTitle{
+    color: var(--red);
+    line-height: 70px;
+}
+
+.pizzles-home-animations{
+    padding-top: 10vh;
+    height: 70vh;
+    position: relative;
+}
+.pizzles-home-animations img{
+    height: 75%;
+    width: auto;
+    position: absolute;
+    bottom:0;
+    right:0;
+    z-index:10;
+}
+
+.pizzles-mainText{
+    line-height: 40px;
+    margin-bottom: 3rem;
+}
+
+@media all and (max-width: 994px){
+    .pizzles-mainLogo{
+        margin-top: 0;
+        width: 40vw;
+        height: auto;
+        margin: 0 auto;
+    }
+    
+    .pizzles-mainTitle{
+        text-align: center;
+        padding: 0 2.5vw;
+        line-height: 60px;
+    }
+    
+    .pizzles-home-animations{
+        padding-top: 0;
+        height: 30vh;
+    }
+    
+    .pizzles-mainText{
+        margin-bottom: 20px;
+    }
+    
+}
+
+/******************** CONCEPT SLIDE *******************/
+
+.pizzles-concept{
+    font-size: var(--txtBiggest);
+    font-family: var(--fontMain);
+    color: var(--redpale);
+    text-shadow: 0 0 10px var(--redOP);
+}
+
+#pizzlesConcept article{
+    font-size: var(--txt18);
+    color: var(--redpale);
+    line-height: 30px;
+    border-left: 2px solid var(--red);
+    padding-left: 20px;
+}
+
+#pizzlesConcept article hr{
+    height: 2px;
+    background-color: var(--red);
+    width: 80%;
+    left: 0;
+}
+
+.pizzles-concept-puzzle{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 12.5vw;
+}
+
+.pizzles-concept-puzzle img{
+    height: 100%;
+    width: auto;
+}
+
+@keyframes conceptPuzzle1{
+    0%{transform: translateX(50%); opacity:0;}
+    10%{transform: translateX(50%); opacity:0;}
+    30%{transform: translateX(-22.5%); opacity:1;}
+    70%{transform: translateX(-22.5%); opacity:1;}
+    90%{transform: translateX(50%); opacity:0;}
+    100%{transform: translateX(50%); opacity:0;}
+}
+
+@keyframes conceptPuzzle2{
+    0%{transform: translateX(30%); opacity:0;}
+    20%{transform: translateX(30%); opacity:0;}
+    40%{transform: translateX(-59%); opacity:1;}
+    60%{transform: translateX(-59%); opacity:1;}
+    80%{transform: translateX(30%); opacity:0;}
+    100%{transform: translateX(30%); opacity:0;}
+}
+
+.pizzles-concept-puzzle img:nth-child(2), .pizzles-concept-puzzle img:nth-child(3){
+    animation-duration: 10s;
+    animation-fill-mode: both;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+.pizzles-concept-puzzle img:nth-child(2){animation-name: conceptPuzzle1;}
+
+.pizzles-concept-puzzle img:nth-child(3){animation-name: conceptPuzzle2;}
+
+/******************** HOW DO WE WORK SLIDE *******************/
+#pizzlesWork{
+    width: 100%;
+    border-radius: 50px 50px 0 0;
+    background-color: var(--red);
+    color: var(--whitest);
+}
+
+#pizzlesWork .pizzles-title{
+    box-shadow: 0px 0px 10px 0px var(--whiteOP);
+}
+
+#pizzlesWork .pizzles-txt-title{
+    font-size: var(--txt24);
+    color: var(--whitest);
+}
+
+#pizzlesWork img{
+    width: 30vw;
+}
+
+#pizzlesWork .pizzles-bigNumber{
+    font-family: var(--fontMain);
+    position: relative;
+    font-size: 10vw;
+    color: var(--whiteOP);
+}
+
+#pizzlesWork .pizzles-delivery-box{
+    background-color: var(--whitest);
+    height: auto;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px 0 var(--whiteOP);
+}
+#pizzlesWork .pizzles-delivery-box .pizzles-txt-title{
+    color: var(--black) !important;
+}
+#pizzlesWork .pizzles-delivery-box img{
+    width: auto;
+    height: 90px;
+}
+#pizzlesWork .pizzles-delivery-box p{
+    color: var(--black);
+    line-height: 40px;
+}
+
+/******************** WHERE SLIDE *******************/
+#pizzlesPlace{
+    position: relative;
+    width: 100%;
+    background-color: var(--graylight);
+    height: auto;
+}
+
+#pizzlesPlace::before{
+    content: "";
+    position: absolute;
+    height: 100px;
+    top: -50px;
+    width: 100%;
+    background-color: var(--graylight);
+    border-radius: 50%;
+}
+
+#pizzlesPlace .pizzles-contact-boxBig{
+    height: 250px;
+    width: auto;
+    background-color: var(--whitest);
+    border-radius: 25px;
+    text-align: center;
+    font-size: var(--txt18);
+    line-height: 30px;
+}
+#pizzlesPlace .pizzles-contact-boxBig .pizzles-btn-white{
+    width: max-content;
+    padding: 0 20px;
+}
+#pizzlesPlace .pizzles-contact-boxBig .fab{
+    color : var(--black);
+    font-size: 40px;
+}
+
+#pizzlesPlace .pizzles-contact-boxLittle{
+    height: 120px;
+    width: auto;
+    background-color: var(--redpale);
+    color: var(--whitest);
+    border-radius: 25px;
+    text-align: center;
+    font-size: var(--txt18);
+    line-height: 45px;
+}
+
+/******************** HOME REVIEWS *******************/
+#pizzlesReviews{
+    background-color: var(--graydark);
+}
+
+#pizzlesReviews .container{
+    border-bottom : 1px solid var(--whitest);
+}
+
+
+.pizzles-home-reviews{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--grayOP);
+    border-radius: 25px;
+}
+.pizzles-home-reviews .pizzles-home-reviews-comment{
+    flex: 1;
+    background-color: var(--whitest);
+    border-radius: 25px;
+}
+.pizzles-home-reviews .pizzles-home-reviews-comment .d-flex.flex-column{
+    height: 100%;
+}
+.pizzles-home-reviews .pizzles-home-reviews-note{
+    flex: initial;
+    height: max-content;
+}
+
+@media all and (max-width: 576px){
+
+    #pizzlesReviews .pizzles-title{
+        width: auto;
+        min-height: 60px;
+        height: auto;
+    }
+}
+
+/****************************** MENU ******************************/
+/******************** MENU TITLE *******************/
+.pizzles-head-title{
+    height: 70px;
+    width: 100%;
+    line-height: 70px;
+    background: var(--redpale);
+    color: var(--whitest);
+    border-radius: 35px;
+    box-shadow: 0 10px 20px 0 var(--redOP);
+}
+
+/******************** MENU GEN CELLS *******************/
+
+.pizzles-menu-ingredients-cell, .pizzles-menu-pizzas-cell{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--whitest);
+    border-radius: 25px;
+    box-shadow: 0 10px 15px 0 var(--grayOP);
+    height: 180px;
+}
+
+.pizzles-menu-ingredients-cell img,.pizzles-menu-pizzas-cell img{
+    max-width: 65%;
+    height: auto;
+}
+
+.pizzles-menu-cell-name{
+    color: var(--black);
+    text-decoration: none;
+    font-family: var(--fontMain);
+    font-size: var(--txt18);
+}
+
+/******************** MENU INGREDIENTS CELLS *******************/
+.pizzles-menu-ingredients-carousel{
+    height: 200px;
+}
+.pizzles-menu-ingredients-arrow{
+    height: 180px;
+    font-size: 1.5rem;
+}
+.owl-stage{
+    overflow: hidden visible;
+}
+.pizzles-menu-ingredients-cell{
+    height: 180px;
+    width: 80%;
+    padding: 10px;
+    margin: 0 25px;
+}
+
+/******************** MENU PIZZAS CELLS *******************/
+
+.pizzles-menu-pizzas-cell{
+    height: 275px;
+    transition: all 0.2s ease-in-out;
+}
+
+.pizzles-menu-pizzas-cell:hover{
+    margin-top: -15px;
+    box-shadow: 0 15px 15px 0 var(--grayOP);
+}
+
+.pizzles-menu-pizzas-cell .pizzles-menu-cell-name:hover{
+    color: var(--orange);
+}
+
+.pizzles-menu .row.gy-4{
+    justify-content: center;
+}
+
+.pizzles-menu-cell-add{
+    display: block;
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    background: var(--black);
+    color: var(--whitest);
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 60px;
+    font-family: var(--fontTxt);
+    font-weight: var(--fontBold);
+    transition: all 0.2s ease-in-out;
+}
+.pizzles-menu-cell-add:hover{
+    background: var(--orange);
+    color: var(--black);
+}
+
+/***************** MENU PIZZAS CELLS VARIANTS *************/
+.pizzles-menu-pizzas-promos .pizzles-priceTag{
+    background: var(--reddark) !important;
+}
+
+.pizzles-menu-pizzas-pdm{
+    background: var(--yellowPale) !important;
+}
+
+/**************************** PIZZA PAGE ****************************/
+
+.pizzles-pizza-image img{
+    max-width: 100%;
+    width: auto;
+    max-height: 275px;
+}
+
+.pizzles-pizza-price{
+    font-size: var(--txtTitles);
+    font-family: var(--fontMain);
+    align-self: center;
+}
+
+.pizzles-pizza-ingredients{
+    display: flex;
+    height: 60px;
+    width: 100%;
+    border-radius: 20px;
+    background: var(--whitest);
+    box-shadow: 0 10px 15px 0 var(--grayOP);
+}
+
+.pizzles-pizza-ingredients p{
+    align-self: center;
+    color: var(--black);
+    font-family: var(--fontMain);
+    font-size: var(--txt18);
+}
+
+.pizzles-pizza-ingredients img{
+    height: 100%;
+    width: auto;
+}
+
+/**************************** ADD PIZZA ****************************/
+
+.pizzles-pizzaAdd-ingredient-cell, .pizzles-pizzaAdd-pizza{
+    position: relative;
+    background: var(--whitest);
+    display: flex;
+    border-radius: 25px;
+}
+
+.pizzles-pizzaAdd-pizza img, .pizzles-pizzaAdd-ingredient-cell img{
+    height: 95%;
+    width: auto;
+}
+
+.pizzles-pizzaAdd-pizza p, .pizzles-pizzaAdd-ingredient-cell p{
+    align-self: center;
+    color: var(--black);
+    font-family: var(--fontMain);
+    font-size: var(--txt18);
+}
+.pizzles-pizzaAdd-pizza span, .pizzles-pizzaAdd-ingredient-cell span{
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    width: max-content;
+    padding: 0 25px;
+    border-radius: 12.5px;
+    background: var(--black);
+    color: var(--whitest);
+    font-size: var(--txt18);
+}
+
+.pizzles-pizzaAdd-pizza{
+    height: 125px;
+    box-shadow: 0 0 15px 0 var(--grayOP);
+}
+
+.pizzles-pizzaAdd-ingredient-cell{
+    position: relative;
+    top: 0;
+    height: 80px;
+    box-shadow: 0 10px 15px 0 var(--grayOP);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.pizzles-pizzaAdd-ingredient-cell:not(.disabled):hover{
+    top: -10px;
+    box-shadow: 0 25px 15px 0 var(--grayOP);
+    background: var(--yellowPale);
+}
+
+.pizzles-pizzaAdd-ingredient-cell.disabled{
+    top: 5px;
+    filter: grayscale(100%);
+    background: var(--yellow) !important;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+.pizzles-pizzaAdd-ingredient-cell.disabled p{
+    color: var(--graydark);
+}
+.pizzles-pizzaAdd-ingredient-cell.disabled .pizzles-priceTag{
+    background-color: var(--graydark);
+}
+
+.pizzles-pizzaAdd-ingredient-cell.selected{
+    top: -10px;
+    background: var(--yellow) !important;
+    box-shadow: 0 25px 15px 0 var(--grayOP);
+}
+
+.pizzles-pizzaAdd-total, .pizzles-cart-total{
+    font-size: var(--txt24) !important;
+    display: block;
+    padding: 0 100px;
+    width: max-content;
+    height: 40px;
+    border-radius: 20px;
+    line-height: 40px;
+    background: var(--whitest);
+    box-shadow: 0px 0px 10px 0px var(--grayOP);
+}
+
+/****************************** TAKE ORDER ******************************/
+
+.next-button{
+    transition: all 0.5s ease-in-out;
+}
+
+.next-button-disabled{
+    background-color: var(--graylight);
+    color: var(--graydark);
+    box-shadow: 0px 0px 0px 0px var(--red);
+    pointer-events: none;
+}
+
+/******************** DELIVERY *******************/
+
+.pizzles-order-total{
+    position: relative;
+    display: flex;
+    width: max-content;
+    height: min-content;
+}
+.pizzles-order-total .pizzles-order-total-amount{
+    position: relative;
+    z-index: 101;
+    font-size: var(--txt24) !important;
+    display: block;
+    padding: 0 100px;
+    width: max-content;
+    height: 60px;
+    border-radius: 30px;
+    line-height: 60px;
+    background: var(--whitest);
+    box-shadow: 0px 0px 10px 0px var(--grayOP);
+}
+
+.pizzles-order-fees{
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 25px;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    border-radius: 0 30px 30px 0;
+    background-color: var(--red);
+    color: var(--whitest) !important;
+    box-shadow: 0px 0px 0px 0px var(--redOP);
+    transition: all 0.5s ease-in-out;
+}
+.pizzles-order-fees.active-fees{
+    box-shadow: 5px 0px 10px 0px var(--redOP);
+    right: -80px;
+}
+
+.pizzles-order-method{
+    position: relative;
+    top: 0;
+    height: 25vh;
+    background-color: var(--whitest);
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px 0px var(--grayOP);
+    transition: all 0.5s ease-in-out;
+}
+.pizzles-order-method:hover{
+    top: -25px;
+    box-shadow: 0px 0px 20px 0px var(--grayOP);
+}
+.pizzles-order-method.active-method{
+    top: -25px;
+    box-shadow: 0px 0px 20px 0px var(--yellowPale);
+    background-color: var(--yellow);
+}
+
+.pizzles-order-method img{
+    width: inherit;
+    height: 60%;
+}
+.pizzles-order-method p{
+    font-family: var(--fontMain);
+    font-size: var(--txt24);
+}
+
+/******************** HOUR *******************/
+
+
+/******************** FINALIZATION *******************/
+
+.pizzles-end-title{
+    font-size: var(--txtTitles); 
+    font-family: var(--fontMain);
+    color: var(--red);
+}
+
+.pizzles-resume{
+    position: relative;
+    z-index: 100;
+    height: auto;
+    border-radius: 25px;
+    background-color: var(--whitest);
+    box-shadow: 0px 5px 10px 0px var(--grayOP);
+}
+
+.pizzles-resume .pizzles-resume-cell{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.pizzles-resume .pizzles-resume-items, .pizzles-resume .pizzles-resume-delivery, .pizzles-resume .pizzles-resume-hour 
+{
+    background-color: var(--graylight);
+    border-radius: 25px;
+    height: 100%;
+    position: relative;
+    z-index: 102;
+}
+.pizzles-resume .pizzles-resume-recover{
+    flex: initial;
+    position: relative;
+    z-index: 101;
+    top: -40px;
+    height: 100px;
+    background-color: var(--yellow);
+    border-radius: 25px;
+}
+.pizzles-resume .pizzles-resume-recover a{
+    line-height: 140px;
+    color: var(--whitest);
+    font-family: var(--fontMain);
+    text-decoration: none;
+}
+.pizzles-resume .pizzles-resume-recover .fas{
+    margin-left: 10px;
+}
+
+.pizzles-resume p{
+    font-size: var(--txt18);
+}
+.pizzles-resume p.pizzles-resume-subtitle{
+    font-family: var(--fontMain);
+}
+
+.pizzles-resume .pizzles-resume-items{
+    height: max-content;
+}
+.pizzles-resume .pizzles-resume-item .row{
+    height: 100%;
+    flex-direction: column;
+}
+
+.pizzles-resume-total{
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 30px;
+    width: max-content;
+    padding: 0 50px;
+    background-color: var(--red);
+    box-shadow: 0px 0px 10px 0px var(--redOP);
+    font-family: var(--fontMain);
+    font-size: var(--txt24);
+    color: var(--whitest);
+}
+
+@media all and (min-width : 993px){
+    .pizzles-resume .pizzles-resume-item.col-lg:nth-of-type(1n+2){
+        border-left: 1px solid var(--black);
+    }
+}
+@media all and (max-width : 992px){
+    .pizzles-resume .pizzles-resume-item.col-6:nth-of-type(2n){
+        border-left: 1px solid var(--black);
+    }
+    .pizzles-resume .pizzles-resume-item.col-6:nth-of-type(1n+3){
+        border-top: 1px solid var(--black);
+    }
+}
+
+/****************************** FORM GENERAL ******************************/
+
+.form-label{
+    font-family: var(--fontMain);
+}
+
+.form-control{
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+    border: 2px solid var(--black);
+    color: var(--black);
+}
+.form-control:focus{
+    background-color: rgba(0,0,0,0);
+}
+
+form button{
+    border: none;
+}
+.pizzles-alternateLogin{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.pizzles-alternateLogin p{
+    width: max-content;
+    color: var(--red);
+    line-height: 50px;
+}
+
+
+/****************************** CONNECTION ******************************/
+
+.pizzles-connection-box{
+    background-color: var(--red);
+    box-shadow: 0px 0px 10px 0px var(--grayOP);
+    border-radius: 25px;
+    color: var(--whitest);
+}
+
+.pizzles-connection-box .form-control{
+    border: 2px solid var(--whitest);
+    color: var(--whitest);
+}
+
+/****************************** REGISTER ******************************/
+
+.pizzles-register-box{
+    background-color: var(--whitest);
+    box-shadow: 0px 0px 10px 0px var(--grayOP);
+    border-radius: 25px;
+}
+.pizzles-register-box button.btn{
+    border-radius: 10px;
+    height: min-content;
+}
+.pizzles-register-box button.btn .fas{
+    margin-left: 10px;
+}
+
+.pizzles-register-password{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.pizzles-register-password input{
+    flex: 1;
+    margin-left: 2vw;
+}
+.pizzles-register-cgu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#registerSubmit{
+    transition: all 0.2s ease-in-out;
+}
+#registerSubmit.submit-disabled{
+    color: var(--graylight);
+    background-color: var(--graydark);
+    box-shadow: 0 0 0 0 var(--red);
+}
+
+.pizzles-register-cgu #registerCGU{
+    height: 30px;
+    width: 60px;
+    border: 2px solid var(--black) !important;
+}
+
+.modal{
+    margin-top: 100px;
+    line-height: 35px;
+}
+
+@media all and (max-width : 768px){
+    .modal{
+        margin-top: 25px;
+        height: 85%;
+    }
+
+    .pizzles-register-cgu{
+        flex-direction: column;
+        text-align: center;
+    }
+    #buttonCGU{
+        margin: 15px 0;
+    }
+}
+
+/****************************** MY ACCOUNT ******************************/
+
+.pizzles-btn-disconnect{
+    background: var(--redpale);
+    box-shadow: 0px 0px 10px 0px var(--red);
+    font-size: var(--txt24);
+}
+
+.nav-link{
+    font-family: var(--fontMain);
+    font-size: var(--txt18);
+}
+.nav-link .fas{
+    margin-left: 10px;
+}
+
+.row.tab-pane{
+    margin-top: 25px;
+}
+
+.pizzles-review-box, .pizzles-summaryOrder-box{
+    background-color: var(--whitest);
+    box-shadow: 0px 0px 10px 0px var(--grayOP);
+    border-radius: 25px;
+}
+.pizzles-review-box .pizzles-review-numOrder, .pizzles-summaryOrder-box .pizzles-summaryOrder-numOrder, .pizzles-summaryOrder-box .pizzles-summaryOrder-state{
+    font-family: var(--fontMain);
+    font-size: var(--txt24);
+}
+
+.pizzles-review-box .pizzles-review-dateOrder{
+    align-self: center;
+}
+
+.pizzles-summaryOrder-box .pizzles-summaryOrder-items, .pizzles-summaryOrder-box .pizzles-summaryOrder-delivery, .pizzles-summaryOrder-box .pizzles-summaryOrder-total{
+    display: block;
+    min-height: 50px;
+    line-height: 50px;
+    border-radius: 25px;
+    font-family: var(--fontMain);
+    font-size: var(--txt18);
+    text-align: center;
+}
+
+.pizzles-summaryOrder-box .pizzles-summaryOrder-items{
+    background-color: var(--graylight);
+}
+
+.pizzles-summaryOrder-box .pizzles-summaryOrder-delivery{
+    background-color: var(--yellowPale);
+    font-family: unset;
+    font-weight: var(--fontBold);
+}
+
+.pizzles-summaryOrder-box .pizzles-summaryOrder-total{
+    background-color: var(--redpale);
+    font-size: var(--txt24);
+    color: var(--whitest);
+}
+
+/********** EVOLUTION OF THE ORDER ***********/
+
+.pizzles-summaryOrder-evolution{
+    display: flex;
+    align-items: center;
+}
+
+.pizzles-summaryOrder-evolution .pizzles-summaryOrder-evolution-ball {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    flex: initial;
+}
+.pizzles-summaryOrder-evolution .pizzles-summaryOrder-evolution-line {
+    height: 4px;
+    flex: 1;
+}
+
+.pizzles-summaryOrder-evolution .pizzles-summaryOrder-evolution-ball , .pizzles-summaryOrder-evolution .pizzles-summaryOrder-evolution-line {
+    background-color: var(--graylight);
+}
+
+.pizzles-summaryOrder-evolution .pizzles-summaryOrder-evolution-ball.pizzles-evolution-done, .pizzles-summaryOrder-evolution .pizzles-summaryOrder-evolution-line.pizzles-evolution-done{
+    background-color: var(--red);
+}
+
+/********** STARTS PARAMS ***********/
+
+.stars{
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.stars-text{
+    line-height: 34px;
+}
+
+.stars input{
+    position: relative;
+    display: flex;
+    width: 19px;
+    height: 34px;
+    justify-content: center;
+    align-items: center;
+    appearance: none;
+    overflow: hidden;
+}
+.stars input:not(:disabled){
+    cursor: pointer;
+}
+
+.stars input::before{
+    content: "\f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 34px;
+    position: absolute;
+    left: 0px;
+    color: var(--white);
+    transition: 0.2s;
+}
+
+.stars input:nth-child(2n+1)::before{
+    right: 0px;
+    left: initial;
+}
+
+.stars input:hover:not(:disabled) ~ input::before,
+.stars input:hover:not(:disabled)::before,
+.stars input:checked ~ input::before,
+.stars input:checked::before{
+    color: var(--yellow);
+}
+
+/****************************** REVIEW PAGE ******************************/
+
+.pizzles-review-formBox{
+    background-color: var(--whitest);
+    box-shadow: 0px 0px 10px 0px var(--grayOP);
+    border-radius: 25px;
+}
+.pizzles-review-formBox .pizzles-summaryOrder-box{
+    background-color: var(--graylight);
+}
+.pizzles-review-formBox .pizzles-summaryOrder-box .pizzles-summaryOrder-items{
+    background-color: var(--whitest);
+}
+
+.pizzles-review-formBox .pizzles-review-form{
+    resize: none;
+}
+.pizzles-review-formBox .pizzles-review-title{
+    font-size: var(--txt24);
+    font-family: var(--fontMain);
+}
+
+
+#reviewCommentCharacter, #contactMessageCharacter{
+    font-size: var(--txt24);
+    font-weight: var(--fontBold);
+    font-style: italic;
+}
+
+
+
+/****************************** CONTACT ******************************/
+/****************************** PASSWORD UPDATE ******************************/
+/****************************** !!!MAIL!!! ******************************/
+
+
+
+/****************************** FOOTER ******************************/
+
+/******************** FOOTER CONTAINER *******************/
+footer{
+    width: 100%;
+    height: auto;
+    background-color: var(--graydark);
+    color: var(--whitest);
+}
+
+/******************** FOOTER LINKS *******************/
+footer a{
+    color: var(--whitest);
+    text-decoration: none;
+    line-height: 30px;
+}
+
+footer a, footer .pizzles-copyright{
+    font-size: clamp(0.8rem, 0.8vw, 1.6rem);
+}
+
+footer a:hover{
+    color: var(--graylight);
+}
+
+/******************** FOOTER BORDERS *******************/
+footer .col-6{
+    border-left: 1px solid var(--graylight);
+    border-right: 1px solid var(--graylight);
+}
+
+footer .col-6:first-child, footer .col-6:last-child{
+    border: none;
+}
+
+/******************** FOOTER IMAGES & PICS *******************/
+footer img{
+    width: 50%;
+}
+
+footer .fab{
+    font-size: 40px;
+}
+
+/******************** FOOTER RESPONSIVE *******************/
+@media all and (max-width : 768px){
+    footer .col-6{
+        border: none;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+    footer .order-5{
+        padding-bottom: 50px;
+    }
+}

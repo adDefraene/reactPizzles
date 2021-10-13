@@ -1,0 +1,72 @@
+
+    <!-- CONTENT -->
+    <div class="container pizzles-first-container">
+        <div class="row">
+            <div class="pizzles-head-title mb-4 text-center">
+                <h1><strong>Passer la commande</strong></h1>
+            </div>
+            <div class="col-12 col-lg-3 mt-4">
+                <a href="#" class="pizzles-btn my-3 pizzles-btn-back"><i class="fas fa-chevron-circle-left"></i>Retour au menu</a>
+            </div>
+            <div class="col-12 col-lg-6 mt-4">
+                <h2 class="pizzles-title text-center mx-auto my-3">Choisir la livraison</h2>
+            </div>
+            <div class="col-12 my-5">
+                <div class="pizzles-order-total mx-auto">
+                    <h2 class="pizzles-txt-title pizzles-order-total-amount m-auto text-center">TOTAL : <span>13,00€</span></h2>
+                    <div class="pizzles-txt-title pizzles-order-fees">
+                        + 3 €
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-5 mb-5">
+                <div class="pizzles-order-method pizzles-delivery text-center p-4">
+                    <img src="images/logos/VESPA_PICTO.png" alt="Être livré à domicile"  class="my-4">
+                    <p>Être livré à domicile</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-5 offset-md-2 mb-5">
+                <div class="pizzles-order-method pizzles-take text-center p-4">
+                    <img src="images/logos/MAPPIN_PICTO.png" alt="Venir chercher sur place"  class="my-4">
+                    <p>Venir chercher sur place</p>
+                </div>
+            </div>
+            <div class="col-12 my-3">
+                <a href="#" class="pizzles-btn pizzles-btn-red next-button next-button-disabled">Suivant<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+function toggleNextButton(){
+    if(document.querySelector(".next-button").classList.contains("next-button-disabled")){
+        document.querySelector(".next-button").classList.remove("next-button-disabled")
+    }
+}
+
+function toggleOrderFees(){
+    toggleNextButton()
+
+    if(!this.classList.contains("active-method")){
+        if(document.querySelector(".active-method")){
+            document.querySelector(".active-method").classList.remove("active-method")
+        }
+
+        this.classList.toggle("active-method")
+
+        if(this.classList.contains("active-method") && this.classList.contains("pizzles-delivery") && !this.classList.contains("pizzles-take")){
+            document.querySelector(".pizzles-order-fees").classList.add("active-fees")
+        }else{
+            document.querySelector(".pizzles-order-fees").classList.remove("active-fees")
+        }
+    }
+}
+
+        
+
+    document.querySelectorAll(".pizzles-order-method").forEach(function(method){
+        method.addEventListener("click", toggleOrderFees)
+    })
+        
+    </script>

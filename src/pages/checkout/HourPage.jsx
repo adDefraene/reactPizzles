@@ -3,7 +3,6 @@ import React from 'react';
 const HourPage = () => {
     return ( 
 <>
-
     <div className="container pizzles-first-container">
         <div className="row">
             <div className="pizzles-head-title mb-4 text-center">

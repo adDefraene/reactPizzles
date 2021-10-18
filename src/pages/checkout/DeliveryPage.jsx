@@ -1,10 +1,11 @@
 import React from 'react';
 
 const DeliveryPage = () => {
+
+
     return ( 
 
 <>
-
 <div className="container pizzles-first-container">
     <div className="row">
         <div className="pizzles-head-title mb-4 text-center">
@@ -43,6 +44,9 @@ const DeliveryPage = () => {
 </div>
 </>
      );
+    
+
+     
 }
  
 export default DeliveryPage;

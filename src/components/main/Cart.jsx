@@ -1,7 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const Cart = () => {
-
 
     return ( 
 <>
@@ -77,7 +77,9 @@ const Cart = () => {
                   <h2 className="pizzles-txt-title pizzles-cart-total m-auto text-center">Total de la commande : <span>13,00€</span></h2>
               </div>
               <div className="col-12 my-3">
-                  <a href="/delivery" className="pizzles-btn pizzles-btn-yellow">Passer la commande<i className="fas fa-cart-arrow-down"></i></a>
+                  <Link className="pizzles-btn pizzles-btn-yellow" to="/delivery">
+                    Passer la commande<i className="fas fa-cart-arrow-down"></i>
+                  </Link>
               </div>
           </div>
     </div>

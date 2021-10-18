@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomePageHeader = () => {
     return ( 
-    <section className="container pizzles-first-container mb-5">
+    <header className="container pizzles-first-container mb-5">
         <div className="row">
             <div className="col-12 col-lg-5">
                 <div className="row pizzles-home-titles flex-column">
@@ -24,7 +24,7 @@ const HomePageHeader = () => {
                 </div>
             </div>
         </div>
-    </section>
+    </header>
     );
 }
  

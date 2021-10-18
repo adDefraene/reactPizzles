@@ -1,7 +1,8 @@
 import React from 'react';
 
 const MenuPage = () => {
-    return ( 
+    return (
+<>
     <section className="container pizzles-first-container pizzles-menu">
         <div className="pizzles-head-title text-center">
             <h1><strong>Notre menu</strong></h1>
@@ -203,6 +204,7 @@ const MenuPage = () => {
             </div>
         </div>
     </section>
+</>
      );
 }
  

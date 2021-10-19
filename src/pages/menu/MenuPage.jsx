@@ -9,7 +9,6 @@ const MenuPage = () => {
     const fetchMenuPizzas = async () => {
         try {
             const data = await pizzasAPI.findAll()
-            console.log(data)
             setMenuPizzas(data)
         }
         catch (error) {

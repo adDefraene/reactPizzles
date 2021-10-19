@@ -8,13 +8,21 @@ async function findAll(){
 }
 
 async function find(slug){
-    const response = await Axios.get(`${API_URL}pizzas/${slug}`);
-    return response.data["hydra:member"];
+    console.log(slug)
+    const response = await Axios.get(`${API_URL}pizzas/${slug}/`);
+    console.log(response)
+    return response.data;
+}
+
+async function findIngredients(slug){
+    const response = await Axios.get(`${API_URL}pizzas/${slug}/ingredients`);
+    return response.data;
 }
 
 const pizzasApiMethods = {
     findAll: findAll,
-    find: find
+    find: find,
+    ingredients : findIngredients
 }
 
 export default pizzasApiMethods

@@ -52,13 +52,20 @@ const App = () => {
                 <Route path="/contact" component={ContactPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/login" component={LoginPage} />
-                <PrivateRoute path="/profile" component={ProfilePage} />
+                <Route path="/profile" component={ProfilePage} />
+                <Route path="/profile/review" component={ReviewPage} />
+                <Route path="/profile/password-update" component={PasswordUpdatePage} />
+                <Route path="/addpizza/:slug" component={AddPizzaPage} />
+                <Route path="/delivery" component={DeliveryPage} />
+                <Route path="/hour" component={HourPage} />
+                <Route path="/summary" component={SummaryPage} />
+                {/* <PrivateRoute path="/profile" component={ProfilePage} />
                 <PrivateRoute path="/profile/review" component={ReviewPage} />
                 <PrivateRoute path="/profile/password-update" component={PasswordUpdatePage} />
                 <PrivateRoute path="/addpizza/:slug" component={AddPizzaPage} />
                 <PrivateRoute path="/delivery" component={DeliveryPage} />
                 <PrivateRoute path="/hour" component={HourPage} />
-                <PrivateRoute path="/summary" component={SummaryPage} />
+                <PrivateRoute path="/summary" component={SummaryPage} /> */}
                 <Route path="/" component={HomePage} />
             </Switch>
             <Footer />

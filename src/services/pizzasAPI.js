@@ -8,9 +8,7 @@ async function findAll(){
 }
 
 async function find(slug){
-    console.log(slug)
     const response = await Axios.get(`${API_URL}pizzas/${slug}/`);
-    console.log(response)
     return response.data;
 }
 

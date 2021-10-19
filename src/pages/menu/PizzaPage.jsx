@@ -4,8 +4,6 @@ import pizzasAPI from '../../services/pizzasAPI';
 
 const PizzaPage = ({match}) => {
 
-    console.log(match.params.slug)
-
     var slug = match.params.slug
 
     const [pizza, setPizza] = useState({

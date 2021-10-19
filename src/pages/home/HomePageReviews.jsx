@@ -29,7 +29,12 @@ const HomePageReviews = () => {
                     <h2 className="pizzles-title text-center my-4 mx-auto">Ce que nos clients pensent de nous</h2>
                 </div>
                 {homeReviews.map(homeReview => (
-                    <HomePageReviewsBox reviewText={homeReview.review} reviewDate={homeReview.reviewedOrder.date} reviewAuthor={homeReview.reviewedOrder.customer.evaluationName} reviewAveragenote={homeReview.averageRating} />
+                    <HomePageReviewsBox
+                        key={homeReview.id}
+                        reviewText={homeReview.review}
+                        reviewDate={homeReview.reviewedOrder.date}
+                        reviewAuthor={homeReview.reviewedOrder.customer.evaluationName}
+                        reviewAveragenote={homeReview.averageRating} />
                 ))}
             </div>
         </div>

@@ -1,9 +1,10 @@
-import React, {useState}  from 'react';
+import React, {useEffect, useState}  from 'react';
 // COMPONENTS
 import { BrowserRouter as Router,  Route, Switch } from 'react-router-dom';
 import Nav from './components/main/Nav';
 import Cart from './components/main/Cart';
 import Footer from './components/main/Footer';
+// eslint-disable-next-line
 import PrivateRoute from './components/PrivateRoute';
 import authAPI from './services/authAPI';
 import AuthContext from './contexts/AuthContext';
@@ -24,8 +25,9 @@ import SummaryPage from './pages/checkout/SummaryPage';
 // STYLES
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-
 import './App.css';
+// JS
+import cartJs from './js/CartJS';
 
 const App = () => {
   
@@ -40,6 +42,10 @@ const App = () => {
       isAuthenticated: isAuthenticated,
       setIsAuthenticated: setIsAuthenticated
   }
+
+  useEffect(()=>{
+    cartJs()
+  },[])
 
   return (
     <AuthContext.Provider value={contextValue}>

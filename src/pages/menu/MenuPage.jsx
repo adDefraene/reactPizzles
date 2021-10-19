@@ -20,8 +20,6 @@ const MenuPage = () => {
         fetchMenuPizzas()
     }, [])
 
-    console.log(menuPizzas)
-
     return (
 <>
     <section className="container pizzles-first-container pizzles-menu">
@@ -91,7 +89,8 @@ const MenuPage = () => {
                 <div className="row my-4">
                     {menuPizzas.map(menuPizza => {
                         if(menuPizza.type === "PROMO"){
-                            return (<MenuPizzaCell name={menuPizza.name} price={menuPizza.price} image={menuPizza.image} slug={menuPizza.slug} type={menuPizza.type} />)
+                            return (<MenuPizzaCell 
+                                key={menuPizza.id} name={menuPizza.name} price={menuPizza.price} image={menuPizza.image} slug={menuPizza.slug} type={menuPizza.type} />)
                         }else{
                             return ""
                         }
@@ -104,6 +103,7 @@ const MenuPage = () => {
                     {menuPizzas.map(menuPizza => {
                         if(menuPizza.type === "POTM")
                             return  <MenuPizzaCell
+                                        key={menuPizza.id}
                                         name={menuPizza.name}
                                         price={menuPizza.price}
                                         image={menuPizza.image}
@@ -120,6 +120,7 @@ const MenuPage = () => {
                     {menuPizzas.map(menuPizza => {
                         if(menuPizza.type === "CLASSIC")
                             return  <MenuPizzaCell
+                                        key={menuPizza.id}
                                         name={menuPizza.name}
                                         price={menuPizza.price}
                                         image={menuPizza.image}

@@ -1,5 +1,6 @@
-import React, {useState, useEffects}  from 'react';
-import { BrowserRouter as Router, HashRouter,  Route, Switch } from 'react-router-dom';
+import React, {useState}  from 'react';
+// COMPONENTS
+import { BrowserRouter as Router,  Route, Switch } from 'react-router-dom';
 import Nav from './components/main/Nav';
 import Cart from './components/main/Cart';
 import Footer from './components/main/Footer';
@@ -20,50 +21,50 @@ import ContactPage from './pages/ContactPage';
 import DeliveryPage from './pages/checkout/DeliveryPage';
 import HourPage from './pages/checkout/HourPage';
 import SummaryPage from './pages/checkout/SummaryPage';
+// STYLES
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 import './App.css';
 
-function App() {
-
+const App = () => {
+  
+  const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated)
   const [cart, setCart] = useState({});
 
-  const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated)
 
+  if(isAuthenticated){
+      setCart()  
+  }
   const contextValue = {
       isAuthenticated: isAuthenticated,
       setIsAuthenticated: setIsAuthenticated
   }
 
-
-
   return (
-    <div className="App">
-      <AuthContext.Provider value={contextValue}>
-          <HashRouter>
-              <Router>
-                  <Nav />
-                  <Cart />
-                  <Switch>
-                      <Route exact path="/" component={HomePage} />
-                      <Route exact path="/menu" component={MenuPage} />
-                      <Route exact path="/pizza" component={PizzaPage} />
-                      <Route exact path="/contact" component={ContactPage} />
-                      <Route exact path="/register" component={RegisterPage} />
-                      <Route exact path="/login" component={LoginPage} />
-                      <PrivateRoute exact path="/profile" component={ProfilePage} />
-                      <PrivateRoute exact path="/profile/review" component={ReviewPage} />
-                      <PrivateRoute exact path="/profile/password-update" component={PasswordUpdatePage} />
-                      <PrivateRoute exact path="/addpizza" component={AddPizzaPage} />
-                      <PrivateRoute exact path="/delivery" component={DeliveryPage} />
-                      <PrivateRoute exact path="/hour" component={HourPage} />
-                      <PrivateRoute exact path="/summary" component={SummaryPage} />
-                  </Switch>
-                  <Footer />
-              </Router>
-          </HashRouter>
-      </AuthContext.Provider>
-    </div>
-  );
+    <AuthContext.Provider value={contextValue}>
+        <Router>
+            <Nav />
+            <Cart cart={cart} />
+            <Switch>
+                <Route path="/menu" component={MenuPage} />
+                <Route path="/pizza/:slug" component={PizzaPage} />
+                <Route path="/contact" component={ContactPage} />
+                <Route path="/register" component={RegisterPage} />
+                <Route path="/login" component={LoginPage} />
+                <PrivateRoute path="/profile" component={ProfilePage} />
+                <PrivateRoute path="/profile/review" component={ReviewPage} />
+                <PrivateRoute path="/profile/password-update" component={PasswordUpdatePage} />
+                <PrivateRoute path="/addpizza/:slug" component={AddPizzaPage} />
+                <PrivateRoute path="/delivery" component={DeliveryPage} />
+                <PrivateRoute path="/hour" component={HourPage} />
+                <PrivateRoute path="/summary" component={SummaryPage} />
+                <Route path="/" component={HomePage} />
+            </Switch>
+            <Footer />
+        </Router>
+    </AuthContext.Provider>
+  )
 }
 
 export default App;

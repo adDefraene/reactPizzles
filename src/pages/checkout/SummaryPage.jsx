@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const SummaryPage = () => {
     return ( 
@@ -54,7 +55,7 @@ const SummaryPage = () => {
                             </div>
                         </div>
                         <div className="pizzles-summary-recover">
-                            <a href="/menu">Non, modifier mon panier et retourner au menu<i className="fas fa-edit"></i></a>
+                            <Link to="/menu">Non, modifier mon panier et retourner au menu<i className="fas fa-edit"></i></Link>
                         </div>
                     </div>
                     <div className="col-12 col-md-6 pizzles-summary-cell my-3">
@@ -63,7 +64,7 @@ const SummaryPage = () => {
                             <p>Livraison à domicile (+3€) au :<br /><span>Rue de la Ste Glinglin 404, 7800 Ath</span></p>
                         </div>
                         <div className="pizzles-summary-recover">
-                            <a href="/delivery">Non, changer de livraison<i className="fas fa-edit"></i></a>
+                            <Link to="/delivery">Non, changer de livraison<i className="fas fa-edit"></i></Link>
                         </div>
                     </div>
                     <div className="col-12 col-md-6 pizzles-summary-cell my-3">
@@ -72,7 +73,7 @@ const SummaryPage = () => {
                             <p>Livraison prête pour : <br /><span>19 H 30</span></p>
                         </div>
                         <div className="pizzles-summary-recover">
-                            <a href="/hour">Non, changer d'heure<i className="fas fa-edit"></i></a>
+                            <Link to="/hour">Non, changer d'heure<i className="fas fa-edit"></i></Link>
                         </div>
                     </div>
                 </div>
@@ -80,7 +81,7 @@ const SummaryPage = () => {
             <h2 className="pizzles-summary-total m-auto text-center">TOTAL : <span>27,50€</span></h2>
         </div>
         <div className="col-12 my-3">
-            <a href="/payment" className="pizzles-btn pizzles-btn-red next-button">Oui, je vais procéder au paiement<i className="fas fa-wallet"></i></a>
+            <Link to="/payment" className="pizzles-btn pizzles-btn-red next-button">Oui, je vais procéder au paiement<i className="fas fa-wallet"></i></Link>
         </div>
     </div>
 </div>

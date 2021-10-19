@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const ProfilePage = () => {
     return ( 
@@ -134,7 +135,7 @@ const ProfilePage = () => {
                             <div class="col-12 text-center mt-2 mb-5 pizzles-review-numOrder">Commande #00175</div>
                             <div class="col-12 col-sm-6 my-3 pizzles-review-dateOrder text-center"><b>30 février 2021 19 H 30</b></div>
                             <div class="col-12 col-sm-6 my-3">
-                                <a href="/profile/review" class="pizzles-btn pizzles-btn-yellow">Évaluer<i class="fas fa-tasks"></i></a>
+                                <Link to="/profile/review" class="pizzles-btn pizzles-btn-yellow">Évaluer<i class="fas fa-tasks"></i></Link>
                             </div>
                         </div>
                     </div>
@@ -206,7 +207,7 @@ const ProfilePage = () => {
                             <div class="col-12 text-center mt-2 mb-5 pizzles-review-numOrder">Commande #00175</div>
                             <div class="col-12 col-sm-6 my-3 pizzles-review-dateOrder text-center"><b>30 février 2021 19 H 30</b></div>
                             <div class="col-12 col-sm-6 my-3">
-                                <a href="/profile/review" class="pizzles-btn pizzles-btn-yellow">Évaluer<i class="fas fa-tasks"></i></a>
+                                <Link to="/profile/review" class="pizzles-btn pizzles-btn-yellow">Évaluer<i class="fas fa-tasks"></i></Link>
                             </div>
                         </div>
                     </div>
@@ -237,7 +238,7 @@ const ProfilePage = () => {
                         </form>
                     </div>
                     <br />
-                    <a href="/profile/password-update" class="pizzles-btn pizzles-btn-white mx-auto mt-5">Je souhaite modifier mon mot de passe<i class="fas fa-edit"></i></a>
+                    <Link to="/profile/password-update" class="pizzles-btn pizzles-btn-white mx-auto mt-5">Je souhaite modifier mon mot de passe<i class="fas fa-edit"></i></Link>
                 </div>
             </div>
         </div>

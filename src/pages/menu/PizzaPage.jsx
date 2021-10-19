@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const PizzaPage = () => {
     return ( 
@@ -6,7 +7,7 @@ const PizzaPage = () => {
     <div className="container pizzles-first-container">
         <div className="row">
             <div className="col-12 col-lg-3">
-                <a href="/menu" className="pizzles-btn mb-3 pizzles-btn-back"><i className="fas fa-chevron-circle-left"></i>Retour au menu</a>
+                <Link to="/menu" className="pizzles-btn mb-3 pizzles-btn-back"><i className="fas fa-chevron-circle-left"></i>Retour au menu</Link>
             </div>
             <div className="col-12 col-lg-6 mb-5">
                 <h2 className="pizzles-title text-center mb-4 mx-auto">Margharita</h2>
@@ -21,7 +22,7 @@ const PizzaPage = () => {
                 <div className="row my-3">
                     <div className="col-12 col-sm-4 text-center text-sm-start pizzles-pizza-price my-4">11,50€</div>
                     <div className="col-12 col-sm-8 my-4">
-                        <a href="/addpizza" className="pizzles-btn pizzles-btn-red">Commander<i className="fas fa-cart-plus"></i></a>
+                        <Link to="/addpizza" className="pizzles-btn pizzles-btn-red">Commander<i className="fas fa-cart-plus"></i></Link>
                     </div>
                 </div>
             </div>

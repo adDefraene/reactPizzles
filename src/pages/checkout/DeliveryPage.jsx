@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const DeliveryPage = () => {
 
@@ -12,7 +13,7 @@ const DeliveryPage = () => {
             <h1><strong>Passer la commande</strong></h1>
         </div>
         <div className="col-12 col-lg-3 mt-4">
-            <a href="/menu" className="pizzles-btn my-3 pizzles-btn-back"><i className="fas fa-chevron-circle-left"></i>Retour</a>
+            <Link to="/menu" className="pizzles-btn my-3 pizzles-btn-back"><i className="fas fa-chevron-circle-left"></i>Retour</Link>
         </div>
         <div className="col-12 col-lg-6 mt-4">
             <h2 className="pizzles-title text-center mx-auto my-3">Choisir la livraison</h2>
@@ -38,7 +39,7 @@ const DeliveryPage = () => {
             </div>
         </div>
         <div className="col-12 my-3">
-            <a href="/hour" className="pizzles-btn pizzles-btn-red next-button next-button-disabled">Suivant<i className="fas fa-arrow-circle-right"></i></a>
+            <Link to="/hour" className="pizzles-btn pizzles-btn-red next-button next-button-disabled">Suivant<i className="fas fa-arrow-circle-right"></i></Link>
         </div>
     </div>
 </div>

@@ -1,7 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const HomePageWork = () => {
     return ( 
+<>
     <section id="pizzlesWork" className="pb-5">
         <div className="container py-5">
             <div className="row my-4">
@@ -31,7 +33,7 @@ const HomePageWork = () => {
                 <div className="col-12 col-md-5">
                     <div className="pizzles-delivery-box text-center p-3">
                         <p className="pizzles-txt-title">En livraison à domicile</p>
-                        <img src="/images/logos/VESPA_PICTO.png" className="my-3" alt="Image de scooter" />
+                        <img src="/images/logos/VESPA_PICTO.png" className="my-3" alt="Scooter" />
                         <p>Pour <b>3 € de frais supplémentaires</b>, nous livrons votre commande sur l'entièreté de la commune d'Ath</p>
                     </div>
                 </div>
@@ -41,12 +43,12 @@ const HomePageWork = () => {
                 <div className="col-12 col-md-5">
                     <div className="pizzles-delivery-box text-center p-3">
                         <p className="pizzles-txt-title">Venir chercher sur place</p>
-                        <img src="/images/logos/MAPPIN_PICTO.png" className="my-3" alt="Image de punaise de carte" />
+                        <img src="/images/logos/MAPPIN_PICTO.png" className="my-3" alt="Punaise de carte" />
                         <p>Vous pouvez venir chercher gratuitement votre commande à notre restaurant, situé près de la route nationale 7 à Ath</p>
                     </div>
                 </div>
                 <div className="col-12 col-md-6 my-5">
-                    <a href="#" className="pizzles-btn pizzles-btn-white mx-auto mb-3">Je veux passer commande !<i className="fas fa-receipt"></i></a>
+                    <Link to="/menu" className="pizzles-btn pizzles-btn-white mx-auto mb-3">Je veux passer commande !<i className="fas fa-receipt"></i></Link>
                 </div>
                 <div className="col-12 col-md-6 my-5">
                     <a href="#pizzlesPlace" className="pizzles-btn pizzles-btn-white mx-auto mb-3">Quelle est votre adresse ?<i className="fas fa-search-location"></i></a>
@@ -54,6 +56,7 @@ const HomePageWork = () => {
             </div>
         </div>
     </section>
+</>
      );
 }
  

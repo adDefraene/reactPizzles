@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const HomePagePlace = () => {
     return ( 
@@ -24,17 +25,21 @@ const HomePagePlace = () => {
                 <div className="col-12 col-lg-6 col-xl-4 my-4 order-2 order-xl-3">
                     <div className="pizzles-contact-boxBig p-3">
                         <strong>Nous sommes joignables</strong>
-                        <a href="#" className="pizzles-btn pizzles-btn-white mx-auto my-2">En nous envoyant un message ici<i className="fas fa-envelope-open-text"></i></a>
+                        <Link to="/contact" className="pizzles-btn pizzles-btn-white mx-auto my-2">En nous envoyant un message ici<i className="fas fa-envelope-open-text"></i></Link>
                         <p>par téléphone au : <a href="tel::0479201994">0479 20 19 94</a></p>
                         <p>sur les réseaux sociaux<br />
-                            <a href="#"><i className="fab fa-facebook-square mx-3"></i></a>
-                            <a href="#"><i className="fab fa-instagram mx-3"></i></a>
+                            <Link to="https://www.facebook.com">
+                                <i className="fab fa-facebook-square mx-3"></i>
+                            </Link>
+                            <Link to="https://www.instagram.com">
+                                <i className="fab fa-instagram mx-3"></i>
+                            </Link>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31216.989268386817!2d3.762188716001929!3d50.641710884240666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3aaa69519eab7%3A0xc29b490d9afea4c6!2sChau.%20de%20Bruxelles%2052%2C%207800%20Ath!5e0!3m2!1sfr!2sbe!4v1633523763784!5m2!1sfr!2sbe" width="100%" height="400" style={{marginBottom: "-10px"}} allowFullScreen="" loading="lazy"></iframe>
+        <iframe title="googleMapsPizzles" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31216.989268386817!2d3.762188716001929!3d50.641710884240666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3aaa69519eab7%3A0xc29b490d9afea4c6!2sChau.%20de%20Bruxelles%2052%2C%207800%20Ath!5e0!3m2!1sfr!2sbe!4v1633523763784!5m2!1sfr!2sbe" width="100%" height="400" style={{marginBottom: "-10px"}} allowFullScreen="" loading="lazy"></iframe>
     </section>
      );
 }

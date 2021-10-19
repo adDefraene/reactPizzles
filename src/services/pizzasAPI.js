@@ -1,17 +1,20 @@
-import Axios from 'axios'
+import Axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function findAll(){
-    return Axios.get(`${API_URL}pizzas`)
-                .then(response => response.data["hydramember"])
-}
-function find(slug){
-    return Axios.get(`${API_URL}pizzas/${slug}`)
-                .then(response => response.data["hydramember"])
+async function findAll(){
+    const response = await Axios.get(`${API_URL}pizzas/`);
+    return response.data["hydra:member"];
 }
 
-export default {
+async function find(slug){
+    const response = await Axios.get(`${API_URL}pizzas/${slug}`);
+    return response.data["hydra:member"];
+}
+
+const pizzasApiMethods = {
     findAll: findAll,
     find: find
 }
+
+export default pizzasApiMethods

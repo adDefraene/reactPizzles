@@ -1,6 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import pizzasAPI from '../../services/pizzasAPI';
+import MenuPizzaCell from '../../components/menu/MenuPizzaCell';
 
 const MenuPage = () => {
+
+    const [menuPizzas, setMenuPizzas] = useState([])
+    
+    const fetchMenuPizzas = async () => {
+        try {
+            const data = await pizzasAPI.findAll()
+            console.log(data)
+            setMenuPizzas(data)
+        }
+        catch (error) {
+            console.error(error.response)
+        }
+    }
+    
+    useEffect(()=>{
+        fetchMenuPizzas()
+    }, [])
+
+    console.log(menuPizzas)
+
     return (
 <>
     <section className="container pizzles-first-container pizzles-menu">
@@ -67,139 +89,46 @@ const MenuPage = () => {
         <div className="row">
             <div className="col-12 order-2 order-lg-1 col-lg-6 offset-lg-1">
                 <p className="my-5 pizzles-subtitles text-center">Promotions de la semaine</p>
-                <div className="row gy-4">
-                    <div className="col-6 col-md-4">
-                        <div className="p-2 pizzles-menu-pizzas-cell text-center pizzles-menu-pizzas-promos">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4">
-                        <div className="p-2 pizzles-menu-pizzas-cell text-center pizzles-menu-pizzas-promos">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a></div>
-                    </div>
-                    <div className="col-6 col-md-4">
-                        <div className="p-2 pizzles-menu-pizzas-cell text-center pizzles-menu-pizzas-promos">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a></div>
-                    </div>
+                <div className="row my-4">
+                    {menuPizzas.map(menuPizza => {
+                        if(menuPizza.type === "PROMO"){
+                            return (<MenuPizzaCell name={menuPizza.name} price={menuPizza.price} image={menuPizza.image} slug={menuPizza.slug} type={menuPizza.type} />)
+                        }else{
+                            return ""
+                        }
+                    })}
                 </div>
             </div>
             <div className="col-6 col-md-4 col-lg-2 order-1 order-lg-2 offset-3 offset-lg-2 offset-md-4">
                 <p className="my-5 pizzles-subtitles text-center">Pizza du mois</p>
-                <div className="p-2 pizzles-menu-pizzas-cell text-center pizzles-menu-pizzas-pdm">
-                    <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                    <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                    <p className="pizzles-priceTag my-auto">11,50€</p>
-                    <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
+                <div className="row my-4">
+                    {menuPizzas.map(menuPizza => {
+                        if(menuPizza.type === "POTM")
+                            return  <MenuPizzaCell
+                                        name={menuPizza.name}
+                                        price={menuPizza.price}
+                                        image={menuPizza.image}
+                                        slug={menuPizza.slug}
+                                        type={menuPizza.type}
+                                    />
+                        return ""
+                    })}
                 </div>
             </div>
             <div className="col-12 order-3">
             <p className="my-5 pizzles-subtitles text-center">Reste du menu</p>
                 <div className="row gy-4">
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2 pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2  pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2  pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2  pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2  pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2  pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2  pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2  pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2  pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2  pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2  pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-2">
-                        <div className="p-2  pizzles-menu-pizzas-cell text-center">
-                            <img src="/images/pics/Pizza2.jpg" alt="Pizza"/>
-                            <a href="/pizza" className="pizzles-menu-cell-name my-auto">Margharita</a>
-                            <p className="pizzles-priceTag my-auto">11,50€</p>
-                            <a href="/addpizza" className="pizzles-menu-cell-add  mt-auto">+</a>
-                        </div>
-                    </div>
+                    {menuPizzas.map(menuPizza => {
+                        if(menuPizza.type === "CLASSIC")
+                            return  <MenuPizzaCell
+                                        name={menuPizza.name}
+                                        price={menuPizza.price}
+                                        image={menuPizza.image}
+                                        slug={menuPizza.slug}
+                                        type={menuPizza.type}
+                                    />
+                        return ""
+                    })}
                 </div>
             </div>
         </div>

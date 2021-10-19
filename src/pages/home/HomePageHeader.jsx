@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const HomePageHeader = () => {
     return ( 
@@ -19,7 +20,7 @@ const HomePageHeader = () => {
             </div>
             <div className="col-12 col-xl-6">
                 <div className="row justify-content-between">
-                    <a href="/menu" className="pizzles-btn pizzles-btn-back mx-auto mt-3">J'ai faim !<i className="fas fa-pizza-slice"></i></a>
+                    <Link to="/menu" className="pizzles-btn pizzles-btn-back mx-auto mt-3">J'ai faim !<i className="fas fa-pizza-slice"></i></Link>
                     <a href="#pizzlesConcept" className="pizzles-btn pizzles-btn-white mx-auto mt-3">Je veux en savoir plus<i className="fas fa-search-plus"></i></a>
                 </div>
             </div>

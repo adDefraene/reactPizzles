@@ -1002,6 +1002,7 @@ h4{
     font-family: var(--fontTxt);
     font-weight: var(--fontBold);
     transition: all 0.2s ease-in-out;
+    text-decoration: none;
 }
 .pizzles-menu-cell-add:hover{
     background: var(--orange);

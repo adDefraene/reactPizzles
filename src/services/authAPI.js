@@ -55,9 +55,11 @@ function isAuthenticated() {
 
 }
 
-export default {
+const AuthApiMethods = {
     authenticate: authenticate,
     logout: logout,
     setup: setup,
     isAuthenticated : isAuthenticated
 }
+
+export default AuthApiMethods

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const PasswordUpdatePage = () => {
     return ( 
@@ -6,7 +7,7 @@ const PasswordUpdatePage = () => {
     <div className="container pizzles-first-container">
         <div className="row">
             <div className="col-12 col-lg-3">
-                <a href="/profile" className="pizzles-btn mb-3 pizzles-btn-back"><i className="fas fa-chevron-circle-left"></i>Retour au profil</a>
+                <Link to="/profile" className="pizzles-btn mb-3 pizzles-btn-back"><i className="fas fa-chevron-circle-left"></i>Retour au profil</Link>
             </div>
             <div className="col-12 col-lg-6 mb-5">
                 <h2 className="pizzles-title text-center mb-4 mx-auto">Modifier mon mot de passe</h2>

@@ -1,13 +1,23 @@
 import React from 'react';
+import { useContext } from 'react';
 import {Link} from 'react-router-dom'
+import AuthContext from '../../contexts/AuthContext';
+import authAPI from "../../services/authAPI"
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
+    const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext)
+
+    const handleLogout = () => {
+        authAPI.logout()
+        setIsAuthenticated(false)
+        props.history.push("/login")
+    }
     return ( 
 <>
     <div class="container pizzles-first-container">
         <h3 class="pizzles-end-title text-center mx-auto my-3">Bonjour Adrien !</h3>
         <h3 class="pizzles-end-title text-center mx-auto my-3">Bienvenue sur votre profil</h3>
-        <a href="/logoff" class="pizzles-btn pizzles-btn-disconnect mx-auto my-5">Me déconnecter<i class="fas fa-power-off"></i></a>
+        <button onClick={handleLogout} class="pizzles-btn pizzles-btn-disconnect mx-auto my-5">Me déconnecter<i class="fas fa-power-off"></i></button>
         <ul class="nav nav-tabs nav-fill flex-column flex-sm-row justify-content-center mt-5" id="myProfileMenu" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" type="button" id="lastOrders-tab" data-bs-toggle="tab" data-bs-target="#lastOrders" role="tab" aria-controls="latestOrders" aria-selected="true">Mes commandes en cours<i class="fas fa-clipboard-check"></i></button>

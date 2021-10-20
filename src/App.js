@@ -4,7 +4,6 @@ import { BrowserRouter as Router,  Route, Switch } from 'react-router-dom';
 import Nav from './components/main/Nav';
 import Cart from './components/main/Cart';
 import Footer from './components/main/Footer';
-// eslint-disable-next-line
 import PrivateRoute from './components/PrivateRoute';
 import authAPI from './services/authAPI';
 import AuthContext from './contexts/AuthContext';
@@ -32,46 +31,41 @@ import cartJs from './js/CartJS';
 const App = () => {
   
   const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated)
-  const [cart, setCart] = useState({});
+/*   const [cart, setCart] = useState({});
 
 
   if(isAuthenticated){
       setCart()  
-  }
+  } */
   const contextValue = {
       isAuthenticated: isAuthenticated,
       setIsAuthenticated: setIsAuthenticated
   }
 
   useEffect(()=>{
-    cartJs()
-  },[])
+    /* cartJs() */
+    authAPI.isAuthenticated()
+
+  },[]) 
 
   return (
     <AuthContext.Provider value={contextValue}>
         <Router>
             <Nav />
-            <Cart cart={cart} />
+            <Cart /* cart={cart} */ />
             <Switch>
                 <Route path="/menu" component={MenuPage} />
                 <Route path="/pizza/:slug" component={PizzaPage} />
                 <Route path="/contact" component={ContactPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/login" component={LoginPage} />
-                <Route path="/profile" component={ProfilePage} />
-                <Route path="/profile/review" component={ReviewPage} />
-                <Route path="/profile/password-update" component={PasswordUpdatePage} />
-                <Route path="/addpizza/:slug" component={AddPizzaPage} />
-                <Route path="/delivery" component={DeliveryPage} />
-                <Route path="/hour" component={HourPage} />
-                <Route path="/summary" component={SummaryPage} />
-                {/* <PrivateRoute path="/profile" component={ProfilePage} />
-                <PrivateRoute path="/profile/review" component={ReviewPage} />
+                <PrivateRoute path="/profile/review/:id" component={ReviewPage} />
                 <PrivateRoute path="/profile/password-update" component={PasswordUpdatePage} />
+                <PrivateRoute path="/profile" component={ProfilePage} />
                 <PrivateRoute path="/addpizza/:slug" component={AddPizzaPage} />
                 <PrivateRoute path="/delivery" component={DeliveryPage} />
                 <PrivateRoute path="/hour" component={HourPage} />
-                <PrivateRoute path="/summary" component={SummaryPage} /> */}
+                <PrivateRoute path="/summary" component={SummaryPage} />
                 <Route path="/" component={HomePage} />
             </Switch>
             <Footer />

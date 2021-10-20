@@ -1387,6 +1387,12 @@ form button{
     color: var(--whitest);
 }
 
+.pizzles-connection-box p.invalid-feedback{
+    color: var(--reddark);
+    font-style: italic;
+    text-shadow: 0px 0px 1px var(--graydark);
+}
+
 /****************************** REGISTER ******************************/
 
 .pizzles-register-box{
@@ -1458,6 +1464,7 @@ form button{
     background: var(--redpale);
     box-shadow: 0px 0px 10px 0px var(--red);
     font-size: var(--txt24);
+    border: none;
 }
 
 .nav-link{

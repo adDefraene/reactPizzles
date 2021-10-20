@@ -3,18 +3,13 @@ import jwtDecode from 'jwt-decode'
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function authenticate(credentials){
-    return Axios
-            .post(`${API_URL}login_check`, credentials)
-            .then(response => response.data.token)
-            .then(token => {
-                // utilisation du localstorage pour stocker mon token
-                window.localStorage.setItem("authToken", token)
-                // on va prévenir Axios qu'on a un header par défaut avec un Bearer Token
-                Axios.defaults.headers["Authorization"]="Bearer " + token 
-
-                return true
-            })
+async function authenticate(credentials){
+    const response = await Axios
+        .post(`${API_URL}login_check`, credentials);
+    const token = response.data.token;
+    window.localStorage.setItem("authToken", token);
+    Axios.defaults.headers["Authorization"] = "Bearer " + token;
+    return true;
 }
 
 function logout(){

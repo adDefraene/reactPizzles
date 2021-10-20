@@ -969,6 +969,26 @@ h4{
     height: 180px;
 }
 
+ul.pagination.pagination-pizzles > li.page-item > button.page-link,
+ul.pagination.pagination-pizzles > li.page-itemnull > button.page-link{
+    font-family: var(--fontMain) !important;
+}
+ul.pagination.pagination-pizzles > li.page-item:not(.disabled) > button.page-link,
+ul.pagination.pagination-pizzles > li.page-itemnull > button.page-link{
+    color: var(--red);
+}
+    
+ul.pagination.pagination-pizzles > li.page-item > button.page-link:focus,
+ul.pagination.pagination-pizzles > li.page-itemnull > button.page-link:focus{
+    box-shadow: 0 0 0 0.25rem var(--redOP);
+}
+
+ul.pagination.pagination-pizzles > li.page-item.active > button.page-link{
+    border-color: var(--red);
+    background-color: var(--red);
+    color: var(--whitest);
+}
+
 /******************** MENU PIZZAS CELLS *******************/
 
 .pizzles-menu-pizzas-cell{
@@ -1063,8 +1083,9 @@ h4{
 }
 
 .pizzles-pizzaAdd-pizza img, .pizzles-pizzaAdd-ingredient-cell img{
-    height: 95%;
+    height: 85%;
     width: auto;
+    margin: auto 0;
 }
 
 .pizzles-pizzaAdd-pizza p, .pizzles-pizzaAdd-ingredient-cell p{
@@ -1078,7 +1099,8 @@ h4{
     height: 25px;
     line-height: 25px;
     width: max-content;
-    padding: 0 25px;
+    margin: 0 auto;
+    padding: 0 20px;
     border-radius: 12.5px;
     background: var(--black);
     color: var(--whitest);
@@ -1091,7 +1113,6 @@ h4{
 }
 
 .pizzles-pizzaAdd-ingredient-cell{
-    position: relative;
     top: 0;
     height: 80px;
     box-shadow: 0 10px 15px 0 var(--grayOP);
@@ -1440,8 +1461,12 @@ form button{
 }
 
 .nav-link{
+    color: var(--red);
     font-family: var(--fontMain);
     font-size: var(--txt18);
+}
+.nav-link:hover{
+    color: var(--reddark);
 }
 .nav-link .fas{
     margin-left: 10px;

@@ -1,14 +1,25 @@
+/* import React, { useEffect } from 'react';
+import {Link, useLocation} from 'react-router-dom' */
 import React from 'react';
 import {Link} from 'react-router-dom'
 
 
 const Nav = () => {
-    
+/* 
+    const getRouteValue = () => {
+        console.log("bjcdfslofgbhvkwsgl")
+    }
+
+    useEffect(()=>{
+        getRouteValue()
+    }, [useLocation]) */
+
+
     return ( 
 <>
 <nav className="pizzles-nav text-center">
     <div className="row">
-        <Link to="/" className="col pizzles-nav-link pizzles-nav-selectedPage">
+        <Link to="/" className="col pizzles-nav-link">
               <img src="/images/logos/PIZZLES_PICTO.png" alt="Page principale" />
               <h3>Accueil</h3>
         </Link>

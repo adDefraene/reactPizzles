@@ -13,20 +13,17 @@ const Pagination = (props) => {
 
     return ( 
         <>
-            <ul className="pagination pagination-sm justify-content-center">
+            <ul className="pagination pagination-pizzles justify-content-center">
                 <li className={"page-item" + (props.currentPage === 1 ? " disabled" : null)}>
-                    <button className="page-link" onClick={()=>props.onPageChanged(props.currentPage - 1)} >&laquo;</button>
+                    <button className="page-link" onClick={()=>props.onPageChanged(props.currentPage - 1)} ><i className="fas fa-arrow-left m-auto"></i></button>
                 </li>
                 {pages.map(page => (
                     <li key={page} className={"page-item" + (props.currentPage === page ? " active" : null)}>
                         <button className="page-link" onClick={() => props.onPageChanged(page)}>{page}</button>
                     </li>
                 ))}
-
-                
-
                 <li className={"page-item" + (props.currentPage === pagesCount ? " disabled" : null)}>
-                    <button className="page-link" onClick={()=>props.onPageChanged(props.currentPage + 1)} >&raquo;</button>
+                    <button className="page-link" onClick={()=>props.onPageChanged(props.currentPage + 1)} ><i className="fas fa-arrow-right m-auto"></i></button>
                 </li>
 
             </ul>

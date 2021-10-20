@@ -28,12 +28,12 @@ const HomePagePlace = () => {
                         <Link to="/contact" className="pizzles-btn pizzles-btn-white mx-auto my-2">En nous envoyant un message ici<i className="fas fa-envelope-open-text"></i></Link>
                         <p>par téléphone au : <a href="tel::0479201994">0479 20 19 94</a></p>
                         <p>sur les réseaux sociaux<br />
-                            <Link to="https://www.facebook.com">
+                            <a href="https://www.facebook.com" rel="noreferrer" target="_blank">
                                 <i className="fab fa-facebook-square mx-3"></i>
-                            </Link>
-                            <Link to="https://www.instagram.com">
+                            </a>
+                            <a href="https://www.instagram.com" rel="noreferrer" target="_blank">
                                 <i className="fab fa-instagram mx-3"></i>
-                            </Link>
+                            </a>
                         </p>
                     </div>
                 </div>

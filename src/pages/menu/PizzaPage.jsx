@@ -40,15 +40,15 @@ const PizzaPage = ({match}) => {
             <div className="col-12 col-lg-6 mb-5">
                 <h2 className="pizzles-title text-center mb-4 mx-auto">{pizza.name}</h2>
             </div>
-            <div className="col-10 offset-1 text-center col-lg-5 offset-lg-0 text-lg-start pizzles-pizza-image">
+            <div className="col-10 offset-1 text-center col-lg-5 offset-lg-0 pizzles-pizza-image">
                 <img src={`http://api.pizzles.adriendefraene.be/images/${pizza.image}`} alt={pizza.name} />
             </div>
             <div className="col-10 offset-1 col-lg-5 offset-lg-2">
                 <article className="pizzles-pizza-description pizzles-article mt-5">
                     <p>{pizza.description}</p>
                 </article>
-                <div className="row my-3">
-                    <div className="col-12 col-sm-4 text-center text-sm-start pizzles-pizza-price my-4">{pizza.price.toLocaleString()} €</div>
+                <div className="row my-3 align-items-center">
+                    <div className="col-12 col-sm-4 text-center pizzles-pizza-price my-4">{(pizza.type === "PROMO" ? `PROMO: ` : "")}{pizza.price.toLocaleString()} €</div>
                     <div className="col-12 col-sm-8 my-4">
                         <Link to={`/addpizza/${pizza.slug}`} className="pizzles-btn pizzles-btn-red">Commander<i className="fas fa-cart-plus"></i></Link>
                     </div>

@@ -28,13 +28,15 @@ const HomePageReviews = () => {
                 <div className="col-12 my-3 mx-auto">
                     <h2 className="pizzles-title text-center my-4 mx-auto">Ce que nos clients pensent de nous</h2>
                 </div>
-                {homeReviews.map(homeReview => (
+                {homeReviews.map(homeReview => (    
+                <div className="col-9 col-md-6 col-lg-4 col-xl-3 my-3 mx-auto">
                     <HomePageReviewsBox
-                        key={homeReview.id}
+                        key={`${homeReview.id}_-_${homeReview.reviewedOrder.date}`}
                         reviewText={homeReview.review}
                         reviewDate={homeReview.reviewedOrder.date}
                         reviewAuthor={homeReview.reviewedOrder.customer.evaluationName}
                         reviewAveragenote={homeReview.averageRating} />
+                </div>
                 ))}
             </div>
         </div>

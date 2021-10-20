@@ -1,8 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import pizzasAPI from '../../services/pizzasAPI';
+import ingredientsAPI from '../../services/ingredientsAPI';
+import Pagination from '../../components/main/Pagination';
 import MenuPizzaCell from '../../components/menu/MenuPizzaCell';
 
 const MenuPage = () => {
+
+    const [menuIngredients, setMenuIngredients] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    
+    const fetchMenuIngredients = async () => {
+        try {
+            const data = await ingredientsAPI.findAll()
+            setMenuIngredients(data)
+        }
+        catch (error) {
+            console.error(error.response)
+        }
+    }
+
+    const handlePageChange = page => {
+        setCurrentPage(page)
+    }
+    
 
     const [menuPizzas, setMenuPizzas] = useState([])
     
@@ -17,8 +37,13 @@ const MenuPage = () => {
     }
     
     useEffect(()=>{
+        fetchMenuIngredients()
         fetchMenuPizzas()
     }, [])
+
+    const itemsPerPage = 6
+
+    const paginatedIngredients = Pagination.getData(menuIngredients, currentPage, itemsPerPage)
 
     return (
 <>
@@ -29,57 +54,26 @@ const MenuPage = () => {
         <h2 className="pizzles-title text-center mx-auto my-5">Nos ingrédients</h2>
         <p className="pizzles-txt-title text-center mx-auto mt-2 mb-5">Le prix de l’ingrédient vaut ce qui sera ajouté au tarif de base de la pizza sélectionnée</p>
         <div className="row">
-            <div className="col-1 pizzles-menu-ingredients-arrow d-flex owl-prev">
-                <i className="fas fa-arrow-left m-auto"></i>
-            </div>
-            <div className="col-10 pizzles-menu-ingredients-carousel">
+            <div className="col-10 offset-1 pizzles-menu-ingredients-carousel">
                 <div className="row">
-                    <div className="col-6 col-md-4 col-lg-3 col-xl-2 my-2">
-                        <div className="pizzles-menu-ingredients-cell text-center">
-                            <img src="/images/pics/yellow_pepper.jpg" className="mt-2" alt="Poivrons"/>
-                            <p className="pizzles-menu-cell-name my-auto">Poivrons</p>
-                            <p className="pizzles-priceTag my-auto">0,50€</p>
+                    {paginatedIngredients.map(ingredient => (
+                        <div className="col-6 col-md-4 col-lg-3 col-xl-2 my-2">
+                            <div className="pizzles-menu-ingredients-cell text-center">
+                                <img src={`http://api.pizzles.adriendefraene.be/images/${ingredient.image}`} alt={ingredient.name} className="mt-2" />
+                                <p className="pizzles-menu-cell-name my-auto">{ingredient.name}</p>
+                                <p className="pizzles-priceTag my-auto">{ingredient.price.toLocaleString()}€</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-3 col-xl-2 my-2">
-                        <div className="pizzles-menu-ingredients-cell text-center">
-                            <img src="/images/pics/yellow_pepper.jpg" className="mt-2" alt="Poivrons"/>
-                            <p className="pizzles-menu-cell-name my-auto">Poivrons</p>
-                            <p className="pizzles-priceTag my-auto">0,50€</p>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-3 col-xl-2 my-2">
-                        <div className="pizzles-menu-ingredients-cell text-center">
-                            <img src="/images/pics/yellow_pepper.jpg" className="mt-2" alt="Poivrons"/>
-                            <p className="pizzles-menu-cell-name my-auto">Poivrons</p>
-                            <p className="pizzles-priceTag my-auto">0,50€</p>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-3 col-xl-2 my-2">
-                        <div className="pizzles-menu-ingredients-cell text-center">
-                            <img src="/images/pics/yellow_pepper.jpg" className="mt-2" alt="Poivrons"/>
-                            <p className="pizzles-menu-cell-name my-auto">Poivrons</p>
-                            <p className="pizzles-priceTag my-auto">0,50€</p>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-3 col-xl-2 my-2">
-                        <div className="pizzles-menu-ingredients-cell text-center">
-                            <img src="/images/pics/yellow_pepper.jpg" className="mt-2" alt="Poivrons"/>
-                            <p className="pizzles-menu-cell-name my-auto">Poivrons</p>
-                            <p className="pizzles-priceTag my-auto">0,50€</p>
-                        </div>
-                    </div>
-                    <div className="col-6 col-md-4 col-lg-3 col-xl-2 my-2">
-                        <div className="pizzles-menu-ingredients-cell text-center">
-                            <img src="/images/pics/yellow_pepper.jpg" className="mt-2" alt="Poivrons"/>
-                            <p className="pizzles-menu-cell-name my-auto">Poivrons</p>
-                            <p className="pizzles-priceTag my-auto">0,50€</p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
-            <div className="col-1 pizzles-menu-ingredients-arrow d-flex owl-next">
-                <i className="fas fa-arrow-right m-auto"></i>
+            <div className="col-12 mt-3">
+                <Pagination
+                    currentPage={currentPage}
+                    itemsPerPage={itemsPerPage}
+                    length={menuIngredients.length}
+                    onPageChanged={handlePageChange}
+                />
             </div>
         </div>
         <h2 className="pizzles-title text-center mx-auto my-5">Nos pizzas</h2>

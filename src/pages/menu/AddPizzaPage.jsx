@@ -74,16 +74,16 @@ const AddPizzaPage = ({match}) => {
                 }
             })
 
-            let putain = `${pizza.name}_-_${ingredient.id}`
-
             return(
-                <MenuSupIngredients
-                    key={putain}
-                    ifOnPizza={ifIngredientOnPizza}
-                    image={ingredient.image}
-                    name={ingredient.name}
-                    price={ingredient.price}
-                />
+                <div className="col-6 col-md-4 col-xl-2 mb-4">
+                    <MenuSupIngredients
+                        key={`${pizza.name}_-_${ingredient.id}`}
+                        ifOnPizza={ifIngredientOnPizza}
+                        image={ingredient.image}
+                        name={ingredient.name}
+                        price={ingredient.price}
+                    />
+                </div>
             )
         })}
         <div className="col-12 my-4">

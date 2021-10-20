@@ -11,8 +11,7 @@ const HomePageReviewsBox = (props) => {
     }
 
     return ( 
-
-    <div className="col-9 col-md-6 col-lg-4 col-xl-3 my-3 mx-auto">
+    <>
         <div className="pizzles-home-reviews">
             <div className="pizzles-home-reviews-comment px-3 pt-3">
                 <div className="d-flex flex-column">
@@ -33,8 +32,7 @@ const HomePageReviewsBox = (props) => {
                 {reviewStars}
             </div>
         </div>
-    </div>
-
+    </>
      );
 }
  

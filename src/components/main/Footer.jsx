@@ -25,21 +25,17 @@ const Footer = () => {
                 </div>
                 <div className="col-6 order-3 col-md-2 order-md-4 text-center">
                     <h4 className="mb-3">Paiement</h4>
-                    <Link to="#">
-                        <i className="fab fa-cc-stripe mx-3"></i>
-                    </Link>
-                    <Link to="#">
-                        <i className="fab fa-cc-mastercard mx-3"></i>
-                    </Link> 
+                    <i className="fab fa-cc-stripe mx-3"></i>
+                    <i className="fab fa-cc-mastercard mx-3"></i>
                 </div>
                 <div className="col-6 order-4 col-md-2 order-md-5 text-center">
                     <h4 className="mb-3">Suivez-nous</h4>
-                    <Link to="https://www.facebook.com">
+                    <a href="https://www.facebook.com" rel="noreferrer" target="_blank">
                         <i className="fab fa-facebook-square mx-3"></i>
-                    </Link>
-                    <Link to="https://www.instagram.com">
+                    </a>
+                    <a href="https://www.instagram.com" rel="noreferrer" target="_blank">
                         <i className="fab fa-instagram mx-3"></i>
-                    </Link>
+                    </a>
                 </div>
             </div>
         </div>

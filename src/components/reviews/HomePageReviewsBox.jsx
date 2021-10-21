@@ -1,14 +1,8 @@
 import React from 'react';
 import Moment from 'react-moment'
+import ReviewsStars from './ReviewsStars';
 
 const HomePageReviewsBox = (props) => {
-
-    var reviewStars = [];
-    
-    for(let i = 10; i >= 1; i--){
-        reviewStars.push(<input type="radio" disabled defaultChecked={props.reviewAveragenote === i ? true : false} value="i" />)
-
-    }
 
     return ( 
     <>
@@ -29,7 +23,10 @@ const HomePageReviewsBox = (props) => {
                 </div>
             </div>
             <div className="pizzles-home-reviews-note stars py-3">
-                {reviewStars}
+                <ReviewsStars
+                    isDisabled={true}
+                    reviewNote={props.reviewAveragenote}
+                />
             </div>
         </div>
     </>

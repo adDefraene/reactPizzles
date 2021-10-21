@@ -1,21 +1,49 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useContext } from 'react';
 import {Link} from 'react-router-dom'
 import AuthContext from '../../contexts/AuthContext';
 import authAPI from "../../services/authAPI"
+import jwtDecode from 'jwt-decode';
+import { useState } from 'react/cjs/react.development';
+import ordersAPI from '../../services/ordersAPI';
+import Moment from 'react-moment';
+import ProfileReviewDone from '../../components/reviews/ProfileReviewDone';
+import ProfileReviewToDo from '../../components/reviews/ProfileReviewToDo';
 
 const ProfilePage = (props) => {
     const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext)
-
+    
     const handleLogout = () => {
         authAPI.logout()
         setIsAuthenticated(false)
         props.history.push("/login")
     }
+    
+    const userInfos = jwtDecode(window.localStorage.getItem('authToken'))
+    
+    const [userOrdersDone, setUserOrdersDone] = useState([])
+
+    const fetchUserOrdersDone = async (userId) => {
+        try {
+            authAPI.setup()
+            const data = await ordersAPI.findDone(userId)
+            setUserOrdersDone(data)
+        }
+        catch (error) {
+            console.error(error.response)
+        }
+    }
+
+    useEffect(() => {
+        fetchUserOrdersDone(userInfos.id)
+    }, [userInfos.id])
+
+
+
     return ( 
 <>
     <div class="container pizzles-first-container">
-        <h3 class="pizzles-end-title text-center mx-auto my-3">Bonjour Adrien !</h3>
+        <h3 class="pizzles-end-title text-center mx-auto my-3">Bonjour {userInfos.firstName} !</h3>
         <h3 class="pizzles-end-title text-center mx-auto my-3">Bienvenue sur votre profil</h3>
         <button onClick={handleLogout} class="pizzles-btn pizzles-btn-disconnect mx-auto my-5">Me déconnecter<i class="fas fa-power-off"></i></button>
         <ul class="nav nav-tabs nav-fill flex-column flex-sm-row justify-content-center mt-5" id="myProfileMenu" role="tablist">
@@ -72,155 +100,41 @@ const ProfilePage = (props) => {
             <div class="tab-pane fade" role="tabpanel" id="olderOrders" aria-labelledby="olderOrders-tab">
                 <h2 class="pizzles-title text-center mx-auto my-5">Mes anciennes commandes</h2>
                 <div class="row">
-                    <div class="col-12 col-md-10 offset-md-1 my-3">
-                        <div class="row pizzles-summaryOrder-box p-3">
-                            <div class="col-12 text-center my-3 pizzles-summaryOrder-numOrder">Commande #00194 - 31 février 2021</div>
-                            <div class="col-12 pizzles-summaryOrder-items my-2 px-4">
-                                Margherita + Aucun ingrédient supplémentaires
-                            </div>
-                            <div class="col-12 pizzles-summaryOrder-items my-2 px-4">
-                                Margherita + Poivron + Pepperonnis
-                            </div>
-                            <div class="col-12 col-md-6 my-4">
-                                <div class="pizzles-summaryOrder-delivery px-4">
-                                    Livré chez vous à 19 H 30
+                    {userOrdersDone.map(orderDone => (
+                        <div class="col-12 col-md-10 offset-md-1 my-3">
+                            <div class="row pizzles-summaryOrder-box p-3">
+                                <div class="col-12 text-center my-3 pizzles-summaryOrder-numOrder">Commande #{orderDone.id} du <span>
+                            <Moment format="DD-M-YYYY">{orderDone.date}</Moment></span></div>
+                                {orderDone.orderItems.map(orderItem => (
+                                <div class="col-12 pizzles-summaryOrder-items my-2 px-4">
+                                    {orderItem.itemPizza.type === "POTM" ? "Pizza du mois" : orderItem.itemPizza.name } 
+                                    
+                                    {orderItem.supIngredients.map(supIngredient => (+ {supIngredient}))}
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-6 my-4">
-                                <div class="pizzles-summaryOrder-total px-4">
-                                    TOTAL : 27,50 €
+                                ))}
+                                <div class="col-12 col-md-6 my-4">
+                                    <div class="pizzles-summaryOrder-delivery px-4">
+                                        {(orderDone.ifDelivered ? "Livré chez vous à " : "Prête au comptoir à ")}
+                                        <Moment format="HH:mm">{orderDone.date}</Moment>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-10 offset-md-1 my-3">
-                        <div class="row pizzles-summaryOrder-box p-3">
-                            <div class="col-12 text-center my-3 pizzles-summaryOrder-numOrder">Commande #00194 - 31 février 2021</div>
-                            <div class="col-12 pizzles-summaryOrder-items my-2 px-4">
-                                Margherita + Aucun ingrédient supplémentaires
-                            </div>
-                            <div class="col-12 pizzles-summaryOrder-items my-2 px-4">
-                                Margherita + Poivron + Pepperonnis
-                            </div>
-                            <div class="col-12 col-md-6 my-4">
-                                <div class="pizzles-summaryOrder-delivery px-4">
-                                    Livré chez vous à 19 H 30
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 my-4">
-                                <div class="pizzles-summaryOrder-total px-4">
-                                    TOTAL : 27,50 €
+                                <div class="col-12 col-md-6 my-4">
+                                    <div class="pizzles-summaryOrder-total px-4">
+                                        TOTAL : {orderDone.total.toLocaleString()} €
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-10 offset-md-1 my-3">
-                        <div class="row pizzles-summaryOrder-box p-3">
-                            <div class="col-12 text-center my-3 pizzles-summaryOrder-numOrder">Commande #00194 - 31 février 2021</div>
-                            <div class="col-12 pizzles-summaryOrder-items my-2 px-4">
-                                Margherita + Aucun ingrédient supplémentaires
-                            </div>
-                            <div class="col-12 pizzles-summaryOrder-items my-2 px-4">
-                                Margherita + Poivron + Pepperonnis
-                            </div>
-                            <div class="col-12 col-md-6 my-4">
-                                <div class="pizzles-summaryOrder-delivery px-4">
-                                    Livré chez vous à 19 H 30
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 my-4">
-                                <div class="pizzles-summaryOrder-total px-4">
-                                    TOTAL : 27,50 €
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
             <div class="tab-pane fade" role="tabpanel" id="userReviews" aria-labelledby="userReviews-tab">
                 <h2 class="pizzles-title text-center mx-auto my-5">Mes évaluations</h2>
                 <div class="row">
-                    <div class="col-12 col-lg-6 my-3 px-4">
-                        <div class="pizzles-review-box p-2 row">
-                            <div class="col-12 text-center mt-2 mb-5 pizzles-review-numOrder">Commande #00175</div>
-                            <div class="col-12 col-sm-6 my-3 pizzles-review-dateOrder text-center"><b>30 février 2021 19 H 30</b></div>
-                            <div class="col-12 col-sm-6 my-3">
-                                <Link to="/profile/review" class="pizzles-btn pizzles-btn-yellow">Évaluer<i class="fas fa-tasks"></i></Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 my-3 px-4">
-                        <div class="pizzles-review-box p-2 row">
-                            <div class="col-12 text-center mt-2 mb-5 pizzles-review-numOrder">Commande #00124</div>
-                            <div class="col-12 col-md-6 pizzles-review-dateOrder text-center"><b>30 février 2021 19 H 30</b></div>
-                            <div class="col-12 col-md-6 my-3">
-                                <div class="review-box-stars stars">
-                                    <input type="radio" disabled value="10" />
-                                    <input type="radio" disabled value="9" />
-                                    <input type="radio" disabled checked value="8" />
-                                    <input type="radio" disabled value="7" />
-                                    <input type="radio" disabled value="6" />
-                                    <input type="radio" disabled value="5" />
-                                    <input type="radio" disabled value="4" />
-                                    <input type="radio" disabled value="3" />
-                                    <input type="radio" disabled value="2" />
-                                    <input type="radio" disabled value="1" />
-                                </div>
-                            </div>
-                            <br class="mb-2" />
-                            <div class="col-12 my-3 text-center">
-                                <p>"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo eveniet, saepe voluptate iure cum quis."</p>
-                            </div>
-                            <div class="col-4 col-md-6 my-2 text-center stars-text">SERVICE</div>
-                            <div class="col-8 col-md-6 my-2 stars">
-                                <input type="radio" disabled value="10" />
-                                <input type="radio" disabled checked value="9" />
-                                <input type="radio" disabled value="8" />
-                                <input type="radio" disabled value="7" />
-                                <input type="radio" disabled value="6" />
-                                <input type="radio" disabled value="5" />
-                                <input type="radio" disabled value="4" />
-                                <input type="radio" disabled value="3" />
-                                <input type="radio" disabled value="2" />
-                                <input type="radio" disabled value="1" />
-                            </div>
-                            <div class="col-4 col-md-6 my-2 text-center stars-text">QUALITÉ</div>
-                            <div class="col-8 col-md-6 my-2 stars">
-                                <input type="radio" disabled value="10" />
-                                <input type="radio" disabled value="9" />
-                                <input type="radio" disabled value="8" />
-                                <input type="radio" disabled checked value="7" />
-                                <input type="radio" disabled value="6" />
-                                <input type="radio" disabled value="5" />
-                                <input type="radio" disabled value="4" />
-                                <input type="radio" disabled value="3" />
-                                <input type="radio" disabled value="2" />
-                                <input type="radio" disabled value="1" />
-                            </div>
-                            <div class="col-4 col-md-6 my-2 text-center stars-text">PONCTUALITÉ</div>
-                            <div class="col-8 col-md-6 my-2 stars">
-                                <input type="radio" disabled value="10" />
-                                <input type="radio" disabled value="9" />
-                                <input type="radio" disabled checked value="8" />
-                                <input type="radio" disabled value="7" />
-                                <input type="radio" disabled value="6" />
-                                <input type="radio" disabled value="5" />
-                                <input type="radio" disabled value="4" />
-                                <input type="radio" disabled value="3" />
-                                <input type="radio" disabled value="2" />
-                                <input type="radio" disabled value="1" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 my-3 px-4">
-                        <div class="pizzles-review-box p-2 row">
-                            <div class="col-12 text-center mt-2 mb-5 pizzles-review-numOrder">Commande #00175</div>
-                            <div class="col-12 col-sm-6 my-3 pizzles-review-dateOrder text-center"><b>30 février 2021 19 H 30</b></div>
-                            <div class="col-12 col-sm-6 my-3">
-                                <Link to="/profile/review" class="pizzles-btn pizzles-btn-yellow">Évaluer<i class="fas fa-tasks"></i></Link>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    {userOrdersDone.map(orderDone => (
+                        (orderDone.review !== null ? <ProfileReviewDone order={orderDone} /> : <ProfileReviewToDo order={orderDone} /> )
+                    ))}
                 </div>
             </div>
             <div class="tab-pane fade" role="tabpanel" id="userInformations" aria-labelledby="userInformations-tab">

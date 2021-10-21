@@ -40,7 +40,7 @@ const ReviewPage = () => {
                         <form action="#" className="row">
                             <div className="col-12 mb-5">
                                 <label for="reviewComment" className="form-label">Votre commentaire</label>
-                                <textarea required name="reviewComment" maxlength="120" className="form-control" id="reviewComment" style={{resize:"none"}} rows="3" placeholder="Écrivez vos impressions concernant cette commande"></textarea>
+                                <textarea required name="reviewComment" maxLength="120" className="form-control" id="reviewComment" style={{resize:"none"}} rows="3" placeholder="Écrivez vos impressions concernant cette commande"></textarea>
                                 <span id="reviewCommentCharacter">120</span>
                             </div>
                             <label for="reviewComment" className="form-label">Vos notes</label>

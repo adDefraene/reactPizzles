@@ -1,10 +1,11 @@
 import React, {useEffect, useState}  from 'react';
-// COMPONENTS
 import { BrowserRouter as Router,  Route, Switch } from 'react-router-dom';
+// COMPONENTS
 import Nav from './components/main/Nav';
 import Cart from './components/main/Cart';
 import Footer from './components/main/Footer';
 import PrivateRoute from './components/PrivateRoute';
+// SERVICES & CONTEXTS
 import authAPI from './services/authAPI';
 import AuthContext from './contexts/AuthContext';
 // PAGES
@@ -43,8 +44,8 @@ const App = () => {
   }
 
   useEffect(()=>{
-    /* cartJs() */
     authAPI.isAuthenticated()
+    cartJs()
 
   },[]) 
 

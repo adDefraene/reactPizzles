@@ -1423,6 +1423,7 @@ form button{
     align-items: center;
 }
 
+
 #registerSubmit{
     transition: all 0.2s ease-in-out;
 }
@@ -1430,6 +1431,9 @@ form button{
     color: var(--graylight);
     background-color: var(--graydark);
     box-shadow: 0 0 0 0 var(--red);
+}
+#registerSubmit.submit-disabled::after{
+    background: none;
 }
 
 .pizzles-register-cgu #registerCGU{

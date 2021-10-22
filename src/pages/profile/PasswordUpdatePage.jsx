@@ -18,7 +18,7 @@ const PasswordUpdatePage = () => {
                         <form action="#" className="row">
                             <div className="col-12">
                                 <label for="updatePasswordOld" className="form-label">Mon ancien mot de passe</label>
-                                <input type="password" className="form-control mb-4" id="updatePasswordOld" name="updatePasswordOld" value="Defraene" required />
+                                <input type="password" className="form-control mb-4" id="updatePasswordOld" name="updatePasswordOld" required />
                             </div>
                             <div className="col-12">
                                 <label for="updatePasswordNew" className="form-label">Mon nouveau mot de passe</label>

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Axios } from 'axios';
 import { useState } from 'react';
 import {Link} from 'react-router-dom'
 
+import usersAPI from '../../services/usersAPI';
 import Field from '../../components/form/Field';
 
 const RegisterPage = ({history}) => {
@@ -33,10 +33,9 @@ const RegisterPage = ({history}) => {
         event.preventDefault()
 
         const apiErrors = {}
-        const API_URL = process.env.REACT_APP_API_URL;
 
         try{
-            await Axios.post(`${API_URL}users`, user)
+            await usersAPI.create(user)
             setErrors({})
             history.replace("/login")
         }catch({response})

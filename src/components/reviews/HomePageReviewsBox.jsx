@@ -1,6 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment'
-import ReviewsStars from './ReviewsStars';
+import ReviewsStarsDisplay from './ReviewsStarsDisplay';
 
 const HomePageReviewsBox = (props) => {
 
@@ -23,7 +23,7 @@ const HomePageReviewsBox = (props) => {
                 </div>
             </div>
             <div className="pizzles-home-reviews-note stars py-3">
-                <ReviewsStars
+                <ReviewsStarsDisplay
                     isDisabled={true}
                     reviewNote={props.reviewAveragenote}
                 />

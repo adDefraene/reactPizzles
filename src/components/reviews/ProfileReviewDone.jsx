@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ReviewsStars from '../../components/reviews/ReviewsStars';
+import ReviewsStarsDisplay from './ReviewsStarsDisplay';
 import Moment from 'react-moment';
 
 const ProfileReviewDone = ({order}) => {
@@ -12,7 +12,7 @@ const ProfileReviewDone = ({order}) => {
             <div className="col-12 col-md-6 pizzles-review-dateOrder text-center"><b><Moment format="DD-MM-YYYY HH:mm">{order.date}</Moment></b></div>
             <div className="col-12 col-md-6 my-3">
                 <div className="review-box-stars stars">
-                    <ReviewsStars
+                    <ReviewsStarsDisplay
                         key={`Average_${order.id}`}
                         isDisabled={true}
                         reviewNote={order.review.averageRating}
@@ -25,7 +25,7 @@ const ProfileReviewDone = ({order}) => {
             </div>
             <div className="col-4 col-md-6 my-2 text-center stars-text">SERVICE</div>
             <div className="col-8 col-md-6 my-2 stars">
-                    <ReviewsStars
+                    <ReviewsStarsDisplay
                         key={`Service_${order.id}`}
                         isDisabled={true}
                         reviewNote={order.review.starsService}
@@ -33,7 +33,7 @@ const ProfileReviewDone = ({order}) => {
             </div>
             <div className="col-4 col-md-6 my-2 text-center stars-text">QUALITÉ</div>
             <div className="col-8 col-md-6 my-2 stars">
-                    <ReviewsStars
+                    <ReviewsStarsDisplay
                         key={`Quality_${order.id}`}
                         isDisabled={true}
                         reviewNote={order.review.starsQuality}
@@ -41,7 +41,7 @@ const ProfileReviewDone = ({order}) => {
             </div>
             <div className="col-4 col-md-6 my-2 text-center stars-text">PONCTUALITÉ</div>
             <div className="col-8 col-md-6 my-2 stars">
-                    <ReviewsStars
+                    <ReviewsStarsDisplay
                         key={`Punctuality_${order.id}`}
                         isDisabled={true}
                         reviewNote={order.review.starsPunctuality}

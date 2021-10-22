@@ -8,7 +8,8 @@ async function findAll(){
 }
 
 function createReview(orderId, review){
-    return Axios.post(`${API_URL}reviews/`, {...review, order:`api/orders/${orderId}`})
+    console.log(review)
+    return Axios.post(`${API_URL}reviews`, {...review, reviewedOrder:`api/orders/${orderId}`})
 }
 
 

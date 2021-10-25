@@ -2,10 +2,17 @@ import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 import pizzasAPI from '../../services/pizzasAPI';
 
+/**
+ * Displays the page of a pizza
+ * @param {match} param0 
+ * @returns html
+ */
 const PizzaPage = ({match}) => {
 
+    // Get the pizza's slug form the URL
     var slug = match.params.slug
 
+    // Var that is the current pizza
     const [pizza, setPizza] = useState({
         "name" : "",
         "description" : "",
@@ -16,6 +23,7 @@ const PizzaPage = ({match}) => {
         "slug": slug
     })
 
+    // Method that retrieves the current pizza
     const fetchPizza = async slug => {
         try{
             const data = await pizzasAPI.find(slug)
@@ -26,6 +34,7 @@ const PizzaPage = ({match}) => {
         }
     }
 
+    // On load, fetches the pizza
     useEffect(() => {
         fetchPizza(slug)
     }, [slug])
@@ -57,6 +66,7 @@ const PizzaPage = ({match}) => {
             <div className="col-8 offset-2 offset-md-0 mb-2">
                 <p className="my-4 pizzles-subtitles">Ingrédients</p>
                 <div className="row">
+                {/* Display the pizza's ingredients */}
                     {pizza.ingredients.map(ingredient => {
                         return (
                         <div className="col-12 col-md-6 col-xl-3">

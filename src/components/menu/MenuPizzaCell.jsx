@@ -1,6 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
+/**
+ * The cell of a pizza displayed in the menu page
+ * @param props 
+ * @returns html
+ */
 const MenuPizzaCell = (props) => {
     return (
     <div className={`${(props.type === "POTM" ? `col-12` : (props.type === "PROMO" ? `col-6 col-md-4` : `col-6 col-md-4 col-lg-2`)) }`}>

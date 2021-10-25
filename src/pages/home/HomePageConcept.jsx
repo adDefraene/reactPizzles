@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Section that talks about the concept of the restaurant
+ * @returns html
+ */
 const HomePageConcept = () => {
     return ( 
     <section className="container pt-5 mb-3" id="pizzlesConcept">

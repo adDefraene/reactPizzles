@@ -1,6 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
+/**
+ * Section that talks about how the restaurant works
+ * @returns html
+ */
 const HomePageWork = () => {
     return ( 
 <>

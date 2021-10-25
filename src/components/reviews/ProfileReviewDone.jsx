@@ -3,6 +3,11 @@ import React from 'react';
 import ReviewsStarsDisplay from './ReviewsStarsDisplay';
 import Moment from 'react-moment';
 
+/**
+ * In the review section of the profile page, this is what is displayed when a review has been done for an order : the review's infos are showed
+ * @param param0 
+ * @returns html
+ */
 const ProfileReviewDone = ({order}) => {
     return ( 
 <>

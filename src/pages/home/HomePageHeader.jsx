@@ -1,6 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
+/**
+ * The header of the Homepage
+ * @returns html
+ */
 const HomePageHeader = () => {
     return ( 
     <header className="container pizzles-first-container mb-5">

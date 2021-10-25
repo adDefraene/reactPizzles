@@ -2,6 +2,11 @@ import React, {useContext} from 'react';
 import {Route, Redirect} from 'react-router-dom';
 import AuthContext from '../contexts/AuthContext.js'
 
+/**
+ * Route that works when the user is fully registered
+ * @param props 
+ * @returns Component
+ */
 const PrivateRoute = (props) => {
     const {isAuthenticated} = useContext(AuthContext)
 

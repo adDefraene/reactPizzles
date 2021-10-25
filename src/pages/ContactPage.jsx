@@ -5,9 +5,13 @@ import AuthContext from '../contexts/AuthContext';
 import Field from '../components/form/Field';
 import jwtDecode from 'jwt-decode';
 
-
+/**
+ * Page that is a contact form in order to send a message
+ * @returns html
+ */
 const ContactPage = () => {
 
+    // Var of the content of the contact form
     const [contactForm, setContactForm] = useState({
         firstName : "",
         lastName : "",
@@ -15,17 +19,23 @@ const ContactPage = () => {
         message : ""
     })
 
+    // Method that handles the changes of the contact form
     const handleChange = (event) => {
         const {name, value} = event.currentTarget
         setContactForm({...contactForm, [name]: value})
     }
 
 
-    const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext)
+    // Var that retreives the the users state of authentication
+    const {isAuthenticated} = useContext(AuthContext)
 
-    const checkIsAuthenticated = () => {
+    // Method that precompletes the contacxt form with the user's information from their JWT token stored
+    const preCompleteForm = () => {
+        // If the current user is authenticated
         if(isAuthenticated){
+            // Get and decode their informations
             let userInfos = jwtDecode(window.localStorage.getItem('authToken'))
+            // Sets them in the contact form
             setContactForm({
                 firstName : userInfos.firstName,
                 lastName : userInfos.lastName,
@@ -34,8 +44,9 @@ const ContactPage = () => {
         }
     }
 
+    // On load, (maybe) precomplete the form
     useState(()=>{
-        checkIsAuthenticated()
+        preCompleteForm()
     },[])
 
     return ( 

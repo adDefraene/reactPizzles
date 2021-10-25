@@ -4,11 +4,18 @@ import ingredientsAPI from '../../services/ingredientsAPI';
 import Pagination from '../../components/main/Pagination';
 import MenuPizzaCell from '../../components/menu/MenuPizzaCell';
 
+/**
+ * The menu where are displayed all of the ingredients and the pizzas
+ * @returns html
+ */
 const MenuPage = () => {
 
+    // Var of the ingredients
     const [menuIngredients, setMenuIngredients] = useState([])
+    // Var of the current page for the ingredients pages
     const [currentPage, setCurrentPage] = useState(1)
     
+    // Method that retrieves all of the ingredients
     const fetchMenuIngredients = async () => {
         try {
             const data = await ingredientsAPI.findAll()
@@ -19,13 +26,17 @@ const MenuPage = () => {
         }
     }
 
+    // When a page changes, update the value of the current page
     const handlePageChange = page => {
         setCurrentPage(page)
     }
     
+//----------------------
 
+    // Var of the pizzas
     const [menuPizzas, setMenuPizzas] = useState([])
     
+    // Method that retrieves all of the pizzas
     const fetchMenuPizzas = async () => {
         try {
             const data = await pizzasAPI.findAll()
@@ -36,13 +47,18 @@ const MenuPage = () => {
         }
     }
     
+//----------------------
+
+    // On load, do the fetches methods
     useEffect(()=>{
         fetchMenuIngredients()
         fetchMenuPizzas()
     }, [])
 
+    // Our fixed number of ingrdients per page
     const itemsPerPage = 6
 
+    // Displays the elements of the current page
     const paginatedIngredients = Pagination.getData(menuIngredients, currentPage, itemsPerPage)
 
     return (
@@ -51,11 +67,13 @@ const MenuPage = () => {
         <div className="pizzles-head-title text-center">
             <h1><strong>Notre menu</strong></h1>
         </div>
+    {/* INGREDIENTS */}
         <h2 className="pizzles-title text-center mx-auto my-5">Nos ingrédients</h2>
         <p className="pizzles-txt-title text-center mx-auto mt-2 mb-5">Le prix de l’ingrédient vaut ce qui sera ajouté au tarif de base de la pizza sélectionnée</p>
         <div className="row">
             <div className="col-10 offset-1 pizzles-menu-ingredients-carousel">
                 <div className="row">
+                    {/* The paginated ingredients */}
                     {paginatedIngredients.map(ingredient => (
                         <div className="col-6 col-md-4 col-lg-3 col-xl-2 my-2">
                             <div className="pizzles-menu-ingredients-cell text-center">
@@ -68,6 +86,7 @@ const MenuPage = () => {
                 </div>
             </div>
             <div className="col-12 mt-3">
+                {/* The nav pagination */}
                 <Pagination
                     currentPage={currentPage}
                     itemsPerPage={itemsPerPage}
@@ -76,11 +95,14 @@ const MenuPage = () => {
                 />
             </div>
         </div>
+        
+    {/* PIZZAS */}
         <h2 className="pizzles-title text-center mx-auto my-5">Nos pizzas</h2>
         <div className="row">
             <div className="col-12 order-2 order-lg-1 col-lg-6 offset-lg-1">
                 <p className="my-5 pizzles-subtitles text-center">Promotions de la semaine</p>
                 <div className="row my-4">
+                {/* Displays the pizzas in discount */}
                     {menuPizzas.map(menuPizza => {
                         if(menuPizza.type === "PROMO"){
                             return (<MenuPizzaCell 
@@ -93,6 +115,7 @@ const MenuPage = () => {
             </div>
             <div className="col-6 col-md-4 col-lg-2 order-1 order-lg-2 offset-3 offset-lg-2 offset-md-4">
                 <p className="my-5 pizzles-subtitles text-center">Pizza du mois</p>
+                {/* Displays the pizza of the month */}
                 <div className="row my-4">
                     {menuPizzas.map(menuPizza => {
                         if(menuPizza.type === "POTM")
@@ -110,7 +133,8 @@ const MenuPage = () => {
             </div>
             <div className="col-12 order-3">
             <p className="my-5 pizzles-subtitles text-center">Reste du menu</p>
-                <div className="row gy-4">
+                <div className="row gy-4">    
+                {/* Displays the regular pizzas */}
                     {menuPizzas.map(menuPizza => {
                         if(menuPizza.type === "CLASSIC")
                             return  <MenuPizzaCell

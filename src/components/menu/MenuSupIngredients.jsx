@@ -1,10 +1,21 @@
 import React from 'react';
 
+/**
+ * The cell of each supplement ingredients that is featured in the "AddPizza" page
+ * @param props 
+ * @returns html
+ */
 const MenuSupIngredients = (props) => {
 
-    const handleClick = (a) => {
-        if(!a.currentTarget.classList.contains("disabled")){
-            a.currentTarget.classList.toggle("selected")
+    /**
+     * Toggle the "selected" state for a sup' ingredients, if it is not disabled
+     * @param {event} e 
+     */
+    const handleClick = (e) => {
+        // If the cell is not disbaled
+        if(!e.currentTarget.classList.contains("disabled")){
+            // Toggles the state
+            e.currentTarget.classList.toggle("selected")
         }
     }
 

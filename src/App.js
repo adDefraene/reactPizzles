@@ -29,6 +29,10 @@ import './App.css';
 // JS
 import cartJs from './js/CartJS';
 
+/**
+ * My Pizzles website-App !
+ * @returns html
+ */
 const App = () => {
   
   const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated)

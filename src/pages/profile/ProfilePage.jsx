@@ -11,21 +11,33 @@ import ProfileReviewToDo from '../../components/reviews/ProfileReviewToDo';
 import Field from '../../components/form/Field';
 import usersAPI from '../../services/usersAPI';
 
+/**
+ * Page of the user's profile
+ * @param props 
+ * @returns html
+ */
 const ProfilePage = (props) => {
+
+    // Var that retrives if the user is authenticated
     const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext)
     
+    // Method that handles the logout of the user
     const handleLogout = () => {
         authAPI.logout()
         setIsAuthenticated(false)
         props.history.push("/login")
     }
     
+    // Var that contains the decoded information contained in the JWT token stored
     const userInfosJWT = jwtDecode(window.localStorage.getItem('authToken'))
     
+    // Var that contains the orders of the users that are already done
     const [userOrdersDone, setUserOrdersDone] = useState([])
     
+    // Fetches the done orders of the user
     const fetchUserOrdersDone = async (userId) => {
         try {
+            // Give the Bearer token
             authAPI.setup()
             const data = await ordersAPI.findDone(userId)
             setUserOrdersDone(data)
@@ -35,6 +47,7 @@ const ProfilePage = (props) => {
         }
     }
 
+    // Var that contains the current user's infos
     const [currentUser, setCurrentUser] = useState({
         email: "",
         firstName: "",
@@ -42,8 +55,10 @@ const ProfilePage = (props) => {
         address: "",
     })
 
+    // Methods that retrieves the informations of the ucrrent user
     const fetchUserInfos = async (userId) => {
         try {
+            // Gives the Bearer token
             authAPI.setup()
             const data = await usersAPI.get(userId)
             setCurrentUser(data)
@@ -53,6 +68,7 @@ const ProfilePage = (props) => {
         }
     }
     
+    // Vars that sets the errors of the form that updates the user's informations
     const [errors, setErrors] = useState({
         email: "",
         firstName : "",
@@ -60,15 +76,18 @@ const ProfilePage = (props) => {
         address: ""
     })
     
+    // Method that handles the changes in the inputs of the form that updates the user's informations
     const handleChange = (event) => {
         const {name, value} = event.currentTarget
         setCurrentUser({...currentUser, [name]: value})
     }
 
+    // Method that handles the submit of the form  that updates the user's informations
     const handleSubmit = async event => {
         event.preventDefault()
         const apiErrors = {}
         try{
+            // Gives the Bearer token
             authAPI.setup()
             usersAPI.patch(userInfosJWT.id, currentUser)
             console.log("bbb")
@@ -86,21 +105,24 @@ const ProfilePage = (props) => {
 
     }
 
+    // On load, and if the user is authenticated, fetches all the user's infos
     useEffect(() => {
         if(isAuthenticated){
-            fetchUserOrdersDone(userInfosJWT.id)
             fetchUserInfos(userInfosJWT.id)
+            fetchUserOrdersDone(currentUser.id)
         }
-    }, [isAuthenticated,userInfosJWT.id])
+    }, [isAuthenticated,userInfosJWT.id, currentUser.id])
 
 
 
     return ( 
 <>
     <div className="container pizzles-first-container">
+    {/* WELCOME */}
         <h3 className="pizzles-end-title text-center mx-auto my-3">Bonjour {currentUser.firstName} !</h3>
         <h3 className="pizzles-end-title text-center mx-auto my-3">Bienvenue sur votre profil</h3>
         <button onClick={handleLogout} className="pizzles-btn pizzles-btn-disconnect mx-auto my-5">Me déconnecter<i className="fas fa-power-off"></i></button>
+    {/* PROFILE NAV */}
         <ul className="nav nav-tabs nav-fill flex-column flex-sm-row justify-content-center mt-5" id="myProfileMenu" role="tablist">
             <li className="nav-item" role="presentation">
                 <button className="nav-link active" type="button" id="lastOrders-tab" data-bs-toggle="tab" data-bs-target="#lastOrders" role="tab" aria-controls="latestOrders" aria-selected="true">Mes commandes en cours<i className="fas fa-clipboard-check"></i></button>
@@ -116,6 +138,7 @@ const ProfilePage = (props) => {
             </li>
         </ul>
         <div className="tab-content">
+        {/* CURRENT ORDER TAB */}
             <div className="tab-pane fade show active" role="tabpanel" id="lastOrders" aria-labelledby="lastOrders-tab">
                 <div className="col-12">
                     <h2 className="pizzles-title text-center mx-auto my-5">Mes commandes en cours</h2>
@@ -152,6 +175,7 @@ const ProfilePage = (props) => {
                     </div>
                 </div>
             </div>
+        {/* OLDERS ORDERS TAB */}
             <div className="tab-pane fade" role="tabpanel" id="olderOrders" aria-labelledby="olderOrders-tab">
                 <h2 className="pizzles-title text-center mx-auto my-5">Mes anciennes commandes</h2>
                 <div className="row">
@@ -183,6 +207,7 @@ const ProfilePage = (props) => {
                     ))}
                 </div>
             </div>
+        {/* REVIEWS TAB */}
             <div className="tab-pane fade" role="tabpanel" id="userReviews" aria-labelledby="userReviews-tab">
                 <h2 className="pizzles-title text-center mx-auto my-5">Mes évaluations</h2>
                 <div className="row">
@@ -191,10 +216,12 @@ const ProfilePage = (props) => {
                     ))}
                 </div>
             </div>
+        {/* UPDATE USER'S INFOS TAB */}
             <div className="tab-pane fade" role="tabpanel" id="userInformations" aria-labelledby="userInformations-tab">
                 <h2 className="pizzles-title text-center mx-auto my-5">Mes informations</h2>
                 <div className="row">
                     <div className="col-12 col-md-10 offset-md-1 pizzles-register-box my-3 py-4 px-5">
+                    {/* UPDATE FORM */}
                         <form onSubmit={handleSubmit} className="row">
                             <div className="col-12 col-md-6">
                                 <Field
@@ -244,6 +271,7 @@ const ProfilePage = (props) => {
                         </form>
                     </div>
                     <br />
+                {/* PASSWORD UPDATE LINK */}
                     <Link to="/profile/password-update" className="pizzles-btn pizzles-btn-white mx-auto mt-5">Je souhaite modifier mon mot de passe<i className="fas fa-edit"></i></Link>
                 </div>
             </div>

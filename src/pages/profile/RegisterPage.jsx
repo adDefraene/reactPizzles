@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom'
 
 import usersAPI from '../../services/usersAPI';
@@ -38,8 +37,7 @@ const RegisterPage = ({history}) => {
             await usersAPI.create(user)
             setErrors({})
             history.replace("/login")
-        }catch({response})
-        {
+        }catch({response}){
             const {violations} = response.data
             if(violations){
                 violations.forEach(({propertyPath, message}) => {
@@ -106,7 +104,7 @@ const RegisterPage = ({history}) => {
                     <div className="col-12">
                         <Field
                             label="Mon adresse e-mail"
-                            type="mail"
+                            type="email"
                             name="email"
                             value={user.email}
                             onChange={handleChange}

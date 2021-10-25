@@ -3,6 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 
+/**
+ * In the review section of the profile page, this is what is displayed when a review has not already been done for an order : the link of the page to do the review is provided
+ * @param param0 
+ * @returns html
+ */
 const ProfileReviewToDo = ({order}) => {
     return ( 
     <>

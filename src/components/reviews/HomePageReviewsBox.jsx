@@ -2,6 +2,11 @@ import React from 'react';
 import Moment from 'react-moment'
 import ReviewsStarsDisplay from './ReviewsStarsDisplay';
 
+/**
+ * The reviews boxes that are displayed nearly the end of the homepage
+ * @param props 
+ * @returns html
+ */
 const HomePageReviewsBox = (props) => {
 
     return ( 

@@ -6,9 +6,10 @@ import MenuSupIngredients from '../../components/menu/MenuSupIngredients';
 
 const AddPizzaPage = ({match}) => {
 
-
+    // Gets the slug from the URL
     var slug = match.params.slug
 
+    // Var of the selected pizza
     const [pizza, setPizza] = useState({
         "name" : "",
         "description" : "",
@@ -19,6 +20,7 @@ const AddPizzaPage = ({match}) => {
         "slug": slug
     })
     
+    // Method that fetches the selected pizza
     const fetchPizza = async slug => {
         try{
             const data = await pizzasAPI.find(slug)
@@ -29,8 +31,10 @@ const AddPizzaPage = ({match}) => {
         }
     }
 
+    // Var of all the supplements ingredients
     const [supIngredients, setSupIngredients] = useState([])
     
+    // Method that fetches all of the ingredients
     const fetchSupIngredients = async () => {
         try{
             const data = await ingredientsAPI.findAll()
@@ -41,6 +45,7 @@ const AddPizzaPage = ({match}) => {
         }
     }
 
+    // On load, do the fetches
     useEffect(()=>{
         fetchPizza(slug)
         fetchSupIngredients()
@@ -53,6 +58,7 @@ const AddPizzaPage = ({match}) => {
         <div className="col-12 col-lg-3">
             <Link to="/menu" className="pizzles-btn mb-3 pizzles-btn-back"><i className="fas fa-chevron-circle-left"></i>Annuler l'ajout</Link>
         </div>
+    {/* Displays pizza's infos */}
         <div className="col-12 col-lg-6 mb-3">
             <h2 className="pizzles-title text-center mb-4 mx-auto">Ajouter une pizza</h2>
         </div>
@@ -64,11 +70,16 @@ const AddPizzaPage = ({match}) => {
             </div>
         </div>
         <p className="pizzles-subtitles my-4">Ajouter des ingrédients</p>
+    {/* Displays all of the ingredients' cells */}
         {supIngredients.map(ingredient => {
 
+            // Var that says "if the ingredients is already on the pizza"
             var ifIngredientOnPizza = false
+            //=> in the "MenuSupIngredient" component, adds yes or no the "disabled" class to the cell
 
+            // For each of the ingredients on the pizza
             pizza.ingredients.forEach(ingredientPizza => {
+                // is it the same as the current ingredient ? 
                 if(ingredient.name === ingredientPizza.name){
                     ifIngredientOnPizza = true
                 }

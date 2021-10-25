@@ -1,6 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
+/**
+ * The cart components which features the cart itself, the items to order and the black background
+ * @param props 
+ * @returns html
+ */
 const Cart = (props) => {
 
     return ( 

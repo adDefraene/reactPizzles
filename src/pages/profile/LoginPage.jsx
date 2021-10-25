@@ -6,33 +6,51 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import Field from '../../components/form/Field';
 
+/**
+ * Page that is used to execute the login for the user
+ * @param props 
+ * @returns html
+ */
 const LoginPage = (props) => {
 
-    const {setIsAuthenticated} = useContext(AuthContext)
+    // Var that retrives if the user is authenticated
+    const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext)
 
+    // Var of the credentials of the user
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
     })
 
+    // Var of the form's errors
     const [error, setError] = useState("")
 
+    // Keeps the credentials Var updated at each  changes in the form
     const handleChange = (event) => {
         const value = event.currentTarget.value
         const name = event.currentTarget.name 
         setCredentials({...credentials, [name]:value})
     }
 
+    // When the form is submited, do the authentication of the user
     const handleSubmit = async (event) => {
         event.preventDefault()
         try{
             await authAPI.authenticate(credentials)
             setError("")
+            // Set its global autentication to true
             setIsAuthenticated(true)
+            // Go to their profile
             props.history.replace("/profile")
         }catch(error){
             setError("Adresse mail ou mot de passe incorrect")
         }
+    }
+
+    // If the users is already authenticated
+    if(isAuthenticated){
+        // Go to their profile
+        props.history.replace("/profile")
     }
 
     return ( 

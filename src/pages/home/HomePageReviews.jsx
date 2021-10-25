@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import reviewsAPI from '../../services/reviewsAPI';
 import HomePageReviewsBox from '../../components/reviews/HomePageReviewsBox';
 
+/**
+ * Section that displays the last 6 orders' review
+ * @returns html
+ */
 const HomePageReviews = () => {
 
+    // The var for our home reviews
     const [homeReviews, setHomeReviews] = useState([])
 
+    // Method that fetches the reviews
     const fetchHomeReviews = async () => {
         try{
             const data = await reviewsAPI.findAll()
@@ -16,6 +22,7 @@ const HomePageReviews = () => {
         }
     }
 
+    // On load, executes
     useEffect(()=>{
         fetchHomeReviews()
     },[])

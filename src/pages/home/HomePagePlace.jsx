@@ -1,6 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
+/**
+ * Section that talks about the restaurant's location
+ * @returns html
+ */
 const HomePagePlace = () => {
     return ( 
     <section id="pizzlesPlace">

@@ -6,10 +6,17 @@ import ordersAPI from '../../services/ordersAPI';
 import AuthAPI from '../../services/authAPI';
 import reviewsAPI from '../../services/reviewsAPI';
 
+/**
+ * Page that completes the review of an order
+ * @param props 
+ * @returns html
+ */
 const ReviewPage = (props) => {
 
+    // Gets the id of the order that is going to be reviewed
     const orderId = props.match.params.id
 
+    // Var of the eview that is about to be completed
     const [review, setReview] = useState({
         order: "",
         review:"",
@@ -18,6 +25,7 @@ const ReviewPage = (props) => {
         starsPunctuality:""
     })
     
+    // Var of the form's errors
     const [errors, setErrors] = useState({
         order: "",
         review:"",
@@ -26,8 +34,10 @@ const ReviewPage = (props) => {
         starsPunctuality:""
     })
     
+    // Var of the count of the left characters inside the Textarea, which is the review text content
     const [reviewCharacterCount, setReviewCharacterCount] = useState("")
 
+    // Var that contains the informations of the order that is going to be reviewed
     const [currentOrder, setCurrentOrder] = useState({
         id: "",
         state: "",
@@ -44,6 +54,7 @@ const ReviewPage = (props) => {
         total: ""
     })
 
+    // Method that retrieves the informations about the order that is going to be reviewed
     const fetchCurrentOrder = async idOrder => {
         try{
             AuthAPI.setup()
@@ -55,31 +66,38 @@ const ReviewPage = (props) => {
         }
     }
 
+    // On load, fetches the order infos & sets the review characters to the fixed number "120"
     useEffect(()=>{
         fetchCurrentOrder(orderId)
         setReviewCharacterCount(120)
     },[orderId])
 
-    
+    // Methods that verfies if the retrieved order has already a review
     const checkIfAlreadyReviewed = (order) => {
+        // If the review of the order is not null...
         if(order.review !== null){
+            // ...and is completed
             if(order.review.review){
+                // This is an error, go to the profile page
                 props.history.replace("/profile")
                 return false
             }
         }
     }
 
+    // Method that handles the changes in the review form
     const handleChange = (e) => {
         const value = e.currentTarget.value
         const name = e.currentTarget.name 
         setReview({...review, [name]:value})
+        // If the current modified field is the Textarea review content
         if(name === "review"){
+            // Resets the count of the left characters in the Textarea
             setReviewCharacterCount(120 - value.length)
         }
-        //setReviewCharacterCount({...review.review.length()})
     }
 
+    // Method that handles the submit of the review form
     const handleSubmit = async event => {
         event.preventDefault()
 
@@ -102,6 +120,7 @@ const ReviewPage = (props) => {
 
     }
 
+    // Do the check if the order's review is already done
     checkIfAlreadyReviewed(currentOrder)
 
     return ( 
@@ -116,6 +135,7 @@ const ReviewPage = (props) => {
             </div>
             <div className="col-12 pizzles-review-formBox my-3 p-3">
                 <div className="row">
+                {/* ORDER INFOS */}
                     <div className="col-12 px-5">
                         <div className="row pizzles-summaryOrder-box p-3">
                             <div className="col-12 text-center my-3 pizzles-summaryOrder-numOrder">Commande #{currentOrder.id} du <span>
@@ -140,6 +160,7 @@ const ReviewPage = (props) => {
                             </div>
                         </div>
                     </div>
+                {/* REVIEW FORM */}
                     <div className="p col-12 my-2 pizzles-review-title text-center mt-5 mb-2">Votre évaluation de cette commande</div>
                     <div className="col-10 offset-1 pizzles-review-form my-3">
                         <form onSubmit={handleSubmit} className="row">

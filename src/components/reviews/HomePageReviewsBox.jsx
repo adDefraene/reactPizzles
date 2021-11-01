@@ -29,6 +29,7 @@ const HomePageReviewsBox = (props) => {
             </div>
             <div className="pizzles-home-reviews-note stars py-3">
                 <ReviewsStarsDisplay
+                    key={`rsa_${props.reviewId}`}
                     isDisabled={true}
                     reviewNote={props.reviewAveragenote}
                 />

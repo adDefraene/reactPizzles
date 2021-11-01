@@ -26,7 +26,11 @@ const OrderSupIngredients = (props) => {
     useEffect(()=>{
         fetchCurrentSupIngredient(props.supIngredient)
         setTotalIngredients()
-    }, [props.supIngredient, currentSupIngredient.price])
+    }, [props.supIngredient, currentSupIngredient])
+
+    useEffect(()=>{
+        setTotalIngredients()
+    }, [currentSupIngredient])
 
     return(
         <div className="col pizzles-cart-item-static pizzles-cart-item-ingredient">

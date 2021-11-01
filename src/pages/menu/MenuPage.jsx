@@ -88,6 +88,7 @@ const MenuPage = () => {
             <div className="col-12 mt-3">
                 {/* The nav pagination */}
                 <Pagination
+                    key={`myPagination_${currentPage}`}
                     currentPage={currentPage}
                     itemsPerPage={itemsPerPage}
                     length={menuIngredients.length}
@@ -106,7 +107,7 @@ const MenuPage = () => {
                     {menuPizzas.map(menuPizza => {
                         if(menuPizza.type === "PROMO"){
                             return (<MenuPizzaCell 
-                                key={menuPizza.id} name={menuPizza.name} price={menuPizza.price} image={menuPizza.image} slug={menuPizza.slug} type={menuPizza.type} />)
+                                key={`p_cell_${menuPizza.id}`} name={menuPizza.name} price={menuPizza.price} image={menuPizza.image} slug={menuPizza.slug} type={menuPizza.type} />)
                         }else{
                             return ""
                         }
@@ -120,7 +121,7 @@ const MenuPage = () => {
                     {menuPizzas.map(menuPizza => {
                         if(menuPizza.type === "POTM")
                             return  <MenuPizzaCell
-                                        key={menuPizza.id}
+                                        key={`p_cell_${menuPizza.id}`}
                                         name={menuPizza.name}
                                         price={menuPizza.price}
                                         image={menuPizza.image}
@@ -138,7 +139,7 @@ const MenuPage = () => {
                     {menuPizzas.map(menuPizza => {
                         if(menuPizza.type === "CLASSIC")
                             return  <MenuPizzaCell
-                                        key={menuPizza.id}
+                                        key={`p_cell_${menuPizza.id}`}
                                         name={menuPizza.name}
                                         price={menuPizza.price}
                                         image={menuPizza.image}

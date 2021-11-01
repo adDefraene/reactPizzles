@@ -91,8 +91,8 @@ const ContactPage = () => {
                                 />
                             </div>
                             <div className="col-12">
-                                <label for="contactMessage" className="form-label">Votre message</label>
-                                <textarea required value={contactForm.message} onchange={handleChange} name="message" maxLength="1000" className="form-control" id="message" style={{resize:"none"}} rows="5" placeholder="Écrivez votre demande, remarque, etc."></textarea>
+                                <label htmlFor="contactMessage" className="form-label">Votre message</label>
+                                <textarea required value={contactForm.message} onChange={handleChange} name="message" maxLength="1000" className="form-control" id="message" style={{resize:"none"}} rows="5" placeholder="Écrivez votre demande, remarque, etc."></textarea>
                                 <span id="messageCharacter">1000</span>
                             </div>
                             <button type="submit" id="registerSubmit" className="pizzles-btn pizzles-btn-yellow mt-5 mb-2">Envoyer mon message<i className="fas fa-paper-plane"></i></button>

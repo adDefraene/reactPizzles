@@ -38,7 +38,8 @@ const HomePageReviews = () => {
                 {homeReviews.map(homeReview => (    
                 <div className="col-9 col-md-6 col-lg-4 col-xl-3 my-3 mx-auto">
                     <HomePageReviewsBox
-                        key={`${homeReview.id}_-_${homeReview.reviewedOrder.date}`}
+                        key={`hReview_${homeReview.id}_-_${homeReview.reviewedOrder.date}`}
+                        reviewId={homeReview.id}
                         reviewText={homeReview.review}
                         reviewDate={homeReview.reviewedOrder.date}
                         reviewAuthor={homeReview.reviewedOrder.customer.evaluationName}

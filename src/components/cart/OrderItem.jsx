@@ -3,20 +3,21 @@ import pizzasAPI from '../../services/pizzasAPI';
 import OrderSupIngredient from './OrderSupIngredient';
 
 const OrderItem = (props) => {
-
+/* 
     const [totalPizza, setTotalPizza] = useState(0)
+    */
 
-    const [totalIngredients, setTotalIngredients] = useState(0)
+    const [totalIngredients, setTotalIngredients] = useState(0) 
 
     const [currentPizza, setCurrentPizza] = useState({
         "@id" : props.item.itemPizza,
-        "name" : "",
-        "description" : "",
-        "price" : "",
-        "type" : "",
-        "image" : "",
-        "ingredients": [],
-        "slug": ""
+        name : "",
+        description : "",
+        price : "",
+        type : "",
+        image : "",
+        ingredients: [],
+        slug: ""
     })
     
     const fetchCurrentPizza = async () => {
@@ -27,19 +28,35 @@ const OrderItem = (props) => {
             console.error(error)
         }
     }
-
+/* 
     const setPizzaTotal = () => {
-        if(currentPizza.price !== ""){
+        if(currentPizza.price !== "" && totalPizza === 0){
+            console.log(currentPizza.price)
+            console.log(totalIngredients)
             setTotalPizza(parseFloat(currentPizza.price) + totalIngredients)
-            props.setTotalCart(props.totalCart + totalPizza)
         }
-    }
+    } */
 
+    const handleDelete = (event) => {
+        let newCart = Object.assign({}, props.cart)
+        newCart.orderItems.splice(event.target.attributes.iditem.value, 1)
+        newCart.preTotal -= props.item.totalItem
+        props.setCart(newCart)
+        /* 
+        setTotalPizza(0)
+        setTotalIngredients(0) */
+    }
+/* 
+    useEffect(()=>{
+        setTotalPizza(0)
+        setTotalIngredients(0)
+    }, [props.cart, props.item]) */
+    
     useEffect(()=>{
         fetchCurrentPizza()
-        setPizzaTotal()
-    }, [props.item.itemPizza, props.item.supIngredients, currentPizza.price, totalPizza])
-
+        //setPizzaTotal()
+    }, [props.item /*, currentPizza, totalPizza */, totalIngredients])
+    
     return ( 
 <>
     <div className="pizzles-cart-item my-3 px-3">
@@ -60,12 +77,12 @@ const OrderItem = (props) => {
                                 <div className="col pizzles-cart-item-static pizzles-cart-item-plus">
                                 <p>+</p>
                                 </div>
-                                <OrderSupIngredient totalIngredients={totalIngredients} setTotalIngredients={setTotalIngredients} supIngredient={supIngredient} />
+                                <OrderSupIngredient key={`p_${props.itemId}_sp_${id}`} totalIngredients={totalIngredients} setTotalIngredients={setTotalIngredients} supIngredient={supIngredient} />
                             </>
                             )
                         }else{
                             return(
-                                <OrderSupIngredient totalIngredients={totalIngredients} setTotalIngredients={setTotalIngredients} supIngredient={supIngredient} />
+                                <OrderSupIngredient key={`p_${props.itemId}_sp_${id}`} totalIngredients={totalIngredients} setTotalIngredients={setTotalIngredients} supIngredient={supIngredient} />
                             )
                         }
                     }) ) : (<div className="col-12 col-md order-2 order-md-3 order-lg-2 pizzles-cart-item-ingredient"><div className="row"><p>Aucun ingrédient supplémentaire</p></div></div>)
@@ -74,10 +91,10 @@ const OrderItem = (props) => {
             </div>
             <div className="col-12 col-md-6 col-lg order-3 order-md-2 order-lg-3 pizzles-cart-item-static pizzles-cart-item-total">
                 <p>Total de la pizza</p>
-                <span className="pizzles-priceTag mx-auto">{totalPizza.toLocaleString()} €</span>
+                <span className="pizzles-priceTag mx-auto">{props.item.totalItem.toLocaleString()} €</span>
             </div>
         </div>
-        <div className="pizzles-cart-item-delete" title="Supprimer cet article">-</div>
+        <div onClick={handleDelete} iditem={props.itemId} className="pizzles-cart-item-delete" title="Supprimer cet article">-</div>
     </div>
 </>
     );

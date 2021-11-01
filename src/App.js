@@ -42,36 +42,26 @@ const App = () => {
                 "itemPizza": "/api/pizzas/jambon-deluxe",
                 "supIngredients": [
                     "/api/ingredients/3"
-                ]
+                ],
+                "totalItem": 9.88
             },
             {
                 "itemPizza": "/api/pizzas/boulettes",
-                "supIngredients": []
+                "supIngredients": [],
+                "totalItem": 8
             },
             {
                 "itemPizza": "/api/pizzas/pizza-du-mois",
                 "supIngredients": [
                   "/api/ingredients/1",
                   "/api/ingredients/2"
-                ]
+                ],
+                "totalItem": 13.5
             },
         ],
         date: "",
-        ifDelivered: ""
-
-        /* SCHEME
-        "customer" : "/api/users/34",
-        "orderItems" : [
-            {
-                "itemPizza": "/api/pizzas/jambon-deluxe",
-                "supIngredients": [
-                    "/api/ingredients/1"
-                ]
-            }
-        ],
-        "date": "2021-10-11T20:45:00+00:00",
-        "ifDelivered": true
-        */
+        ifDelivered: "",
+        preTotal: 31.38
   })
   
   const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated)
@@ -84,13 +74,13 @@ const App = () => {
   useEffect(()=>{
     cartJs()
     authAPI.isAuthenticated()
-  },[]) 
+  },[])
 
   return (
     <AuthContext.Provider value={contextValue}>
         <Router>
             <Nav cart={cart}  />
-            <Cart cart={cart} />
+            <Cart cart={cart} setCart={setCart} />
             <Switch>
                 <Route path="/menu" component={MenuPage} />
                 <Route path="/pizza/:slug" component={PizzaPage} />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import {Link} from 'react-router-dom'
 import OrderItem from '../cart/OrderItem';
 
@@ -9,16 +9,6 @@ import OrderItem from '../cart/OrderItem';
  */
 const Cart = (props) => {
 
-    const [totalCart, setTotalCart] = useState(0)
-
-    const displayTotalCart = () => {
-        return totalCart
-    }
-
-    useEffect(()=>{displayTotalCart()},[totalCart])
-
-    const getOrderItems = props.cart.orderItems
-    
     return ( 
 <>
     <div className="pizzles-cart">
@@ -35,11 +25,11 @@ const Cart = (props) => {
               </div>
               <div className="col-12 py-3 px-2 my-2 pizzles-cart-content">
                   <div className="container-fluid">
-                  {getOrderItems.length > 0 ? getOrderItems.map((orderItem, id) => (<OrderItem key={`OrderItem_${id}`} item={orderItem} totalCart={totalCart} setTotalCart={setTotalCart} />)) : (<h1 className="text-center fst-italic">Le panier est vide</h1>) }
+                  {props.cart.orderItems.length > 0 ? props.cart.orderItems.map((orderItem, id) => (<OrderItem key={`OrderItem_${id}`} itemId={id} cart={props.cart} setCart={props.setCart} item={orderItem} />)) : (<h1 className="text-center fst-italic">Le panier est vide</h1>) }
                   </div>
               </div>
               <div className="col-12 my-4">
-                  <h2 className="pizzles-txt-title pizzles-cart-total m-auto text-center">Total de la commande : <span>{totalCart.toLocaleString()} €</span></h2>
+                  <h2 className="pizzles-txt-title pizzles-cart-total m-auto text-center">Total de la commande : <span>{props.cart.preTotal.toLocaleString()} €</span></h2>
               </div>
               <div className="col-12 my-3">
                   <Link className="pizzles-btn pizzles-btn-yellow" to="/delivery">

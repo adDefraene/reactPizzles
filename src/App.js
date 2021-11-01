@@ -34,30 +34,63 @@ import cartJs from './js/CartJS';
  * @returns html
  */
 const App = () => {
+
+  const [cart, setCart] = useState({
+        customer : "",
+        orderItems : [
+            {
+                "itemPizza": "/api/pizzas/jambon-deluxe",
+                "supIngredients": [
+                    "/api/ingredients/3"
+                ]
+            },
+            {
+                "itemPizza": "/api/pizzas/boulettes",
+                "supIngredients": []
+            },
+            {
+                "itemPizza": "/api/pizzas/pizza-du-mois",
+                "supIngredients": [
+                  "/api/ingredients/1",
+                  "/api/ingredients/2"
+                ]
+            },
+        ],
+        date: "",
+        ifDelivered: ""
+
+        /* SCHEME
+        "customer" : "/api/users/34",
+        "orderItems" : [
+            {
+                "itemPizza": "/api/pizzas/jambon-deluxe",
+                "supIngredients": [
+                    "/api/ingredients/1"
+                ]
+            }
+        ],
+        "date": "2021-10-11T20:45:00+00:00",
+        "ifDelivered": true
+        */
+  })
   
   const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated)
-/*   const [cart, setCart] = useState({});
 
-
-  if(isAuthenticated){
-      setCart()  
-  } */
   const contextValue = {
       isAuthenticated: isAuthenticated,
       setIsAuthenticated: setIsAuthenticated
   }
 
   useEffect(()=>{
-    authAPI.isAuthenticated()
     cartJs()
-
+    authAPI.isAuthenticated()
   },[]) 
 
   return (
     <AuthContext.Provider value={contextValue}>
         <Router>
-            <Nav />
-            <Cart /* cart={cart} */ />
+            <Nav cart={cart}  />
+            <Cart cart={cart} />
             <Switch>
                 <Route path="/menu" component={MenuPage} />
                 <Route path="/pizza/:slug" component={PizzaPage} />
@@ -67,7 +100,7 @@ const App = () => {
                 <PrivateRoute path="/profile/review/:id" component={ReviewPage} />
                 <PrivateRoute path="/profile/password-update" component={PasswordUpdatePage} />
                 <PrivateRoute path="/profile" component={ProfilePage} />
-                <PrivateRoute path="/addpizza/:slug" component={AddPizzaPage} />
+                <PrivateRoute path="/addpizza/:slug" component={AddPizzaPage} setCart={setCart}/>
                 <PrivateRoute path="/delivery" component={DeliveryPage} />
                 <PrivateRoute path="/hour" component={HourPage} />
                 <PrivateRoute path="/summary" component={SummaryPage} />

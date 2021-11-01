@@ -6,13 +6,14 @@ import Axios from 'axios';
 
 // Get APIs basic link
 const API_URL = process.env.REACT_APP_API_URL;
+const APP_URL = process.env.REACT_APP_URL;
 
 /**
  * Method GET that retrieves all of the Pizzas
  * @returns array
  */
 async function findAll(){
-    const response = await Axios.get(`${API_URL}pizzas/`);
+    const response = await Axios.get(`${API_URL}pizzas`);
     return response.data["hydra:member"];
 }
 
@@ -23,6 +24,16 @@ async function findAll(){
  */
 async function find(slug){
     const response = await Axios.get(`${API_URL}pizzas/${slug}/`);
+    return response.data;
+}
+
+/**
+ * Method GET that retrives a specific Pizza from its "@Id"
+ * @param {string} bigId 
+ * @returns object
+ */
+async function findByBigId(bigId){
+    const response = await Axios.get(`${APP_URL}${bigId}`);
     return response.data;
 }
 
@@ -40,6 +51,7 @@ async function findIngredients(slug){
 const pizzasApiMethods = {
     findAll: findAll,
     find: find,
+    findId: findByBigId,
     ingredients : findIngredients
 }
 

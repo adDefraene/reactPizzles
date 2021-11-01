@@ -1,23 +1,31 @@
 /* import React, { useEffect } from 'react';
 import {Link, useLocation} from 'react-router-dom' */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 
 /**
  * Our main navigation menu
  * @returns html
  */
-const Nav = () => {
-/* 
-    const getRouteValue = () => {
-        console.log("bjcdfslofgbhvkwsgl")
-    }
-
+const Nav = (props) => {
+/*
     useEffect(()=>{
         getRouteValue()
     }, [useLocation]) */
 
+    const [numberOfItems, setNumberOfItems] = useState("")
 
+    const getNumberOfItems = () => {
+        if(props.cart !== null){
+            setNumberOfItems(props.cart.orderItems.length)
+        } else {
+            setNumberOfItems(0)
+        }
+    }
+
+    useEffect(()=>{
+        getNumberOfItems()
+    }, [props.cart])
     return ( 
 <>
     <nav className="pizzles-nav text-center">
@@ -33,7 +41,7 @@ const Nav = () => {
             <div className="col pizzles-cart-icon">
                 <img src="/images/logos/PANIER_PICTO.png" alt="Panier" />
                 <h3>Panier</h3>
-                <span>0</span>
+                <span>{numberOfItems}</span>
             </div>
             <Link to="/contact" className="col pizzles-nav-link">
                 <img src="/images/logos/CONTACT_PICTO.png" alt="Contact" />

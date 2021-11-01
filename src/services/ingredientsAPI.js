@@ -6,6 +6,7 @@ import Axios from 'axios'
 
 // Get APIs basic link
 const API_URL = process.env.REACT_APP_API_URL;
+const APP_URL = process.env.REACT_APP_URL;
 
 /**
  * Method GET that retrives all of the ingredients available
@@ -26,9 +27,20 @@ async function find(id){
     return response.data;
 }
 
+/**
+ * Method GET that retrives a specific Pizza from its "@Id"
+ * @param {string} bigId 
+ * @returns object
+ */
+async function findByBigId(bigId){
+    const response = await Axios.get(`${APP_URL}${bigId}`);
+    return response.data;
+}
+
 // Final Var for the exports our methods
 const ingredientsApiMethods = {
     findAll: findAll,
+    findId: findByBigId,
     find: find
 }
 

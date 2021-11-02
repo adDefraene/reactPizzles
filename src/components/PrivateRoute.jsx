@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, Component } from 'react';
 import {Route, Redirect} from 'react-router-dom';
 import AuthContext from '../contexts/AuthContext.js'
 
@@ -9,6 +9,11 @@ import AuthContext from '../contexts/AuthContext.js'
  */
 const PrivateRoute = (props) => {
     const {isAuthenticated} = useContext(AuthContext)
+    if(props.cart && props.setCart){
+        props.location.cart = props.cart
+        props.location.setCart = props.setCart
+        console.log(props)
+    }
 
     return isAuthenticated ? (
         <Route path={props.path} component={props.component} />

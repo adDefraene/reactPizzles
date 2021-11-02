@@ -3,6 +3,8 @@ import ingredientsAPI from '../../services/ingredientsAPI';
 
 const OrderSupIngredients = (props) => {
 
+    let supIngredient = props.supIngredient
+
     const [currentSupIngredient, setCurrentSupIngredient] = useState({
         name: "",
         price: ""
@@ -16,21 +18,22 @@ const OrderSupIngredients = (props) => {
             console.error(error)
         }
     }
-
+    /*
     const setTotalIngredients = () => {
         if(currentSupIngredient.price !== ""){
             props.setTotalIngredients(parseFloat(props.totalIngredients) + parseFloat(currentSupIngredient.price))
         }
     }
+    */
 
     useEffect(()=>{
-        fetchCurrentSupIngredient(props.supIngredient)
-        setTotalIngredients()
-    }, [props.supIngredient, currentSupIngredient])
-
+        fetchCurrentSupIngredient(supIngredient)
+        /* setTotalIngredients() */
+    }, [props])
+/* 
     useEffect(()=>{
         setTotalIngredients()
-    }, [currentSupIngredient])
+    }, [currentSupIngredient]) */
 
     return(
         <div className="col pizzles-cart-item-static pizzles-cart-item-ingredient">

@@ -7,7 +7,7 @@ const OrderItem = (props) => {
     const [totalPizza, setTotalPizza] = useState(0)
     */
 
-    const [totalIngredients, setTotalIngredients] = useState(0) 
+ /*    const [totalIngredients, setTotalIngredients] = useState(0)  */
 
     const [currentPizza, setCurrentPizza] = useState({
         "@id" : props.item.itemPizza,
@@ -55,8 +55,9 @@ const OrderItem = (props) => {
     useEffect(()=>{
         fetchCurrentPizza()
         //setPizzaTotal()
-    }, [props.item /*, currentPizza, totalPizza */, totalIngredients])
+    }, [props.item /*, currentPizza, totalPizza , totalIngredients */])
     
+
     return ( 
 <>
     <div className="pizzles-cart-item my-3 px-3">
@@ -77,12 +78,12 @@ const OrderItem = (props) => {
                                 <div className="col pizzles-cart-item-static pizzles-cart-item-plus">
                                 <p>+</p>
                                 </div>
-                                <OrderSupIngredient key={`p_${props.itemId}_sp_${id}`} totalIngredients={totalIngredients} setTotalIngredients={setTotalIngredients} supIngredient={supIngredient} />
+                                <OrderSupIngredient key={`p_${props.itemId}_sp_${id}`} /* totalIngredients={totalIngredients} setTotalIngredients={setTotalIngredients} */ supIngredient={supIngredient} />
                             </>
                             )
                         }else{
                             return(
-                                <OrderSupIngredient key={`p_${props.itemId}_sp_${id}`} totalIngredients={totalIngredients} setTotalIngredients={setTotalIngredients} supIngredient={supIngredient} />
+                                <OrderSupIngredient key={`p_${props.itemId}_sp_${id}`} /* totalIngredients={totalIngredients} setTotalIngredients={setTotalIngredients} */ supIngredient={supIngredient} />
                             )
                         }
                     }) ) : (<div className="col-12 col-md order-2 order-md-3 order-lg-2 pizzles-cart-item-ingredient"><div className="row"><p>Aucun ingrédient supplémentaire</p></div></div>)

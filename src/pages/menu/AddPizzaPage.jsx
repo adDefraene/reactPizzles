@@ -4,10 +4,10 @@ import pizzasAPI from '../../services/pizzasAPI';
 import ingredientsAPI from '../../services/ingredientsAPI';
 import MenuSupIngredients from '../../components/menu/MenuSupIngredients';
 
-const AddPizzaPage = ({match}) => {
-
+const AddPizzaPage = (props) => {
+    console.log(props)
     // Gets the slug from the URL
-    var slug = match.params.slug
+    var slug = props.match.params.slug
 
     // Var of the selected pizza
     const [pizza, setPizza] = useState({
@@ -19,12 +19,26 @@ const AddPizzaPage = ({match}) => {
         "ingredients": [],
         "slug": slug
     })
+
+    const [itemOrder, setItemOrder] = useState({
+        "itemPizza" : "",
+        "supIngredients": [],
+        "totalItem" : 0
+    })
+
+    const defineItemOrder = (data) => {
+            let newOrderItem = Object.assign({}, itemOrder)
+            newOrderItem.totalItem = parseFloat(data.price)
+            newOrderItem.itemPizza = data["@id"]
+            setItemOrder(newOrderItem)
+    }
     
     // Method that fetches the selected pizza
     const fetchPizza = async slug => {
         try{
             const data = await pizzasAPI.find(slug)
             setPizza(data)
+            defineItemOrder(data)
         }
         catch (error) {
             console.error(error.response)
@@ -43,6 +57,13 @@ const AddPizzaPage = ({match}) => {
         catch (error) {
             console.error(error.response)
         }
+    }
+
+    const handleAddItem = () => {
+        let newCart = Object.assign({}, props.location.cart)
+        newCart.orderItems.push(itemOrder)
+        newCart.preTotal += itemOrder.totalItem
+        props.location.setCart(newCart)
     }
 
     // On load, do the fetches
@@ -93,15 +114,18 @@ const AddPizzaPage = ({match}) => {
                         image={ingredient.image}
                         name={ingredient.name}
                         price={ingredient.price}
+                        id={ingredient["@id"]}
+                        itemOrder={itemOrder}
+                        setItemOrder={setItemOrder}
                     />
                 </div>
             )
         })}
         <div className="col-12 my-4">
-            <h2 className="pizzles-txt-title pizzles-pizzaAdd-total m-auto text-center">Total de la pizza : <span>13,00€</span></h2>
+            <h2 className="pizzles-txt-title pizzles-pizzaAdd-total m-auto text-center">Total de la pizza : <span>{itemOrder.totalItem} €</span></h2>
         </div>
         <div className="col-12 my-3">
-            <Link to="#" className="pizzles-btn pizzles-btn-red">Ajouter au panier<i className="fas fa-cart-arrow-down"></i></Link>
+            <Link to="/menu" onClick={handleAddItem} className="pizzles-btn pizzles-btn-red">Ajouter au panier<i className="fas fa-cart-arrow-down"></i></Link>
         </div>
     </div>
 </div>

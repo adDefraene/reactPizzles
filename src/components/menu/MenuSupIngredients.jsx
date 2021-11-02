@@ -12,11 +12,26 @@ const MenuSupIngredients = (props) => {
      * @param {event} e 
      */
     const handleClick = (e) => {
+        console.log(props)
         // If the cell is not disbaled
         if(!e.currentTarget.classList.contains("disabled")){
             // Toggles the state
             e.currentTarget.classList.toggle("selected")
         }
+
+        let newOrderItem = Object.assign({}, props.itemOrder)
+        console.log("BEFORE CHANGE", newOrderItem)
+        
+        if(e.currentTarget.classList.contains("selected")){
+            newOrderItem.supIngredients.push(props.id)
+            newOrderItem.totalItem += parseFloat(props.price)
+        }else{
+            newOrderItem.supIngredients.splice(newOrderItem.supIngredients.indexOf(props.id), 1)
+            newOrderItem.totalItem -= parseFloat(props.price)
+        }
+        
+        console.log("AFTER CHANGE", newOrderItem)
+        props.setItemOrder(newOrderItem)
     }
 
     return ( 

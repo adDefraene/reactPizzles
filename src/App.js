@@ -90,7 +90,7 @@ const App = () => {
                 <PrivateRoute path="/profile/review/:id" component={ReviewPage} />
                 <PrivateRoute path="/profile/password-update" component={PasswordUpdatePage} />
                 <PrivateRoute path="/profile" component={ProfilePage} />
-                <PrivateRoute path="/addpizza/:slug" component={AddPizzaPage} setCart={setCart}/>
+                <PrivateRoute path="/addpizza/:slug" component={AddPizzaPage} cart={cart} setCart={setCart} />
                 <PrivateRoute path="/delivery" component={DeliveryPage} />
                 <PrivateRoute path="/hour" component={HourPage} />
                 <PrivateRoute path="/summary" component={SummaryPage} />

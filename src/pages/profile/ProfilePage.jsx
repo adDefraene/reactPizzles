@@ -18,6 +18,8 @@ import usersAPI from '../../services/usersAPI';
  */
 const ProfilePage = (props) => {
 
+    const [currentUserName, setCurrentUserName] = useState("")
+
     // Var that retrives if the user is authenticated
     const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext)
     
@@ -55,13 +57,14 @@ const ProfilePage = (props) => {
         address: "",
     })
 
-    // Methods that retrieves the informations of the ucrrent user
+    // Methods that retrieves the informations of the current user
     const fetchUserInfos = async (userId) => {
         try {
             // Gives the Bearer token
             authAPI.setup()
             const data = await usersAPI.get(userId)
             setCurrentUser(data)
+            setCurrentUserName(data.firstName)
         }
         catch (error) {
             console.error(error.response)
@@ -89,7 +92,8 @@ const ProfilePage = (props) => {
         try{
             // Gives the Bearer token
             authAPI.setup()
-            usersAPI.patch(userInfosJWT.id, currentUser)
+            usersAPI.put(userInfosJWT.id, currentUser)
+            setCurrentUserName(currentUser.firstName)
             setErrors({})
 
         }catch(response){
@@ -118,7 +122,7 @@ const ProfilePage = (props) => {
 <>
     <div className="container pizzles-first-container">
     {/* WELCOME */}
-        <h3 className="pizzles-end-title text-center mx-auto my-3">Bonjour {currentUser.firstName} !</h3>
+        <h3 className="pizzles-end-title text-center mx-auto my-3">Bonjour {currentUserName} !</h3>
         <h3 className="pizzles-end-title text-center mx-auto my-3">Bienvenue sur votre profil</h3>
         <button onClick={handleLogout} className="pizzles-btn pizzles-btn-disconnect mx-auto my-5">Me déconnecter<i className="fas fa-power-off"></i></button>
     {/* PROFILE NAV */}

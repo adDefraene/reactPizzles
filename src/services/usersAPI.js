@@ -27,7 +27,8 @@ async function getCurrentUser(userId){
 }
 
 /**
- * Method PATCH that updates some infos of an User by its id number
+ * !!! UNUSED PATCH METHOD !!!
+ * Method PATCH that updates all infos of an User by its id number
  * @param {integer} userId 
  * @param {object} newInformations 
  * @returns void
@@ -37,7 +38,7 @@ async function updateUser(userId, newInformations){
 }
 
 /**
- * !!! UNUSED PUT METHOD !!! (used to update all infos of a user)
+ *  Method PUT that updates some infos of an User by its id number
  * @param {interger} userId 
  * @param {object} newInformations 
  * @returns vois

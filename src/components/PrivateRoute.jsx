@@ -15,7 +15,13 @@ const PrivateRoute = (props) => {
     }
 
     return isAuthenticated ? (
-        <Route path={props.path} component={props.component} />
+        (props.component.name !== "DeliveryPage") ? 
+            (<Route path={props.path} component={props.component} />)
+        :
+            (props.cart.orderItems.length === 0) ?
+                (<Redirect to="/menu" />)
+            :
+                (<Route path={props.path} component={props.component} />)
     ) : (
         <Redirect to="/login" />
     )

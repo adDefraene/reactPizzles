@@ -90,7 +90,6 @@ const ProfilePage = (props) => {
             // Gives the Bearer token
             authAPI.setup()
             usersAPI.patch(userInfosJWT.id, currentUser)
-            console.log("bbb")
             setErrors({})
 
         }catch(response){

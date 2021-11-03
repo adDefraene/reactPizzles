@@ -28,6 +28,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import './App.css';
 // JS
 import cartJs from './js/CartJS';
+import jwtDecode from 'jwt-decode';
 
 /**
  * My Pizzles website-App !
@@ -50,10 +51,33 @@ const App = () => {
       setIsAuthenticated: setIsAuthenticated
   }
 
+  // Method that sets the user's api path to the "customer" field when logging in or resets it when logging out
+  const setOrderUser = () => {
+      // New cart var that will contains the new "customer" field
+      let newCart =  Object.assign({}, cart)
+      // If user is authenticated
+      if(isAuthenticated){
+          // Decode its JWT token...
+          const userInfosJWT = jwtDecode(window.localStorage.getItem('authToken'))
+          //... to get its id in order to give it to the "customer" field
+          newCart.customer += userInfosJWT.id
+        } else {
+          // Resets the "customer" field
+          newCart.customer = "/api/users/"
+        }
+        // Updates the cart
+        setCart(newCart)
+  }
+
   useEffect(()=>{
     cartJs()
     authAPI.isAuthenticated()
   },[])
+
+  // Use effect when logging in/out
+  useEffect(()=> {
+      setOrderUser()
+  }, [isAuthenticated])
 
   return (
     <AuthContext.Provider value={contextValue}>

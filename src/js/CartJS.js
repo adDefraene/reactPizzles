@@ -13,6 +13,7 @@ const Cart = () => {
     document.querySelector(".pizzles-darkCache").addEventListener("click", toggleCart)
     document.querySelector(".pizzles-cart-icon").addEventListener("click", toggleCart)
     document.querySelector(".pizzles-cart-close").addEventListener("click", toggleCart)
+    document.querySelector("#doOrder").addEventListener("click", toggleCart)
 }
 
 export default Cart;

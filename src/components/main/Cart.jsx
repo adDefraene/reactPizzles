@@ -32,7 +32,7 @@ const Cart = (props) => {
                   <h2 className="pizzles-txt-title pizzles-cart-total m-auto text-center">Total de la commande : <span>{props.cart.preTotal.toLocaleString()} €</span></h2>
               </div>
               <div className="col-12 my-3">
-                  <Link className="pizzles-btn pizzles-btn-yellow" to="/delivery">
+                  <Link className="pizzles-btn pizzles-btn-yellow" id="doOrder" to="/delivery">
                     Passer la commande<i className="fas fa-cart-arrow-down"></i>
                   </Link>
               </div>

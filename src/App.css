@@ -537,6 +537,9 @@ h4{
         flex: initial;
         width: max-content;
     }
+    .pizzles-cart-item > .row{
+        width: calc(100% + 80px);
+    }
 }
 /* LG */
 @media all and (max-width : 992px){

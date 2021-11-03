@@ -12,25 +12,29 @@ const MenuSupIngredients = (props) => {
      * @param {event} e 
      */
     const handleClick = (e) => {
-        console.log(props)
-        // If the cell is not disbaled
+    // Checks if the cell is not disabled to do or not the toggle class event
+        // If the cell is not disabled
         if(!e.currentTarget.classList.contains("disabled")){
             // Toggles the state
             e.currentTarget.classList.toggle("selected")
         }
-
+    // Updates the current itemOrder if a supIngredient is added or removed
+        // Creat the var of the new cart
         let newOrderItem = Object.assign({}, props.itemOrder)
-        console.log("BEFORE CHANGE", newOrderItem)
-        
+        // If the current cell is selected
         if(e.currentTarget.classList.contains("selected")){
+            // Pushes the sup ingredient into the "supIngredients" array
             newOrderItem.supIngredients.push(props.id)
+            // Updates the total of the itemOrder by adding its price
             newOrderItem.totalItem += parseFloat(props.price)
+            // If the current cell is unselected
         }else{
+            // Remove the supIngredient from the "supIngrdients" array
             newOrderItem.supIngredients.splice(newOrderItem.supIngredients.indexOf(props.id), 1)
+            // Updates the total of the itemOrder by deleting its price
             newOrderItem.totalItem -= parseFloat(props.price)
         }
-        
-        console.log("AFTER CHANGE", newOrderItem)
+        // Updates the itemOrder
         props.setItemOrder(newOrderItem)
     }
 

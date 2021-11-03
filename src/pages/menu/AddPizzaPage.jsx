@@ -5,7 +5,7 @@ import ingredientsAPI from '../../services/ingredientsAPI';
 import MenuSupIngredients from '../../components/menu/MenuSupIngredients';
 
 const AddPizzaPage = (props) => {
-    console.log(props)
+
     // Gets the slug from the URL
     var slug = props.match.params.slug
 
@@ -20,12 +20,17 @@ const AddPizzaPage = (props) => {
         "slug": slug
     })
 
+    // Var of the future itemOrder to be added to the cart
     const [itemOrder, setItemOrder] = useState({
         "itemPizza" : "",
         "supIngredients": [],
         "totalItem" : 0
     })
 
+    /**
+     * Method that sets the value of the pizza's id to the "itemPizza" and adds its price by default to the "totalItem"
+     * @param data 
+     */
     const defineItemOrder = (data) => {
             let newOrderItem = Object.assign({}, itemOrder)
             newOrderItem.totalItem = parseFloat(data.price)
@@ -59,6 +64,7 @@ const AddPizzaPage = (props) => {
         }
     }
 
+    // Method that handles the add of the current orderItem to the cart
     const handleAddItem = () => {
         let newCart = Object.assign({}, props.location.cart)
         newCart.orderItems.push(itemOrder)
@@ -96,7 +102,7 @@ const AddPizzaPage = (props) => {
 
             // Var that says "if the ingredients is already on the pizza"
             var ifIngredientOnPizza = false
-            //=> in the "MenuSupIngredient" component, adds yes or no the "disabled" class to the cell
+            //=> in the "MenuSupIngredient" component, adds yes or no the "disabled" class to the cell, in order to be unabled to select the ingredients if it is already on the pizza
 
             // For each of the ingredients on the pizza
             pizza.ingredients.forEach(ingredientPizza => {

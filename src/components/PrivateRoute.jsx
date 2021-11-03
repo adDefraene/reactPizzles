@@ -12,7 +12,6 @@ const PrivateRoute = (props) => {
     if(props.cart && props.setCart){
         props.location.cart = props.cart
         props.location.setCart = props.setCart
-        console.log(props)
     }
 
     return isAuthenticated ? (

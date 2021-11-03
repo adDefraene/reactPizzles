@@ -36,32 +36,11 @@ import cartJs from './js/CartJS';
 const App = () => {
 
   const [cart, setCart] = useState({
-        customer : "",
-        orderItems : [
-            {
-                "itemPizza": "/api/pizzas/jambon-deluxe",
-                "supIngredients": [
-                    "/api/ingredients/3"
-                ],
-                "totalItem": 9.88
-            },
-            {
-                "itemPizza": "/api/pizzas/boulettes",
-                "supIngredients": [],
-                "totalItem": 8
-            },
-            {
-                "itemPizza": "/api/pizzas/pizza-du-mois",
-                "supIngredients": [
-                  "/api/ingredients/1",
-                  "/api/ingredients/2"
-                ],
-                "totalItem": 13.5
-            },
-        ],
+        customer : "/api/users/",
+        orderItems : [],
         date: "",
         ifDelivered: "",
-        preTotal: 31.38
+        preTotal: 0
   })
   
   const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated)

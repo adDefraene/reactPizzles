@@ -94,9 +94,9 @@ const App = () => {
                 <PrivateRoute path="/profile/password-update" component={PasswordUpdatePage} />
                 <PrivateRoute path="/profile" component={ProfilePage} />
                 <PrivateRoute path="/addpizza/:slug" component={AddPizzaPage} cart={cart} setCart={setCart} />
-                <PrivateRoute path="/delivery" component={DeliveryPage} />
-                <PrivateRoute path="/hour" component={HourPage} />
-                <PrivateRoute path="/summary" component={SummaryPage} />
+                <PrivateRoute path="/delivery" component={DeliveryPage} cart={cart} setCart={setCart} />
+                <PrivateRoute path="/hour" component={HourPage} cart={cart} setCart={setCart} />
+                <PrivateRoute path="/summary" component={SummaryPage} cart={cart} setCart={setCart} />
                 <Route path="/" component={HomePage} />
             </Switch>
             <Footer />

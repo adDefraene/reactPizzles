@@ -1247,6 +1247,18 @@ ul.pagination.pagination-pizzles > li.page-item.active > button.page-link{
 
 /******************** HOUR *******************/
 
+.rc-time-picker{
+    margin: 0 auto;
+    height: 75px;
+}
+
+.rc-time-picker .rc-time-picker-input{
+    height: 100%;
+    font-family: var(--fontMain);
+    font-size: var(--txtTitles);
+    font-weight: var(--fontBold);
+    text-align: center;
+}
 
 /******************** FINALIZATION *******************/
 

@@ -36,11 +36,17 @@ async function findUserOrdersDone(userId){
     return response.data["hydra:member"];
 }
 
+async function findOrdersOfTheDay(dateOfTheDay){
+    const response = await Axios.get(`${API_URL}orders?date=${dateOfTheDay}`);
+    return response.data["hydra:member"];
+}
+
 // Final Var for the exports our methods
 const ordersApiMethods = {
     create: createOrder,
     findDone: findUserOrdersDone,
-    findOne: findOrder
+    findOne: findOrder,
+    findDaily: findOrdersOfTheDay
 }
 
 // EXPORT

@@ -15,10 +15,11 @@ const PrivateRoute = (props) => {
     }
 
     return isAuthenticated ? (
-        (props.component.name !== "DeliveryPage") ? 
+        (props.component.name !== "DeliveryPage" && props.component.name !== "SummaryPage" && props.component.name !== "HourPage") ?
             (<Route path={props.path} component={props.component} />)
         :
-            (props.cart.orderItems.length === 0) ?
+            ((props.cart.orderItems.length === 0 && (props.component.name === "DeliveryPage" || props.component.name === "HourPage")) || ((props.cart.orderItems.length === 0 || props.cart.date === "" || props.cart.ifDelivered === "") && props.component.name === "SummaryPage"))
+            ?
                 (<Redirect to="/menu" />)
             :
                 (<Route path={props.path} component={props.component} />)

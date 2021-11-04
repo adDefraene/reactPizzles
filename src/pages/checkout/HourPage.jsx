@@ -20,6 +20,9 @@ const HourPage = (props) => {
     // Var that will contain the corrected "freeHoursMinutes" after deleting the schedule of the orders from "orderOfTheDays"
     const [newFreeHoursMinutes, setNewFreeHoursMinutes] = useState({})
 
+    // Var that will contain the corrected "freeHoursMinutes" after deleting the schedule of the orders from "orderOfTheDays"
+    const [newBookedHours, setNewBookedHours] = useState({})
+
     // Fetches the orders
     const fetchOrdersOfTheDay = async () => {
         try{
@@ -69,6 +72,7 @@ const HourPage = (props) => {
           })
         }
       })
+      setNewBookedHours(bookedHours)
     }
     
     // Method that disables the schedule for the orders that are already made
@@ -91,17 +95,17 @@ const HourPage = (props) => {
     // UseEffect on load
     useEffect(()=>{
       fetchOrdersOfTheDay()
-      disableScheduleBeforeNow()
     }, [])
 
     // UseEffect when "ordersOfTheDay" is defined
     useEffect(()=>{
+      disableScheduleBeforeNow()
       disableOrdersOfTheDay()
     }, [ordersOfTheDay])
 
     // Method for the "TimePicker" to get the disabled hours
     const disabledHours = () => {
-      return bookedHours
+      return newBookedHours
     }
     
     // Method provided from "TimePicker" docs

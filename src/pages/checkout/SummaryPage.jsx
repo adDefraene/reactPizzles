@@ -1,7 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
-const SummaryPage = () => {
+const SummaryPage = (props) => {
+
+    console.log(props.location.cart)
+
     return ( 
 <>
 <div className="container pizzles-first-container">

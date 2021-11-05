@@ -13,7 +13,7 @@ const API_URL = process.env.REACT_APP_API_URL;
  * @returns void
  */
 function createOrder(order){
-    return Axios.post(`${API_URL}orders`, {...order, user:`api/users/${order.user}`})
+    return Axios.post(`${API_URL}orders`, {...order, user:`api/users/${order.customer}`})
 }
 
 /**
@@ -36,6 +36,16 @@ async function findUserOrdersDone(userId){
     return response.data["hydra:member"];
 }
 
+/**
+ * Method GET that retrives all of the User's Orders that are done
+ * @param {integer} userId 
+ * @returns array
+ */
+async function findUserOrdersWaiting(userId){
+    const response = await Axios.get(`${API_URL}users/${userId}/orders?order[date]=desc&state=ORDERED`);
+    return response.data["hydra:member"];
+}
+
 async function findOrdersOfTheDay(dateOfTheDay){
     const response = await Axios.get(`${API_URL}orders?date=${dateOfTheDay}`);
     return response.data["hydra:member"];
@@ -45,6 +55,7 @@ async function findOrdersOfTheDay(dateOfTheDay){
 const ordersApiMethods = {
     create: createOrder,
     findDone: findUserOrdersDone,
+    findOrdered: findUserOrdersWaiting,
     findOne: findOrder,
     findDaily: findOrdersOfTheDay
 }

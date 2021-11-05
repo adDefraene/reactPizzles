@@ -53,9 +53,9 @@ const App = () => {
             totalItem: 12.5
           }
         ],
-        date: "",
-        ifDelivered: "",
-        preTotal: 20
+        date: "2021-11-05T19:45:43+01:00",
+        ifDelivered: true,
+        preTotal: 23
   })
   
   const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated)

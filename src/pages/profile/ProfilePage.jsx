@@ -10,6 +10,7 @@ import ProfileReviewDone from '../../components/reviews/ProfileReviewDone';
 import ProfileReviewToDo from '../../components/reviews/ProfileReviewToDo';
 import Field from '../../components/form/Field';
 import usersAPI from '../../services/usersAPI';
+import { render } from '@testing-library/react';
 
 /**
  * Page of the user's profile
@@ -43,6 +44,22 @@ const ProfilePage = (props) => {
             authAPI.setup()
             const data = await ordersAPI.findDone(userId)
             setUserOrdersDone(data)
+        }
+        catch (error) {
+            console.error(error.response)
+        }
+    }
+
+    // Var that contains the orders of the users that are already done
+    const [userOrdersWaiting, setUserOrdersWaiting] = useState([])
+    
+    // Fetches the done orders of the user
+    const fetchUserOrdersWaiting = async (userId) => {
+        try {
+            // Give the Bearer token
+            authAPI.setup()
+            const data = await ordersAPI.findOrdered(userId)
+            setUserOrdersWaiting(data)
         }
         catch (error) {
             console.error(error.response)
@@ -112,6 +129,7 @@ const ProfilePage = (props) => {
     useEffect(() => {
         if(isAuthenticated){
             fetchUserInfos(userInfosJWT.id)
+            fetchUserOrdersWaiting(currentUser.id)
             fetchUserOrdersDone(currentUser.id)
         }
     }, [isAuthenticated,userInfosJWT.id, currentUser.id])
@@ -147,22 +165,27 @@ const ProfilePage = (props) => {
                     <h2 className="pizzles-title text-center mx-auto my-5">Mes commandes en cours</h2>
                     <div className="row">
                         <div className="col-12">
+                            {userOrdersWaiting.map(order => (
                             <div className="row pizzles-summaryOrder-box p-3">
-                                <div className="col-12 text-center my-3 pizzles-summaryOrder-numOrder">Commande #00194 - 31 février 2021</div>
+                                <div className="col-12 text-center my-3 pizzles-summaryOrder-numOrder">Commande #{order.id} du <span>
+                            <Moment format="DD-MM-YYYY">{order.date}</Moment></span></div>
+                                {order.orderItems.map(orderItem => (
                                 <div className="col-12 pizzles-summaryOrder-items my-2 px-4">
-                                    Margherita + Aucun ingrédient supplémentaires
+                                    {orderItem.itemPizza.type === "POTM" ? "Pizza du mois" : orderItem.itemPizza.name } 
+                                    
+                                    {orderItem.supIngredients.map(supIngredient => (<span> + {supIngredient.name} </span> 
+                                        ))}
                                 </div>
-                                <div className="col-12 pizzles-summaryOrder-items my-2 px-4">
-                                    Margherita + Poivron + Pepperonnis
-                                </div>
+                                ))}
                                 <div className="col-12 col-md-6 my-4">
                                     <div className="pizzles-summaryOrder-delivery px-4">
-                                        Livré chez vous à 19 H 30
+                                    {(order.ifDelivered ? "Livré chez vous à " : "Prête au comptoir à ")}
+                                        <Moment format="HH:mm">{order.date}</Moment>
                                     </div>
                                 </div>
                                 <div className="col-12 col-md-6 my-4">
                                     <div className="pizzles-summaryOrder-total px-4">
-                                        TOTAL : 27,50 €
+                                    TOTAL : {order.total.toLocaleString()} €
                                     </div>
                                 </div>
                                 <p className="col-12 text-center pizzles-summaryOrder-state my-3">Commande en préparation !</p>
@@ -174,6 +197,7 @@ const ProfilePage = (props) => {
                                     <div className="pizzles-summaryOrder-evolution-ball"></div>
                                 </div>
                             </div>
+                            ))}
                         </div>
                     </div>
                 </div>

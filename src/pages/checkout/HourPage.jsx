@@ -81,6 +81,7 @@ const HourPage = (props) => {
       ordersOfTheDay.forEach((bookedHour)=>{
           // Get the moment date from the JSON date value
           let dateOfOrder = moment(bookedHour.date)
+          console.warn(dateOfOrder)
           // Get the hour of the order
           let hour = dateOfOrder._d.getHours()
           // Get the minutes of the order
@@ -188,14 +189,51 @@ const HourPage = (props) => {
     const handleTime = (event) => {
         // If the event is not null : when the TimePicker is empty
         // && if the hour is valid : if the schedule selected is free
-        if(event !== null && newFreeHoursMinutes[event._d.getHours()].includes(event._d.getMinutes()) ){
+        console.log(event)
+        if(event !== null && newFreeHoursMinutes[event["_d"].getHours()].includes(event["_d"].getMinutes()) ){
             // Enables the next button
             toggleNextButton(true)
             // JSON the selected schedule...
-            let choosenHour = event["_d"].toJSON()
+            let choosenHour = event
+            let choosenHourJSON = choosenHour["_d"].toJSON()
+            if(choosenHour["_d"].toString().includes("+01")){
+              console.info("OLD_JSON",choosenHourJSON)
+              let wrongHour = "T"+(choosenHour["_d"].getHours() - 1)
+              let correctHour = "T"+(choosenHour["_d"].getHours())
+              console.log(wrongHour)
+              console.log(correctHour)
+              choosenHourJSON = choosenHourJSON.replace(wrongHour, correctHour)
+              choosenHourJSON = choosenHourJSON.replace(".000Z", "")
+              console.info("NEW_JSON",choosenHourJSON)
+            }
             // ... adds it to a new cart...
             let newCart = Object.assign({}, props.location.cart)
-            newCart.date = choosenHour
+            newCart.date = choosenHourJSON
+            //... in order to update the current cart
+            props.location.setCart(newCart)
+        } else {
+            // Disables the next button
+            toggleNextButton(false)
+            // Create a new car...
+            let newCart = Object.assign({}, props.location.cart)
+            // ... to reset the date value
+            newCart.date = ""
+            props.location.setCart(newCart)
+        }
+    }
+    // Method that verifies the selected time in the "TimePicker" when on load "UseEffect"
+    const handleTimeFirst = (event) => {
+        // If the event is not null : when the TimePicker is empty
+        // && if the hour is valid : if the schedule selected is free
+        console.log(event)
+        if(event !== null && newFreeHoursMinutes[event["_d"].getHours()].includes(event["_d"].getMinutes()) ){
+            // Enables the next button
+            toggleNextButton(true)
+            // JSON the selected schedule...
+            let choosenHourJSON = event["_d"].toJSON()
+            // ... adds it to a new cart...
+            let newCart = Object.assign({}, props.location.cart)
+            newCart.date = choosenHourJSON
             //... in order to update the current cart
             props.location.setCart(newCart)
         } else {
@@ -217,7 +255,7 @@ const HourPage = (props) => {
     // On load & when the "newFreeHoursMinutes" is set, verifies if a date is already provided to the cart
     useEffect(()=>{
       if(props.location.cart.date !== "" && Object.entries(newFreeHoursMinutes).length > 0){
-        handleTime(moment(props.location.cart.date))
+        handleTimeFirst(moment(props.location.cart.date))
       }
     }, [newFreeHoursMinutes])
 

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 
 import usersAPI from '../../services/usersAPI';
 import Field from '../../components/form/Field';
 
-const RegisterPage = ({history}) => {
+const RegisterPage = ({history, match}) => {
 
     const [user, setUser] = useState({
         email: "",
@@ -69,6 +69,18 @@ const RegisterPage = ({history}) => {
             submit.classList.remove("submit-disabled")
         }
     }
+
+    const checkPath = () => {
+        let path = match.path
+        if(path === "/register"){
+            document.querySelector(".pizzles-nav-selectedPage").classList.remove("pizzles-nav-selectedPage")
+            document.querySelector("#pizzles-nav-profile").classList.add("pizzles-nav-selectedPage")
+        }
+    }
+
+    useEffect(()=>{
+        checkPath()
+    }, [match])
 
     return ( 
 <>

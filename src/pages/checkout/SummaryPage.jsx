@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 import {Link} from 'react-router-dom'
 import SummaryPizza from '../../components/cart/SummaryPizza';
@@ -32,6 +32,18 @@ const SummaryPage = (props) => {
             console.error(error)
         }
     }
+
+    const checkPath = () => {
+        let path = props.match.path
+        if(path === "/summary"){
+            document.querySelector(".pizzles-nav-selectedPage").classList.remove("pizzles-nav-selectedPage")
+            document.querySelector("#pizzles-nav-menu").classList.add("pizzles-nav-selectedPage")
+        }
+    }
+
+    useEffect(()=>{
+        checkPath()
+    }, [props.match])
 
     return ( 
 <>

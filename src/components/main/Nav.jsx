@@ -30,11 +30,11 @@ const Nav = (props) => {
 <>
     <nav className="pizzles-nav text-center">
         <div className="row">
-            <Link to="/" className="col pizzles-nav-link">
+            <Link to="/" className="col pizzles-nav-link pizzles-nav-selectedPage" id="pizzles-nav-home">
                 <img src="/images/logos/PIZZLES_PICTO.png" alt="Page principale" />
                 <h3>Accueil</h3>
             </Link>
-            <Link to="/menu" className="col pizzles-nav-link">
+            <Link to="/menu" className="col pizzles-nav-link" id="pizzles-nav-menu">
                 <img src="/images/logos/MENU_PICTO.png" alt="Menu" />
                 <h3>Menu</h3>
             </Link>
@@ -43,11 +43,11 @@ const Nav = (props) => {
                 <h3>Panier</h3>
                 <span>{numberOfItems}</span>
             </div>
-            <Link to="/contact" className="col pizzles-nav-link">
+            <Link to="/contact" className="col pizzles-nav-link" id="pizzles-nav-contact">
                 <img src="/images/logos/CONTACT_PICTO.png" alt="Contact" />
                 <h3>Contact</h3>
             </Link>
-            <Link to="/profile" className="col pizzles-nav-link">
+            <Link to="/profile" className="col pizzles-nav-link" id="pizzles-nav-profile">
                 <img src="/images/logos/COMPTE_PICTO.png" alt="Mon compte" />
                 <h3>Mon compte</h3>
             </Link>

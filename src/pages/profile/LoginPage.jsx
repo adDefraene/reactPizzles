@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import { useContext } from 'react';
 import { useState } from 'react';
 import Field from '../../components/form/Field';
+import { useEffect } from 'react/cjs/react.development';
 
 /**
  * Page that is used to execute the login for the user
@@ -52,6 +53,18 @@ const LoginPage = (props) => {
         // Go to their profile
         props.history.replace("/profile")
     }
+
+    const checkPath = () => {
+        let path = props.match.path
+        if(path === "/login"){
+            document.querySelector(".pizzles-nav-selectedPage").classList.remove("pizzles-nav-selectedPage")
+            document.querySelector("#pizzles-nav-profile").classList.add("pizzles-nav-selectedPage")
+        }
+    }
+
+    useEffect(()=>{
+        checkPath()
+    }, [props.match])
 
     return ( 
 <>

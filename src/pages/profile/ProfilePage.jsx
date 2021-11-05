@@ -135,6 +135,17 @@ const ProfilePage = (props) => {
     }, [isAuthenticated,userInfosJWT.id, currentUser.id])
 
 
+    const checkPath = () => {
+        let path = props.match.path
+        if(path === "/profile"){
+            document.querySelector(".pizzles-nav-selectedPage").classList.remove("pizzles-nav-selectedPage")
+            document.querySelector("#pizzles-nav-profile").classList.add("pizzles-nav-selectedPage")
+        }
+    }
+
+    useEffect(()=>{
+        checkPath()
+    }, [props.match])
 
     return ( 
 <>

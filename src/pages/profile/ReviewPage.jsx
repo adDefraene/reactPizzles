@@ -122,6 +122,18 @@ const ReviewPage = (props) => {
 
     // Do the check if the order's review is already done
     checkIfAlreadyReviewed(currentOrder)
+    
+    const checkPath = () => {
+        let path = props.match.path
+        if(path === "/profile/review/:id"){
+            document.querySelector(".pizzles-nav-selectedPage").classList.remove("pizzles-nav-selectedPage")
+            document.querySelector("#pizzles-nav-profile").classList.add("pizzles-nav-selectedPage")
+        }
+    }
+
+    useEffect(()=>{
+        checkPath()
+    }, [props.match])
 
     return ( 
             <>

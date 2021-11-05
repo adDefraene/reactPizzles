@@ -38,24 +38,10 @@ const App = () => {
 
   const [cart, setCart] = useState({
         customer : "/api/users/",
-        orderItems : [
-          {
-            itemPizza: "/api/pizzas/calzone",
-            supIngredients: [
-              "/api/ingredients/26",
-              "/api/ingredients/21"
-            ],
-            totalItem: 7.5
-          },
-          {
-            itemPizza: "/api/pizzas/francaise",
-            supIngredients: [],
-            totalItem: 12.5
-          }
-        ],
-        date: "2021-11-05T19:45:43+01:00",
-        ifDelivered: true,
-        preTotal: 23
+        orderItems : [],
+        date: "",
+        ifDelivered: "",
+        preTotal: 0
   })
   
   const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated)

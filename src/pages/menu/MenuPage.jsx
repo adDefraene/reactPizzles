@@ -8,7 +8,7 @@ import MenuPizzaCell from '../../components/menu/MenuPizzaCell';
  * The menu where are displayed all of the ingredients and the pizzas
  * @returns html
  */
-const MenuPage = () => {
+const MenuPage = ({match}) => {
 
     // Var of the ingredients
     const [menuIngredients, setMenuIngredients] = useState([])
@@ -60,6 +60,20 @@ const MenuPage = () => {
 
     // Displays the elements of the current page
     const paginatedIngredients = Pagination.getData(menuIngredients, currentPage, itemsPerPage)
+
+    
+    const checkPath = () => {
+        let path = match.path
+        console.log(path)
+        if(path === "/menu"){
+            document.querySelector(".pizzles-nav-selectedPage").classList.remove("pizzles-nav-selectedPage")
+            document.querySelector("#pizzles-nav-menu").classList.add("pizzles-nav-selectedPage")
+        }
+    }
+
+    useEffect(()=>{
+        checkPath()
+    }, [match])
 
     return (
 <>

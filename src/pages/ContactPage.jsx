@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import AuthContext from '../contexts/AuthContext';
@@ -9,7 +9,7 @@ import jwtDecode from 'jwt-decode';
  * Page that is a contact form in order to send a message
  * @returns html
  */
-const ContactPage = () => {
+const ContactPage = ({match}) => {
 
     // Var of the content of the contact form
     const [contactForm, setContactForm] = useState({
@@ -48,6 +48,19 @@ const ContactPage = () => {
     useState(()=>{
         preCompleteForm()
     },[])
+
+    
+    const checkPath = () => {
+        let path = match.path
+        if(path === "/contact"){
+            document.querySelector(".pizzles-nav-selectedPage").classList.remove("pizzles-nav-selectedPage")
+            document.querySelector("#pizzles-nav-contact").classList.add("pizzles-nav-selectedPage")
+        }
+    }
+
+    useEffect(()=>{
+        checkPath()
+    }, [match])
 
     return ( 
 <>

@@ -73,6 +73,18 @@ const DeliveryPage = (props) => {
             alreadyCheckIfDelivered()
         })
         
+    const checkPath = () => {
+        let path = props.match.path
+        if(path === "/delivery"){
+            document.querySelector(".pizzles-nav-selectedPage").classList.remove("pizzles-nav-selectedPage")
+            document.querySelector("#pizzles-nav-menu").classList.add("pizzles-nav-selectedPage")
+        }
+    }
+
+    useEffect(()=>{
+        checkPath()
+    }, [props.match])
+        
     return (
 <>
 <div className="container pizzles-first-container">

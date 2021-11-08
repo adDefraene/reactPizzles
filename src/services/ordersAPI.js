@@ -41,13 +41,29 @@ async function findUserOrdersDone(userId){
  * @param {integer} userId 
  * @returns array
  */
-async function findUserOrdersWaiting(userId){
-    const response = await Axios.get(`${API_URL}users/${userId}/orders?order[date]=desc&state=ORDERED`);
+async function findUserOrdersWaiting(userId, dateOfTheDay){
+    const response = await Axios.get(`${API_URL}users/${userId}/orders?order[date]=asc&date=${dateOfTheDay}`);
     return response.data["hydra:member"];
 }
 
+/**
+ * Method GET that retrieves all of the Orders of the day
+ * @param {date} dateOfTheDay 
+ * @returns array
+ */
 async function findOrdersOfTheDay(dateOfTheDay){
     const response = await Axios.get(`${API_URL}orders?date=${dateOfTheDay}`);
+    return response.data["hydra:member"];
+}
+
+
+/**
+ * Method GET that retrieves all of the Orders of the day that wait to be done
+ * @param {date} dateOfTheDay 
+ * @returns array
+ */
+async function findOrdersWaintingOfTheDay(dateOfTheDay){
+    const response = await Axios.get(`${API_URL}orders?date=${dateOfTheDay}&order[date]=asc&state=ORDERED`);
     return response.data["hydra:member"];
 }
 
@@ -57,7 +73,8 @@ const ordersApiMethods = {
     findDone: findUserOrdersDone,
     findOrdered: findUserOrdersWaiting,
     findOne: findOrder,
-    findDaily: findOrdersOfTheDay
+    findDaily: findOrdersOfTheDay,
+    findWaitDaily: findOrdersWaintingOfTheDay
 }
 
 // EXPORT

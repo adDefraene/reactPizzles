@@ -11,6 +11,7 @@ import ProfileReviewToDo from '../../components/reviews/ProfileReviewToDo';
 import Field from '../../components/form/Field';
 import usersAPI from '../../services/usersAPI';
 import { render } from '@testing-library/react';
+import moment from "moment";
 
 /**
  * Page of the user's profile
@@ -18,6 +19,9 @@ import { render } from '@testing-library/react';
  * @returns html
  */
 const ProfilePage = (props) => {
+    
+    let today = moment().format("YYYY-MM-DD")
+    let nowTime = moment()["_d"]
 
     const [currentUserName, setCurrentUserName] = useState("")
 
@@ -58,11 +62,23 @@ const ProfilePage = (props) => {
         try {
             // Give the Bearer token
             authAPI.setup()
-            const data = await ordersAPI.findOrdered(userId)
+            const data = await ordersAPI.findOrdered(userId, today)
             setUserOrdersWaiting(data)
         }
         catch (error) {
             console.error(error.response)
+        }
+    }
+
+    const [ordersWaiting, setOrdersWaiting] = useState([])
+
+    const fetchOrdersWaiting = async () => {
+        try{
+            authAPI.setup()
+            const data = await ordersAPI.findWaitDaily(today)
+            setOrdersWaiting(data)
+        }catch(error){
+            console.error(error)
         }
     }
 
@@ -131,6 +147,7 @@ const ProfilePage = (props) => {
             fetchUserInfos(userInfosJWT.id)
             fetchUserOrdersWaiting(currentUser.id)
             fetchUserOrdersDone(currentUser.id)
+            fetchOrdersWaiting()
         }
     }, [isAuthenticated,userInfosJWT.id, currentUser.id])
 
@@ -142,6 +159,7 @@ const ProfilePage = (props) => {
             document.querySelector("#pizzles-nav-profile").classList.add("pizzles-nav-selectedPage")
         }
     }
+    console.info(ordersWaiting)
 
     useEffect(()=>{
         checkPath()
@@ -199,14 +217,45 @@ const ProfilePage = (props) => {
                                     TOTAL : {order.total.toLocaleString()} €
                                     </div>
                                 </div>
-                                <p className="col-12 text-center pizzles-summaryOrder-state my-3">Commande en préparation !</p>
-                                <div className="col-12 pizzles-summaryOrder-evolution my-2 px-5">
-                                    <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
-                                    <div className="pizzles-summaryOrder-evolution-line pizzles-evolution-done"></div>
-                                    <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
-                                    <div className="pizzles-summaryOrder-evolution-line"></div>
-                                    <div className="pizzles-summaryOrder-evolution-ball"></div>
-                                </div>
+                                    {(ordersWaiting[0].id !== order.id && order.state === "ORDERED") ? (
+                                        <>
+                                        <p className="col-12 text-center pizzles-summaryOrder-state my-3">Commande reçue !</p>
+                                        <div className="col-12 pizzles-summaryOrder-evolution my-2 px-5">
+                                            <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
+                                            <div className="pizzles-summaryOrder-evolution-line"></div>
+                                            <div className="pizzles-summaryOrder-evolution-ball"></div>
+                                            <div className="pizzles-summaryOrder-evolution-line"></div>
+                                            <div className="pizzles-summaryOrder-evolution-ball"></div>
+                                        </div>
+                                        </>
+                                    )
+                                     : ""}
+                                    {(ordersWaiting[0].id === order.id) ? (
+                                        <>
+                                        <p className="col-12 text-center pizzles-summaryOrder-state my-3">Commande en préparation !</p>
+                                        <div className="col-12 pizzles-summaryOrder-evolution my-2 px-5">
+                                            <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
+                                            <div className="pizzles-summaryOrder-evolution-line pizzles-evolution-done"></div>
+                                            <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
+                                            <div className="pizzles-summaryOrder-evolution-line"></div>
+                                            <div className="pizzles-summaryOrder-evolution-ball"></div>
+                                        </div>
+                                        </>
+                                    )
+                                     : ""}
+                                    {(order.state === "DONE") ? (
+                                        <>
+                                        <p className="col-12 text-center pizzles-summaryOrder-state my-3">Commande prête !</p>
+                                        <div className="col-12 pizzles-summaryOrder-evolution my-2 px-5">
+                                            <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
+                                            <div className="pizzles-summaryOrder-evolution-line pizzles-evolution-done"></div>
+                                            <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
+                                            <div className="pizzles-summaryOrder-evolution-line pizzles-evolution-done"></div>
+                                            <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
+                                        </div>
+                                        </>
+                                    )
+                                     : ""}
                             </div>
                             ))}
                         </div>
@@ -217,7 +266,7 @@ const ProfilePage = (props) => {
             <div className="tab-pane fade" role="tabpanel" id="olderOrders" aria-labelledby="olderOrders-tab">
                 <h2 className="pizzles-title text-center mx-auto my-5">Mes anciennes commandes</h2>
                 <div className="row">
-                    {userOrdersDone.map(orderDone => (
+                    {userOrdersDone.map(orderDone => (moment(orderDone.date) < moment(nowTime) ? (
                         <div className="col-12 col-md-10 offset-md-1 my-3">
                             <div className="row pizzles-summaryOrder-box p-3">
                                 <div className="col-12 text-center my-3 pizzles-summaryOrder-numOrder">Commande #{orderDone.id} du <span>
@@ -241,16 +290,16 @@ const ProfilePage = (props) => {
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    ) : ("")))}
                 </div>
             </div>
         {/* REVIEWS TAB */}
             <div className="tab-pane fade" role="tabpanel" id="userReviews" aria-labelledby="userReviews-tab">
                 <h2 className="pizzles-title text-center mx-auto my-5">Mes évaluations</h2>
                 <div className="row">
-                    {userOrdersDone.map(orderDone => (
+                    {userOrdersDone.map(orderDone => moment(orderDone.date) < moment(nowTime) ? (
                         (orderDone.review !== null ? <ProfileReviewDone key={`Review_${orderDone.id}`} order={orderDone} /> : <ProfileReviewToDo key={`Review_${orderDone.id}`} order={orderDone} /> )
-                    ))}
+                    ) : (""))}
                 </div>
             </div>
         {/* UPDATE USER'S INFOS TAB */}

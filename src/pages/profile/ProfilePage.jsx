@@ -225,10 +225,9 @@ const ProfilePage = (props) => {
                                 {orderDone.orderItems.map(orderItem => (
                                 <div className="col-12 pizzles-summaryOrder-items my-2 px-4">
                                     {orderItem.itemPizza.type === "POTM" ? "Pizza du mois" : orderItem.itemPizza.name } 
-                                    
-                                    {orderItem.supIngredients.map(supIngredient => (+ {supIngredient}))}
+                                    {orderItem.supIngredients.map(supIngredient => (<span> + {supIngredient.name} </span> ))}
                                 </div>
-                                ))}
+                                    ))}
                                 <div className="col-12 col-md-6 my-4">
                                     <div className="pizzles-summaryOrder-delivery px-4">
                                         {(orderDone.ifDelivered ? "Livré chez vous à " : "Prête au comptoir à ")}

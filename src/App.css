@@ -626,7 +626,7 @@ h4{
     position: absolute;
     top: 15%;
     left: 10%;
-    animation-name: "headerTransformSVG";
+    animation-name: headerTransformSVG;
     animation-duration: 4s;
     animation-delay: 3s;
     animation-fill-mode: both;
@@ -644,7 +644,7 @@ h4{
 
 /* ALL */
 #eGriOWkwA2R4, #eGriOWkwA2R5, #eGriOWkwA2R6, #eGriOWkwA2R7, #eGriOWkwA2R8, #eGriOWkwA2R9, #eGriOWkwA2R10, #eGriOWkwA2R11, #eGriOWkwA2R12, #eGriOWkwA2R13{
-    animation-name: "headerFillSVG";
+    animation-name: headerFillSVG;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;

@@ -39,12 +39,12 @@ async function updateUser(userId, newInformations){
 
 /**
  *  Method PUT that updates some infos of an User by its id number
- * @param {interger} userId 
+ * @param {integer} userId 
  * @param {object} newInformations 
- * @returns vois
+ * @returns void
  */
 async function updateAllUser(userId, newInformations){
-    return await Axios.put(`${API_URL}users/${userId}`, newInformations)
+    return await Axios.put(`${API_URL}users/${userId}`, newInformations, {headers :{"Content-Type": "application/ld+json"}})
 }
 
 // Final Var for the exports our methods

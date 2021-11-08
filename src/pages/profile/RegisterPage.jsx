@@ -51,10 +51,10 @@ const RegisterPage = ({history, match}) => {
     const revealPassword = (event) => {
         let password = document.querySelector("#password")
         if(password.type === "password"){
-            event.currentTarget.innerHTML = 'Cacher<i className="fas fa-eye-slash"></i>'
+            event.currentTarget.innerHTML = 'Cacher<i class="fas fa-eye-slash"></i>'
             password.type = "text"
         }else{
-            event.currentTarget.innerHTML = 'Vérifier<i className="fas fa-eye"></i>'
+            event.currentTarget.innerHTML = 'Vérifier<i class="fas fa-eye"></i>'
             password.type = "password"
         }
     }

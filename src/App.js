@@ -8,6 +8,7 @@ import PrivateRoute from './components/PrivateRoute';
 // SERVICES & CONTEXTS
 import authAPI from './services/authAPI';
 import AuthContext from './contexts/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
 // PAGES
 import HomePage from './pages/home/HomePage';
 import MenuPage from './pages/menu/MenuPage';
@@ -101,6 +102,7 @@ const App = () => {
             </Switch>
             <Footer />
         </Router>
+        <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
     </AuthContext.Provider>
   )
 }

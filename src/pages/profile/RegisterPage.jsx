@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 import usersAPI from '../../services/usersAPI';
 import Field from '../../components/form/Field';
@@ -36,6 +37,7 @@ const RegisterPage = ({history, match}) => {
         try{
             await usersAPI.create(user)
             setErrors({})
+            toast.success("Félicitation ! Votre compte a été créé ! Connectez-vous à présent.")
             history.replace("/login")
         }catch({response}){
             const {violations} = response.data

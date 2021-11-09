@@ -1,6 +1,7 @@
 import React,  { useState, useEffect } from 'react';
 import pizzasAPI from '../../services/pizzasAPI';
 import OrderSupIngredient from './OrderSupIngredient';
+import { toast } from 'react-toastify';
 
 const OrderItem = (props) => {
 /* 
@@ -42,6 +43,7 @@ const OrderItem = (props) => {
         newCart.orderItems.splice(event.target.attributes.iditem.value, 1)
         newCart.preTotal -= props.item.totalItem
         props.setCart(newCart)
+        toast.warning("Pizza retirée du panier !")
         /* 
         setTotalPizza(0)
         setTotalIngredients(0) */

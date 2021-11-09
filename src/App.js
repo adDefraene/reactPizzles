@@ -24,13 +24,13 @@ import DeliveryPage from './pages/checkout/DeliveryPage';
 import HourPage from './pages/checkout/HourPage';
 import SummaryPage from './pages/checkout/SummaryPage';
 // STYLES
+import 'react-toastify/dist/ReactToastify.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import './App.css';
 // JS
 import cartJs from './js/CartJS';
 import jwtDecode from 'jwt-decode';
-
 /**
  * My Pizzles website-App !
  * @returns html

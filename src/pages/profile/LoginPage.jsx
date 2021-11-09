@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import Field from '../../components/form/Field';
 import { useEffect } from 'react/cjs/react.development';
+import { toast } from 'react-toastify';
 
 /**
  * Page that is used to execute the login for the user
@@ -41,6 +42,8 @@ const LoginPage = (props) => {
             setError("")
             // Set its global autentication to true
             setIsAuthenticated(true)
+            // Display a toast
+            toast.success("Vous vous êtes correctement connecté !")
             // Go to their profile
             props.history.replace("/profile")
         }catch(error){

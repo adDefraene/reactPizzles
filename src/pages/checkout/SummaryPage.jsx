@@ -6,9 +6,9 @@ import SummaryPizza from '../../components/cart/SummaryPizza';
 import SummarySupIngredient from '../../components/cart/SummarySupIngredient';
 import ordersApiMethods from '../../services/ordersAPI';
 import AuthApiMethods from '../../services/authAPI';
+import { toast } from 'react-toastify';
 
 const SummaryPage = (props) => {
-    console.log(props.location.cart)
 
     // Var that contains the decoded information contained in the JWT token stored
     const userInfosJWT = jwtDecode(window.localStorage.getItem('authToken'))
@@ -28,6 +28,9 @@ const SummaryPage = (props) => {
                 preTotal: 0
           }
           props.location.setCart(resetCart)
+          toast.success("Votre commande a correctement été passée !")
+          props.history.replace("/profile")
+
         }catch(error){
             console.error(error)
         }

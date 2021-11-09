@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import pizzasAPI from '../../services/pizzasAPI';
 import ingredientsAPI from '../../services/ingredientsAPI';
 import MenuSupIngredients from '../../components/menu/MenuSupIngredients';
+import { toast } from 'react-toastify';
 
 const AddPizzaPage = (props) => {
 
@@ -70,6 +71,7 @@ const AddPizzaPage = (props) => {
         newCart.orderItems.push(itemOrder)
         newCart.preTotal += itemOrder.totalItem
         props.location.setCart(newCart)
+        toast.success("Pizza ajoutée au panier !")
     }
 
     // On load, do the fetches

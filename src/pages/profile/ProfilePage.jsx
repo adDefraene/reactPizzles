@@ -10,8 +10,9 @@ import ProfileReviewDone from '../../components/reviews/ProfileReviewDone';
 import ProfileReviewToDo from '../../components/reviews/ProfileReviewToDo';
 import Field from '../../components/form/Field';
 import usersAPI from '../../services/usersAPI';
-import { render } from '@testing-library/react';
+import { toast } from 'react-toastify';
 import moment from "moment";
+import ReactConfetti from 'react-confetti';
 
 /**
  * Page of the user's profile
@@ -32,6 +33,7 @@ const ProfilePage = (props) => {
     const handleLogout = () => {
         authAPI.logout()
         setIsAuthenticated(false)
+        toast.success("Vous vous êtes correctement déconnecté !")
         props.history.push("/login")
     }
     
@@ -127,6 +129,7 @@ const ProfilePage = (props) => {
             authAPI.setup()
             usersAPI.put(userInfosJWT.id, currentUser)
             setCurrentUserName(currentUser.firstName)
+            toast.success("Vos informations ont été correctement modifiées !")
             setErrors({})
 
         }catch(response){
@@ -151,6 +154,21 @@ const ProfilePage = (props) => {
         }
     }, [isAuthenticated,userInfosJWT.id, currentUser.id])
 
+    
+    const [ifConfetti, setIfConfetti] = useState(false)
+
+    // Method that verifies if the props.history is a redirect
+    const checkIfRedirected = () => {
+        if(props.history.action === "REPLACE"){
+            setIfConfetti(true)
+        }
+    }
+
+    // When the props.history changes
+    useEffect(()=>{
+        checkIfRedirected()
+        fetchUserOrdersWaiting(currentUser.id)
+    }, [props.history])
 
     const checkPath = () => {
         let path = props.match.path
@@ -167,6 +185,7 @@ const ProfilePage = (props) => {
 
     return ( 
 <>
+    {ifConfetti ? (<ReactConfetti recycle={false} />) : ("")}
     <div className="container pizzles-first-container">
     {/* WELCOME */}
         <h3 className="pizzles-end-title text-center mx-auto my-3">Bonjour {currentUserName} !</h3>

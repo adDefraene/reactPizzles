@@ -3,12 +3,13 @@ import pizzasAPI from '../../services/pizzasAPI';
 import ingredientsAPI from '../../services/ingredientsAPI';
 import Pagination from '../../components/main/Pagination';
 import MenuPizzaCell from '../../components/menu/MenuPizzaCell';
+import { toast } from 'react-toastify';
 
 /**
  * The menu where are displayed all of the ingredients and the pizzas
  * @returns html
  */
-const MenuPage = ({match}) => {
+const MenuPage = (props) => {
 
     // Var of the ingredients
     const [menuIngredients, setMenuIngredients] = useState([])
@@ -61,9 +62,26 @@ const MenuPage = ({match}) => {
     // Displays the elements of the current page
     const paginatedIngredients = Pagination.getData(menuIngredients, currentPage, itemsPerPage)
 
+    //----------------------
     
+    // Method that verifies if the props.history is a redirect
+    const checkIfRedirected = () => {
+        if(props.history.action === "REPLACE"){
+            // If so, throw a toast that says there is an error with the cart
+            toast.error("Votre panier est vide ou vos choix de livraison sont incorrects !")
+        }
+    }
+
+    // When the props.history changes
+    useEffect(()=>{
+        checkIfRedirected()
+    }, [props.history])
+
+    //----------------------
+
+    // Method that check the path of the page in order to colour the correct nav cell
     const checkPath = () => {
-        let path = match.path
+        let path = props.match.path
         console.log(path)
         if(path === "/menu"){
             document.querySelector(".pizzles-nav-selectedPage").classList.remove("pizzles-nav-selectedPage")
@@ -71,9 +89,10 @@ const MenuPage = ({match}) => {
         }
     }
 
+    // When the path changes
     useEffect(()=>{
         checkPath()
-    }, [match])
+    }, [props.match])
 
     return (
 <>

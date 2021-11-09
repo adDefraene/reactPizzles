@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 import ordersAPI from '../../services/ordersAPI';
 import AuthAPI from '../../services/authAPI';
 import reviewsAPI from '../../services/reviewsAPI';
+import { toast } from 'react-toastify';
 
 /**
  * Page that completes the review of an order
@@ -106,6 +107,7 @@ const ReviewPage = (props) => {
         try{
             await reviewsAPI.create(orderId, review)
             setErrors({})
+            toast.success(`L'évaluation de la commande #${currentOrder.id} a été correctement envoyée !`)
             props.history.replace("/profile")
 
         }catch (response){

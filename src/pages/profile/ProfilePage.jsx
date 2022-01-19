@@ -159,7 +159,7 @@ const ProfilePage = (props) => {
 
     // Method that verifies if the props.history is a redirect
     const checkIfRedirected = () => {
-        if(props.history.action === "REPLACE"){
+        if(props.history.action === "REPLACE" && ordersWaiting.length > 0){
             setIfConfetti(true)
         }
     }

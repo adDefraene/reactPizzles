@@ -20,11 +20,11 @@
     --yellowPale: #ffd86b;
 
     /* OPACITY COLOURS */
-    --darkOP    : rgba(50, 50, 50, 0.75);
+    --darkOP    : rgba(50, 50, 50, 0.5);
     --blackOP   : rgba(85, 85, 85, 0.25);
     --grayOP    : rgba(210, 210, 210, 0.5);
     --whiteOP   : rgba(250, 250, 250, 0.5);
-    --redOPcart : rgba(248, 87, 72, 0.85);
+    --redOPcart : rgba(248, 87, 72, 0.75);
     --redOP     : rgba(248, 87, 72, 0.5);
 
 /***** FONT */
@@ -412,6 +412,7 @@ h4{
     width: 90%;
     z-index: 8000;
     background: var(--redOPcart);
+    backdrop-filter: blur(5px);
     border-radius: 0 0 50px 50px;
     display: block;
     transition: top 0.5s ease-in-out;

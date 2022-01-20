@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 import pizzasApiMethods from '../../services/pizzasAPI';
 
 const SummaryPizza = (props) => {

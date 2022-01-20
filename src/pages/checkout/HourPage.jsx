@@ -3,7 +3,7 @@ import 'rc-time-picker/assets/index.css';
 import React, { useState } from 'react';
 import moment from 'moment';
 import {Link} from 'react-router-dom'
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 import ordersApiMethods from '../../services/ordersAPI';
 import AuthApiMethods from '../../services/authAPI';
 

@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import { useContext } from 'react';
 import { useState } from 'react';
 import Field from '../../components/form/Field';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 /**

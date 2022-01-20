@@ -189,7 +189,7 @@ const HourPage = (props) => {
     const handleTime = (event) => {
         // If the event is not null : when the TimePicker is empty
         // && if the hour is valid : if the schedule selected is free
-        console.log(event)
+        ////console.log(event)
         if(event !== null && newFreeHoursMinutes[event["_d"].getHours()].includes(event["_d"].getMinutes()) ){
             // Enables the next button
             toggleNextButton(true)
@@ -200,8 +200,8 @@ const HourPage = (props) => {
               console.info("OLD_JSON",choosenHourJSON)
               let wrongHour = "T"+(choosenHour["_d"].getHours() - 1)
               let correctHour = "T"+(choosenHour["_d"].getHours())
-              console.log(wrongHour)
-              console.log(correctHour)
+              //console.log(wrongHour)
+              //console.log(correctHour)
               choosenHourJSON = choosenHourJSON.replace(wrongHour, correctHour)
               choosenHourJSON = choosenHourJSON.replace(".000Z", "")
               console.info("NEW_JSON",choosenHourJSON)
@@ -225,7 +225,7 @@ const HourPage = (props) => {
     const handleTimeFirst = (event) => {
         // If the event is not null : when the TimePicker is empty
         // && if the hour is valid : if the schedule selected is free
-        console.log(event)
+        //console.log(event)
         if(event !== null && newFreeHoursMinutes[event["_d"].getHours()].includes(event["_d"].getMinutes()) ){
             // Enables the next button
             toggleNextButton(true)

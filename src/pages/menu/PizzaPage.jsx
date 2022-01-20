@@ -42,7 +42,7 @@ const PizzaPage = ({match}) => {
     
     const checkPath = () => {
         let path = match.path
-        console.log(path)
+        //console.log(path)
         if(path === "/pizza/:slug"){
             document.querySelector(".pizzles-nav-selectedPage").classList.remove("pizzles-nav-selectedPage")
             document.querySelector("#pizzles-nav-menu").classList.add("pizzles-nav-selectedPage")

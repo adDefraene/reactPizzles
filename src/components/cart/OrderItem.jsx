@@ -32,8 +32,8 @@ const OrderItem = (props) => {
 /* 
     const setPizzaTotal = () => {
         if(currentPizza.price !== "" && totalPizza === 0){
-            console.log(currentPizza.price)
-            console.log(totalIngredients)
+            //console.log(currentPizza.price)
+            //console.log(totalIngredients)
             setTotalPizza(parseFloat(currentPizza.price) + totalIngredients)
         }
     } */

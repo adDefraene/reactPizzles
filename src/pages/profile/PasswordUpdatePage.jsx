@@ -24,7 +24,7 @@ const PasswordUpdatePage = ({match}) => {
     const handleChange = (event) => {
         const {name, value} = event.currentTarget
         setCurrentUser({...currentUser, [name]: value})
-        console.log(currentUser)
+        //console.log(currentUser)
     }
 
     // Method that handles the submit of the form  that updates the user's informations

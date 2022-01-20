@@ -82,7 +82,7 @@ const MenuPage = (props) => {
     // Method that check the path of the page in order to colour the correct nav cell
     const checkPath = () => {
         let path = props.match.path
-        console.log(path)
+        //console.log(path)
         if(path === "/menu"){
             document.querySelector(".pizzles-nav-selectedPage").classList.remove("pizzles-nav-selectedPage")
             document.querySelector("#pizzles-nav-menu").classList.add("pizzles-nav-selectedPage")

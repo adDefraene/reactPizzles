@@ -13,7 +13,7 @@ const SummaryPage = (props) => {
     // Var that contains the decoded information contained in the JWT token stored
     const userInfosJWT = jwtDecode(window.localStorage.getItem('authToken'))
 
-    console.log(userInfosJWT)
+    //console.log(userInfosJWT)
 
     const handleClick = async event => {
         event.preventDefault()

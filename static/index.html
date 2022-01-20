@@ -193,12 +193,12 @@
 
 /* 
     document.querySelector("#buttonCGU").addEventListener("shown.bs.modal", function(){
-        console.log(document.querySelector("#modal-cgu")).focus()
+        //console.log(document.querySelector("#modal-cgu")).focus()
     }) */
 
     function verifyCheckCGU(){
         let submit = document.querySelector("#registerSubmit")
-        console.log(this)
+        //console.log(this)
         if(this.checked !== true){
             submit.setAttribute("disabled", "")
             submit.classList.add("submit-disabled")

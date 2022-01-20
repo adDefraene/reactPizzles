@@ -23,7 +23,7 @@ async function findAll(){
  * @returns void
  */
 function createReview(orderId, review){
-    console.log(review)
+    //console.log(review)
     return Axios.post(`${API_URL}reviews`, {...review, reviewedOrder:`api/orders/${orderId}`})
 }
 

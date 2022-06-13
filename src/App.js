@@ -31,6 +31,7 @@ import './App.css';
 // JS
 import cartJs from './js/CartJS';
 import jwtDecode from 'jwt-decode';
+import ClosedPage from './pages/ClosedPage';
 /**
  * My Pizzles website-App !
  * @returns html
@@ -91,6 +92,7 @@ const App = () => {
                 <Route path="/contact" component={ContactPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/login" component={LoginPage} />
+                <Route path="/closed" component={ClosedPage} />
                 <PrivateRoute path="/profile/review/:id" component={ReviewPage} />
                 <PrivateRoute path="/profile/password-update" component={PasswordUpdatePage} />
                 <PrivateRoute path="/profile" component={ProfilePage} />

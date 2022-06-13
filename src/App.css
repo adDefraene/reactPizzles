@@ -1320,6 +1320,11 @@ ul.pagination.pagination-pizzles > li.page-item.active > button.page-link{
 .pizzles-summary .pizzles-summary-items{
     height: max-content;
 }
+
+.pizzles-summary .pizzles-summary-items .row{
+    justify-content: center;
+}
+
 .pizzles-summary .pizzles-summary-item .row{
     height: 100%;
     flex-direction: column;
@@ -1652,6 +1657,14 @@ form button{
 /****************************** PASSWORD UPDATE ******************************/
 /****************************** !!!MAIL!!! ******************************/
 
+
+/****************************** CLOSED PAGE ******************************/
+
+.pizzles-txt-closed{
+    font-size: var(--txt24); 
+    font-family: var(--fontMain);
+    color: var(--red);
+}
 
 /****************************** FOOTER ******************************/
 

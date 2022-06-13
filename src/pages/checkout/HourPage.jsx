@@ -81,7 +81,6 @@ const HourPage = (props) => {
       ordersOfTheDay.forEach((bookedHour)=>{
           // Get the moment date from the JSON date value
           let dateOfOrder = moment(bookedHour.date)
-          console.warn(dateOfOrder)
           // Get the hour of the order
           let hour = dateOfOrder._d.getHours()
           // Get the minutes of the order
@@ -196,15 +195,12 @@ const HourPage = (props) => {
             // JSON the selected schedule...
             let choosenHour = event
             let choosenHourJSON = choosenHour["_d"].toJSON()
+            // If we are in Winter time: adapt time
             if(choosenHour["_d"].toString().includes("+01")){
-              console.info("OLD_JSON",choosenHourJSON)
               let wrongHour = "T"+(choosenHour["_d"].getHours() - 1)
               let correctHour = "T"+(choosenHour["_d"].getHours())
-              //console.log(wrongHour)
-              //console.log(correctHour)
               choosenHourJSON = choosenHourJSON.replace(wrongHour, correctHour)
               choosenHourJSON = choosenHourJSON.replace(".000Z", "")
-              console.info("NEW_JSON",choosenHourJSON)
             }
             // ... adds it to a new cart...
             let newCart = Object.assign({}, props.location.cart)

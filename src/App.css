@@ -1464,6 +1464,7 @@ form button{
 }
 
 .modal{
+    max-height: 80%;
     margin-top: 100px;
     line-height: 35px;
 }
@@ -1657,6 +1658,35 @@ form button{
 /****************************** PASSWORD UPDATE ******************************/
 /****************************** !!!MAIL!!! ******************************/
 
+
+/****************************** COOKIES BOX ******************************/
+.pizzles-cookies-box{
+    z-index: 9010;
+    position: fixed;
+    width: 400px;
+    height: auto;
+    bottom: 10%;
+    background: var(--whiteBG);
+    border-radius: 0 100px 100px 0;
+    box-shadow: 0px 10px 20px 0px var(--blackOP);
+    left: 0;
+    transition: left 0.5s ease-in-out;
+}
+
+.pizzles-cookies-undisplayed{
+    left: -400px;
+}
+
+.pizzles-cookies-box > .text-center > .fas{
+    font-size: var(--txtBiggest);
+    color: var(--graydark)!important;
+}
+
+/****************************** CGU PAGE ******************************/
+
+.pizzles-cgu-body{
+    line-height: 35px;
+}
 
 /****************************** CLOSED PAGE ******************************/
 

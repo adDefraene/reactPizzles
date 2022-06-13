@@ -179,6 +179,12 @@ const RegisterPage = ({history, match}) => {
                     <i>Nous nous engageons à aucunement divulger vos informations</i>
                     <br />
                     <p>Vos informations seront stockées dans l’unique but de pouvoir faire fonctionner notre site, afin de pouvoir vous offrir nos services le plus correctement possible. Celles-ci ne seront pas vendues à un tiers, car nous souhaitont ne faire aucun profit sur vos données, ainsi que risquer de les compromettre.</p>
+                    <br />
+                    <b>Cookies employés</b>
+                    <br />
+                    <i>Nous nous servons de cookies uniquement fonctionnels</i>
+                    <br />
+                    <p>Votre navigateur stockera des cookies lorsque vous naviguer sur notre site. En effet, nous avons développé notre site avec <a target="_blank" rel="noopener noreferrer" href="https://reactjs.org/">React JS</a>. Cette application emploie des cookies pour fonctionner. Nous employons auncun autre type de cookies sur notre site.</p>
                 </article>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>

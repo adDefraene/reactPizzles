@@ -6,6 +6,11 @@ import {Link} from 'react-router-dom'
  * @returns html
  */
 const Footer = () => {
+    const toggleCookiesBoxDisplay = (event) => {
+        event.preventDefault()
+        document.querySelector(".pizzles-cookies-box").classList.toggle("pizzles-cookies-undisplayed")
+    }
+
     return ( 
 <>
     <footer className="py-4">
@@ -22,8 +27,8 @@ const Footer = () => {
                 {/* LEGAL LINKS */}
                 <div className="col-6 order-2 col-md-2 order-md-2">
                     <h4 className="text-center mb-3">Mentions légales</h4>
-                    <Link to="#">CGU</Link><br />
-                    <Link to="#">Règle des cookies</Link>
+                    <Link to="/cgu">CGU</Link><br />
+                    <a href="#" onClick={toggleCookiesBoxDisplay}>Règle des cookies</a>
                 </div>
                 {/* COPYRIGHTS */}
                 <div className="col-12 order-5 col-md-4 order-md-3 text-center">

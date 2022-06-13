@@ -5,6 +5,7 @@ import Nav from './components/main/Nav';
 import Cart from './components/main/Cart';
 import Footer from './components/main/Footer';
 import PrivateRoute from './components/PrivateRoute';
+import CookiesDisplay from './components/main/CookiesDisplay';
 // SERVICES & CONTEXTS
 import authAPI from './services/authAPI';
 import AuthContext from './contexts/AuthContext';
@@ -32,6 +33,7 @@ import './App.css';
 import cartJs from './js/CartJS';
 import jwtDecode from 'jwt-decode';
 import ClosedPage from './pages/ClosedPage';
+import CguPage from './pages/CguPage';
 /**
  * My Pizzles website-App !
  * @returns html
@@ -86,6 +88,7 @@ const App = () => {
         <Router>
             <Nav cart={cart}  />
             <Cart cart={cart} setCart={setCart} />
+            <CookiesDisplay />
             <Switch>
                 <Route path="/menu" component={MenuPage} />
                 <Route path="/pizza/:slug" component={PizzaPage} />
@@ -93,6 +96,7 @@ const App = () => {
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/closed" component={ClosedPage} />
+                <Route path="/cgu" component={CguPage} />
                 <PrivateRoute path="/profile/review/:id" component={ReviewPage} />
                 <PrivateRoute path="/profile/password-update" component={PasswordUpdatePage} />
                 <PrivateRoute path="/profile" component={ProfilePage} />

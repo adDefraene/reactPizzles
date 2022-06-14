@@ -45,7 +45,7 @@ const LoginPage = (props) => {
             // Display a toast
             toast.success("Vous vous êtes correctement connecté !")
             // Go to their profile
-            props.history.push("/profile")
+            props.history.replace("/profile")
         }catch(error){
             setError("Adresse mail ou mot de passe incorrect")
         }

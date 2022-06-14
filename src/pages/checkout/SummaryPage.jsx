@@ -29,7 +29,7 @@ const SummaryPage = (props) => {
           }
           props.location.setCart(resetCart)
           toast.success("Votre commande a correctement été passée !")
-          props.history.replace("/profile")
+          props.history.push("/profile")
 
         }catch(error){
             console.error(error)

@@ -34,7 +34,7 @@ const ProfilePage = (props) => {
         authAPI.logout()
         setIsAuthenticated(false)
         toast.success("Vous vous êtes correctement déconnecté !")
-        props.history.push("/login")
+        props.history.replace("/login")
     }
     
     // Var that contains the decoded information contained in the JWT token stored
@@ -65,11 +65,7 @@ const ProfilePage = (props) => {
             // Give the Bearer token
             authAPI.setup()
             const data = await ordersAPI.findOrdered(userId, today)
-            if(!data){
-                setUserOrdersWaiting(data)
-            }else{
-                setUserOrdersWaiting("Pas de commande en cours !")
-            }
+            setUserOrdersWaiting(data)
         }
         catch (error) {
             console.error(error.response)
@@ -163,8 +159,7 @@ const ProfilePage = (props) => {
 
     // Method that verifies if the props.history is a redirect
     const checkIfRedirected = () => {
-        console.log(props)
-        if(props.history.action === "REPLACE" && ordersWaiting.length > 0){
+        if(props.history.action === "PUSH" && userOrdersWaiting.length > 0){
             setIfConfetti(true)
         }
     }
@@ -172,8 +167,7 @@ const ProfilePage = (props) => {
     // When the props.history changes
     useEffect(()=>{
         checkIfRedirected()
-        fetchUserOrdersWaiting(currentUser.id)
-    }, [props.history, ordersWaiting])
+    }, [props.history])
 
     const checkPath = () => {
         let path = props.match.path
@@ -182,7 +176,6 @@ const ProfilePage = (props) => {
             document.querySelector("#pizzles-nav-profile").classList.add("pizzles-nav-selectedPage")
         }
     }
-    console.info(ordersWaiting)
 
     useEffect(()=>{
         checkPath()
@@ -218,7 +211,7 @@ const ProfilePage = (props) => {
                     <h2 className="pizzles-title text-center mx-auto my-5">Mes commandes en cours</h2>
                     <div className="row">
                         <div className="col-12">
-                            {Array.isArray(userOrdersWaiting) ? userOrdersWaiting.map(order => (
+                            {userOrdersWaiting[0] !== "" ? userOrdersWaiting.map(order => (
                             <div className="row pizzles-summaryOrder-box p-3">
                                 <div className="col-12 text-center my-3 pizzles-summaryOrder-numOrder">Commande #{order.id} du <span>
                                 <Moment format="DD-MM-YYYY">{order.date}</Moment></span></div>
@@ -241,33 +234,8 @@ const ProfilePage = (props) => {
                                     TOTAL : {order.total.toLocaleString()} €
                                     </div>
                                 </div>
-                                    {(ordersWaiting[0].id !== order.id && order.state === "ORDERED") ? (
-                                        <>
-                                        <p className="col-12 text-center pizzles-summaryOrder-state my-3">Commande reçue !</p>
-                                        <div className="col-12 pizzles-summaryOrder-evolution my-2 px-5">
-                                            <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
-                                            <div className="pizzles-summaryOrder-evolution-line"></div>
-                                            <div className="pizzles-summaryOrder-evolution-ball"></div>
-                                            <div className="pizzles-summaryOrder-evolution-line"></div>
-                                            <div className="pizzles-summaryOrder-evolution-ball"></div>
-                                        </div>
-                                        </>
-                                    )
-                                     : ""}
-                                    {(ordersWaiting[0].id === order.id) ? (
-                                        <>
-                                        <p className="col-12 text-center pizzles-summaryOrder-state my-3">Commande en préparation !</p>
-                                        <div className="col-12 pizzles-summaryOrder-evolution my-2 px-5">
-                                            <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
-                                            <div className="pizzles-summaryOrder-evolution-line pizzles-evolution-done"></div>
-                                            <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
-                                            <div className="pizzles-summaryOrder-evolution-line"></div>
-                                            <div className="pizzles-summaryOrder-evolution-ball"></div>
-                                        </div>
-                                        </>
-                                    )
-                                     : ""}
-                                    {(order.state === "DONE") ? (
+                                    {
+                                    (order.state === "DONE") || ordersWaiting === undefined ? (
                                         <>
                                         <p className="col-12 text-center pizzles-summaryOrder-state my-3">Commande prête !</p>
                                         <div className="col-12 pizzles-summaryOrder-evolution my-2 px-5">
@@ -279,10 +247,35 @@ const ProfilePage = (props) => {
                                         </div>
                                         </>
                                     )
-                                     : ""}
+                                    :
+                                        (ordersWaiting[0].id !== order.id && order.state === "ORDERED") ? (
+                                            <>
+                                            <p className="col-12 text-center pizzles-summaryOrder-state my-3">Commande reçue !</p>
+                                            <div className="col-12 pizzles-summaryOrder-evolution my-2 px-5">
+                                                <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
+                                                <div className="pizzles-summaryOrder-evolution-line"></div>
+                                                <div className="pizzles-summaryOrder-evolution-ball"></div>
+                                                <div className="pizzles-summaryOrder-evolution-line"></div>
+                                                <div className="pizzles-summaryOrder-evolution-ball"></div>
+                                            </div>
+                                            </>
+                                        ) :
+                                        (ordersWaiting[0].id === order.id) ? (
+                                            <>
+                                            <p className="col-12 text-center pizzles-summaryOrder-state my-3">Commande en préparation !</p>
+                                            <div className="col-12 pizzles-summaryOrder-evolution my-2 px-5">
+                                                <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
+                                                <div className="pizzles-summaryOrder-evolution-line pizzles-evolution-done"></div>
+                                                <div className="pizzles-summaryOrder-evolution-ball pizzles-evolution-done"></div>
+                                                <div className="pizzles-summaryOrder-evolution-line"></div>
+                                                <div className="pizzles-summaryOrder-evolution-ball"></div>
+                                            </div>
+                                            </>
+                                        ) : ""
+                                     }
                             </div>
                             )
-                            ) : <h2 className='text-center my-5'><b>{userOrdersWaiting}</b></h2>}
+                            ) : <h2 className='text-center my-5'><b>Aucune commande en cours !</b></h2>}
                         </div>
                     </div>
                 </div>

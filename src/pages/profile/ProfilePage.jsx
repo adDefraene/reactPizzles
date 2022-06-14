@@ -65,7 +65,11 @@ const ProfilePage = (props) => {
             // Give the Bearer token
             authAPI.setup()
             const data = await ordersAPI.findOrdered(userId, today)
-            setUserOrdersWaiting(data)
+            if(!data){
+                setUserOrdersWaiting(data)
+            }else{
+                setUserOrdersWaiting("Pas de commande en cours !")
+            }
         }
         catch (error) {
             console.error(error.response)
@@ -159,6 +163,7 @@ const ProfilePage = (props) => {
 
     // Method that verifies if the props.history is a redirect
     const checkIfRedirected = () => {
+        console.log(props)
         if(props.history.action === "REPLACE" && ordersWaiting.length > 0){
             setIfConfetti(true)
         }
@@ -213,10 +218,10 @@ const ProfilePage = (props) => {
                     <h2 className="pizzles-title text-center mx-auto my-5">Mes commandes en cours</h2>
                     <div className="row">
                         <div className="col-12">
-                            {userOrdersWaiting.map(order => (
+                            {Array.isArray(userOrdersWaiting) ? userOrdersWaiting.map(order => (
                             <div className="row pizzles-summaryOrder-box p-3">
                                 <div className="col-12 text-center my-3 pizzles-summaryOrder-numOrder">Commande #{order.id} du <span>
-                            <Moment format="DD-MM-YYYY">{order.date}</Moment></span></div>
+                                <Moment format="DD-MM-YYYY">{order.date}</Moment></span></div>
                                 {order.orderItems.map(orderItem => (
                                 <div className="col-12 pizzles-summaryOrder-items my-2 px-4">
                                     {orderItem.itemPizza.type === "POTM" ? "Pizza du mois" : orderItem.itemPizza.name } 
@@ -276,7 +281,8 @@ const ProfilePage = (props) => {
                                     )
                                      : ""}
                             </div>
-                            ))}
+                            )
+                            ) : <h2 className='text-center my-5'><b>{userOrdersWaiting}</b></h2>}
                         </div>
                     </div>
                 </div>

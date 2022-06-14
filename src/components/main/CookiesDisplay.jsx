@@ -4,17 +4,21 @@ const CookiesDisplay = () => {
 
     console.log(document.querySelector(".pizzles-cookies-box"))
 
-    const toggleCookiesBoxDisplay = () => {
-        document.querySelector(".pizzles-cookies-box").classList.toggle("pizzles-cookies-undisplayed")
+    const hideCookiesBoxDisplay = () => {
+        document.querySelector(".pizzles-cookies-box").classList.add("pizzles-cookies-undisplayed")
+    }
+
+    const showCookiesBoxDisplay = () => {
+        document.querySelector(".pizzles-cookies-box").classList.remove("pizzles-cookies-undisplayed")
     }
 
     const handleClick = (event) => {
         event.preventDefault()
-        toggleCookiesBoxDisplay();
+        hideCookiesBoxDisplay();
     }
 
     useEffect(()=>{
-        setTimeout(toggleCookiesBoxDisplay, 4000)
+        setTimeout(showCookiesBoxDisplay, 4000)
     }, [])
 
     return ( 

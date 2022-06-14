@@ -11,8 +11,8 @@ const HourPage = (props) => {
 
     // Current time
     let now = moment()
-    // Current time + 30 minutes : the delay for the reservation
-    let delayedTime = moment().add(1800000)
+    // Current time + 60 minutes : the delay for the reservation
+    let delayedTime = moment().add(3600000)
 
     // Var that will contain the orders found of the current day
     const [ordersOfTheDay, setOrdersOfTheDay] = useState([])
@@ -194,6 +194,7 @@ const HourPage = (props) => {
             toggleNextButton(true)
             // JSON the selected schedule...
             let choosenHour = event
+            console.info(choosenHour)
             let choosenHourJSON = choosenHour["_d"].toJSON()
             // If we are in Winter time: adapt time
             if(choosenHour["_d"].toString().includes("+01")){
@@ -202,6 +203,14 @@ const HourPage = (props) => {
               choosenHourJSON = choosenHourJSON.replace(wrongHour, correctHour)
               choosenHourJSON = choosenHourJSON.replace(".000Z", "")
             }
+            // If we are in Summer Time: adapt time
+            if(choosenHour["_d"].toString().includes("+02")){
+              let wrongHour = "T"+(choosenHour["_d"].getHours() - 2)
+              let correctHour = "T"+(choosenHour["_d"].getHours())
+              choosenHourJSON = choosenHourJSON.replace(wrongHour, correctHour)
+              choosenHourJSON = choosenHourJSON.replace(".000Z", "")
+            }
+            console.log(choosenHourJSON)
             // ... adds it to a new cart...
             let newCart = Object.assign({}, props.location.cart)
             newCart.date = choosenHourJSON

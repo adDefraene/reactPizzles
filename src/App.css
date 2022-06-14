@@ -1682,6 +1682,13 @@ form button{
     color: var(--graydark)!important;
 }
 
+@media all and (max-width : 768px){
+    .pizzles-cookies-box{
+        bottom: auto;
+        top: 15%;
+    }
+}
+
 /****************************** CGU PAGE ******************************/
 
 .pizzles-cgu-body{

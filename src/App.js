@@ -23,6 +23,8 @@ import PasswordUpdatePage from './pages/profile/PasswordUpdatePage';
 import DeliveryPage from './pages/checkout/DeliveryPage';
 import HourPage from './pages/checkout/HourPage';
 import SummaryPage from './pages/checkout/SummaryPage';
+import ClosedPage from './pages/ClosedPage';
+import CguPage from './pages/CguPage';
 // STYLES
 import 'react-toastify/dist/ReactToastify.css';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -31,8 +33,7 @@ import './App.css';
 // JS
 import cartJs from './js/CartJS';
 import jwtDecode from 'jwt-decode';
-import ClosedPage from './pages/ClosedPage';
-import CguPage from './pages/CguPage';
+import emailjs from 'emailjs-com';
 /**
  * My Pizzles website-App !
  * @returns html
@@ -81,6 +82,9 @@ const App = () => {
   useEffect(()=> {
       setOrderUser()
   }, [isAuthenticated])
+
+  
+  emailjs.init(process.env.REACT_APP_MAILJSPUBKEY);
 
   return (
     <AuthContext.Provider value={contextValue}>

@@ -194,7 +194,6 @@ const HourPage = (props) => {
             toggleNextButton(true)
             // JSON the selected schedule...
             let choosenHour = event
-            console.info(choosenHour)
             let choosenHourJSON = choosenHour["_d"].toJSON()
             // If we are in Winter time: adapt time
             if(choosenHour["_d"].toString().includes("+01")){

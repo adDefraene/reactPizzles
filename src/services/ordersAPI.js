@@ -12,8 +12,9 @@ const API_URL = process.env.REACT_APP_API_URL;
  * @param {Object} order 
  * @returns void
  */
-function createOrder(order){
-    return Axios.post(`${API_URL}orders`, {...order, user:`api/users/${order.customer}`})
+async function createOrder(order){
+    const response = await Axios.post(`${API_URL}orders`, {...order, user:`api/users/${order.customer}`})
+    return response.data
 }
 
 /**

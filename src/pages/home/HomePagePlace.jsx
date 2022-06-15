@@ -28,8 +28,8 @@ const HomePagePlace = () => {
                 <div className="col-12 col-lg-6 col-xl-4 my-4 order-2 order-xl-3">
                     <div className="pizzles-contact-boxBig p-3">
                         <strong>Nous sommes joignables</strong>
-                        <a href="mailto::hey@adriendefraene.be" className="pizzles-btn pizzles-btn-white mx-auto my-2">En nous envoyant un message ici<i className="fas fa-envelope-open-text"></i></a>
-                        <p>Par téléphone (pas pour commander) : <br /><a href="tel::0479201994">0479 20 19 94</a></p>
+                        <a href="mailto:hey@adriendefraene.be?subject=Contact%20Pizzles" rel="noreferrer" target="_blank" className="pizzles-btn pizzles-btn-white mx-auto my-2">En nous envoyant un message ici<i className="fas fa-envelope-open-text"></i></a>
+                        <p>Par téléphone (pas pour commander) : <br /><a href="tel:0479201994" rel="noreferrer" target="_blank">0479 20 19 94</a></p>
                         <p>
                             <a href="https://www.facebook.com" rel="noreferrer" target="_blank">
                                 <i className="fab fa-facebook-square mx-3"></i>

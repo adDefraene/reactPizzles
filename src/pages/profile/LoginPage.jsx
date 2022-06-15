@@ -87,6 +87,7 @@ const LoginPage = (props) => {
                         required={true}
                         error={error}
                     />
+                    <hr />
                     <Field
                         label="Mon mot de passe"
                         type="password"
@@ -96,7 +97,9 @@ const LoginPage = (props) => {
                         required={true}
                         error=""
                     />
-                    <button className="pizzles-btn pizzles-btn-yellow mt-5 mb-2">Se connecter <i className="fas fa-sign-in-alt"></i></button>
+                    <Link to="/register" className="pizzles-btn pizzles-btn-white mx-auto my-2">Mot de passe oublié ?<i className="fas fa-dizzy"></i></Link>
+                    <hr />
+                    <button className="pizzles-btn pizzles-btn-yellow mt-4 mb-1">Se connecter <i className="fas fa-sign-in-alt"></i></button>
                 </form>
             </div>
             <div className="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-3 mb-5 pizzles-alternateLogin">

@@ -1,7 +1,7 @@
 /* import React, { useEffect } from 'react';
 import {Link, useLocation} from 'react-router-dom' */
 import React, { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 
 /**
  * Our main navigation menu
@@ -26,6 +26,26 @@ const Nav = (props) => {
     useEffect(()=>{
         getNumberOfItems()
     }, [props.cart])
+
+
+    const { pathname, hash, key } = useLocation();
+
+    useEffect(() => {
+        // if not a hash link, scroll to top
+        if (hash === '') {
+          window.scrollTo(0, 0);
+        }
+        // else scroll to id
+        else {
+          setTimeout(() => {
+            const id = hash.replace('#', '');
+            const element = document.getElementById(id);
+            if (element) {
+              element.scrollIntoView();
+            }
+          }, 0);
+        }
+      }, [pathname, hash, key]);
     return ( 
 <>
     <nav className="pizzles-nav text-center">
@@ -43,7 +63,7 @@ const Nav = (props) => {
                 <h3>Panier</h3>
                 <span>{numberOfItems}</span>
             </div>
-            <Link to="/contact" className="col pizzles-nav-link" id="pizzles-nav-contact">
+            <Link to="/#pizzlesPlace" className="col pizzles-nav-link" id="pizzles-nav-contact">
                 <img src="/images/logos/CONTACT_PICTO.png" alt="Contact" />
                 <h3>Contact</h3>
             </Link>

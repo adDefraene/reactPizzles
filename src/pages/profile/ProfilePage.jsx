@@ -167,6 +167,7 @@ const ProfilePage = (props) => {
     // When the props.history changes
     useEffect(()=>{
         checkIfRedirected()
+        fetchUserOrdersWaiting(currentUser.id)
     }, [props.history])
 
     const checkPath = () => {

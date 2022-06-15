@@ -1,5 +1,5 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React, { useEffect } from 'react';
+import {Link, useLocation} from 'react-router-dom'
 
 /**
  * Simply the footer of the website
@@ -12,6 +12,25 @@ const Footer = () => {
         document.querySelector(".pizzles-cookies-box").classList.remove("pizzles-cookies-undisplayed")
     }
 
+    const { pathname, hash, key } = useLocation();
+
+    useEffect(() => {
+        // if not a hash link, scroll to top
+        if (hash === '') {
+          window.scrollTo(0, 0);
+        }
+        // else scroll to id
+        else {
+          setTimeout(() => {
+            const id = hash.replace('#', '');
+            const element = document.getElementById(id);
+            if (element) {
+              element.scrollIntoView();
+            }
+          }, 0);
+        }
+      }, [pathname, hash, key]);
+
     return ( 
 <>
     <footer className="py-4">
@@ -22,7 +41,7 @@ const Footer = () => {
                     <h4 className="text-center mb-3">Liens rapides</h4>
                     <Link to="/">Accueil</Link><br />
                     <Link to="/menu">Menu</Link><br />
-                    <Link to="/contact">Contact</Link><br />
+                    <Link to="/#pizzlesPlace">Contact</Link><br />
                     <Link to="/profile">Mon compte</Link>
                 </div>
                 {/* LEGAL LINKS */}

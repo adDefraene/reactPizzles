@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
 
 /**
  * Section that talks about the restaurant's location
@@ -18,7 +17,7 @@ const HomePagePlace = () => {
                         <p><strong>Nos horaires</strong></p>
                         <p>Nous acceptons vos commandes<br />du mardi au samedi<br />de 11 H 30 à 14 H 00 et de 17 H 30 à 21 H 30</p>
                         <hr />
-                        <p>Nous fermons les jours fériés, dimanche et lundi</p>
+                        <p>Nous fermons tous les dimanche et lundi</p>
                     </div>
                 </div>
                 <div className="col-12 col-lg-6 col-xl-4 my-4 order-3 order-xl-2 offset-lg-3 offset-xl-0 my-auto">
@@ -29,9 +28,9 @@ const HomePagePlace = () => {
                 <div className="col-12 col-lg-6 col-xl-4 my-4 order-2 order-xl-3">
                     <div className="pizzles-contact-boxBig p-3">
                         <strong>Nous sommes joignables</strong>
-                        <Link to="/contact" className="pizzles-btn pizzles-btn-white mx-auto my-2">En nous envoyant un message ici<i className="fas fa-envelope-open-text"></i></Link>
-                        <p>par téléphone au : <a href="tel::0479201994">0479 20 19 94</a></p>
-                        <p>sur les réseaux sociaux<br />
+                        <a href="mailto::hey@adriendefraene.be" className="pizzles-btn pizzles-btn-white mx-auto my-2">En nous envoyant un message ici<i className="fas fa-envelope-open-text"></i></a>
+                        <p>Par téléphone (pas pour commander) : <br /><a href="tel::0479201994">0479 20 19 94</a></p>
+                        <p>
                             <a href="https://www.facebook.com" rel="noreferrer" target="_blank">
                                 <i className="fab fa-facebook-square mx-3"></i>
                             </a>

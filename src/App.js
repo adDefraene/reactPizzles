@@ -20,7 +20,6 @@ import RegisterPage from './pages/profile/RegisterPage';
 import ProfilePage from './pages/profile/ProfilePage';
 import ReviewPage from './pages/profile/ReviewPage';
 import PasswordUpdatePage from './pages/profile/PasswordUpdatePage';
-import ContactPage from './pages/ContactPage';
 import DeliveryPage from './pages/checkout/DeliveryPage';
 import HourPage from './pages/checkout/HourPage';
 import SummaryPage from './pages/checkout/SummaryPage';
@@ -92,7 +91,6 @@ const App = () => {
             <Switch>
                 <Route path="/menu" component={MenuPage} />
                 <Route path="/pizza/:slug" component={PizzaPage} />
-                <Route path="/contact" component={ContactPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/closed" component={ClosedPage} />

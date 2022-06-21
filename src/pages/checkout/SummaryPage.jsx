@@ -1,89 +1,18 @@
-import jwtDecode from 'jwt-decode';
 import React, { useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
 import moment from 'moment';
 import {Link} from 'react-router-dom'
 import SummaryPizza from '../../components/cart/SummaryPizza';
 import SummarySupIngredient from '../../components/cart/SummarySupIngredient';
-import ordersApiMethods from '../../services/ordersAPI';
-import AuthApiMethods from '../../services/authAPI';
-import { toast } from 'react-toastify';
-import emailjs from 'emailjs-com';
 
 const SummaryPage = (props) => {
 
     // Var that contains the decoded information contained in the JWT token stored
     const userInfosJWT = jwtDecode(window.localStorage.getItem('authToken'))
 
-    var emailJsVars = {}
 
     console.log(props.location.cart)
 
-    //console.log(userInfosJWT)
-
-    const handleClick = async event => {
-        event.preventDefault()
-        try{
-            AuthApiMethods.setup()
-            const respPost = await ordersApiMethods.create(props.location.cart)
-            console.info(respPost)
-            let resetCart = {
-                customer : "/api/users/",
-                orderItems : [],
-                date: "",
-                ifDelivered: "",
-                preTotal: 0
-          }
-          props.location.setCart(resetCart)
-          // Set the vars for the receipt email
-            // The order id
-            emailJsVars.from_id = respPost.id
-            //Generate the html content for the order
-            let emailJsHtmlContent = ""
-            respPost.orderItems.forEach(function (pizzaElem){
-                emailJsHtmlContent += `<p style="display:block;;height:auto;padding:15px 20px;color:#0d0d0d;background-color:#f8f8f8;border-radius: 20px;"><u>`+pizzaElem.itemPizza.name+`</u>`
-                if(pizzaElem.supIngredients.length === 0){
-                    emailJsHtmlContent += ` + Aucun ingrédient supplémentaire`
-                }else{
-                    pizzaElem.supIngredients.forEach(function(supIngredientElem){
-                        emailJsHtmlContent += ` + `+supIngredientElem.name
-                    })
-                }
-                emailJsHtmlContent += `</p>`
-            })
-            emailJsVars.form_orderHTML = emailJsHtmlContent
-            // The user's infos
-                //Email
-            emailJsVars.email_to = userInfosJWT.username
-                // Name
-            emailJsVars.reply_to = userInfosJWT.firstName+` `+userInfosJWT.lastName
-            // The order's date
-            let orderDate = new Date(respPost.date)
-            let getCorrectMonth = orderDate.getMonth()
-            getCorrectMonth++
-            emailJsVars.from_date = ``+orderDate.getDate()+`-`+getCorrectMonth+`-`+orderDate.getFullYear()+``
-            emailJsVars.from_hour = ``+orderDate.getHours()+` H `
-            if(orderDate.getMinutes() === 0){
-                emailJsVars.from_hour += `0`+orderDate.getMinutes()+``
-            }else{
-                emailJsVars.from_hour += ``+orderDate.getMinutes()+``
-            }
-            // The order's total
-            emailJsVars.from_total = respPost.total
-            // The order's delivery
-            if(respPost.ifDelivered){
-                emailJsVars.from_delivery = "Votre commande sera livrée pour"
-            }else{
-                emailJsVars.from_delivery = "Votre commande sera à retirer chez nous pour"
-            }
-
-          emailjs.send("service_u6i4e06","template_vxamej8",emailJsVars)
-          toast.success("Votre commande a correctement été passée !")
-          props.history.push("/profile")
-
-        }catch(error){
-            console.error(error)
-        }
-    }
 
     const checkPath = () => {
         let path = props.match.path

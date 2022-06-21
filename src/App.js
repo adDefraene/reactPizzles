@@ -42,22 +42,11 @@ import emailjs from 'emailjs-com';
 const App = () => {
 
   const [cart, setCart] = useState({
-        /*
         customer : "/api/users/",
         orderItems : [],
         date: "",
         ifDelivered: "",
         preTotal: 0
-        */
-       customer : "/api/users/",
-       orderItems : [
-        { itemPizza: "/api/pizzas/calzone", supIngredients: [
-          "/api/ingredients/13", "/api/ingredients/17"
-        ], totalItem: 7.5 }
-       ],
-       date: "2022-06-21T21:15:32",
-       ifDelivered: false,
-       preTotal: 7.5
 
   })
   

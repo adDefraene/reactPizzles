@@ -158,15 +158,19 @@ const ProfilePage = (props) => {
     const [ifConfetti, setIfConfetti] = useState(false)
 
     // Method that verifies if the props.history is a redirect
-    const checkIfRedirected = () => {
-        if(props.history.action === "PUSH" && userOrdersWaiting.length > 0){
+    const checkIfRedirectedForOrder = () => {
+        if(userOrdersWaiting.length > 0 && window.location.search !== ""){
             setIfConfetti(true)
+            toast.success("Votre commande a correctement été passée !")
         }
     }
 
+    useEffect(()=>{
+        checkIfRedirectedForOrder()
+    }, [userOrdersWaiting])
+
     // When the props.history changes
     useEffect(()=>{
-        checkIfRedirected()
         fetchUserOrdersWaiting(currentUser.id)
     }, [props.history])
 

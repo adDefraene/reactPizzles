@@ -25,6 +25,7 @@ import HourPage from './pages/checkout/HourPage';
 import SummaryPage from './pages/checkout/SummaryPage';
 import ClosedPage from './pages/ClosedPage';
 import CguPage from './pages/CguPage';
+import CheckoutPage from './pages/checkout/CheckoutPage';
 // STYLES
 import 'react-toastify/dist/ReactToastify.css';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -41,11 +42,23 @@ import emailjs from 'emailjs-com';
 const App = () => {
 
   const [cart, setCart] = useState({
+        /*
         customer : "/api/users/",
         orderItems : [],
         date: "",
         ifDelivered: "",
         preTotal: 0
+        */
+       customer : "/api/users/",
+       orderItems : [
+        { itemPizza: "/api/pizzas/calzone", supIngredients: [
+          "/api/ingredients/13", "/api/ingredients/17"
+        ], totalItem: 7.5 }
+       ],
+       date: "2022-06-21T21:15:32",
+       ifDelivered: false,
+       preTotal: 7.5
+
   })
   
   const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated)
@@ -106,6 +119,7 @@ const App = () => {
                 <PrivateRoute path="/delivery" component={DeliveryPage} cart={cart} setCart={setCart} />
                 <PrivateRoute path="/hour" component={HourPage} cart={cart} setCart={setCart} />
                 <PrivateRoute path="/summary" component={SummaryPage} cart={cart} setCart={setCart} />
+                <PrivateRoute path="/checkout" component={CheckoutPage} cart={cart} setCart={setCart} />
                 <Route path="/" component={HomePage} />
             </Switch>
             <Footer />

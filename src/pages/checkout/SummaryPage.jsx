@@ -163,7 +163,7 @@ const SummaryPage = (props) => {
             <h2 className="pizzles-summary-total m-auto text-center">TOTAL : <span>{props.location.cart.preTotal} €</span></h2>
         </div>
         <div className="col-12 my-3">
-            <Link onClick={handleClick} to="/profile" className="pizzles-btn pizzles-btn-red next-button">Oui, je vais procéder au paiement<i className="fas fa-wallet"></i></Link>
+            <Link to="/checkout" className="pizzles-btn pizzles-btn-red next-button">Oui, je vais procéder au paiement<i className="fas fa-wallet"></i></Link>
         </div>
     </div>
 </div>

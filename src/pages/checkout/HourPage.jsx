@@ -209,7 +209,6 @@ const HourPage = (props) => {
               choosenHourJSON = choosenHourJSON.replace(wrongHour, correctHour)
               choosenHourJSON = choosenHourJSON.replace(".000Z", "")
             }
-            console.log(choosenHourJSON)
             // ... adds it to a new cart...
             let newCart = Object.assign({}, props.location.cart)
             newCart.date = choosenHourJSON

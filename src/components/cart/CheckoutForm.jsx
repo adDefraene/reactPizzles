@@ -130,7 +130,7 @@ const CheckoutForm = (props) => {
         elements,
         confirmParams: {
           // Make sure to change this to your payment completion page
-          return_url: "http://pizzles.adriendefraene.be",
+          return_url: "https://pizzles.adriendefraene.be",
         },
       });
 

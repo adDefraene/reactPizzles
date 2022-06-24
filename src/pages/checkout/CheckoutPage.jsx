@@ -16,7 +16,7 @@ const CheckoutPage = (props) => {
     
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://stripe.pizzles.adriendefraene.be/create-payment-intent", {
+        fetch("https://stripe.pizzles.adriendefraene.be/create-payment-intent", {
         method: "POST",
         "CORS_HEADERS" : { 
                 'Content-Type': 'application/json',

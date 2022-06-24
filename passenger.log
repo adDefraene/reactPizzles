@@ -1,0 +1,70 @@
+App 30971 output: /home/dead1435/reactPizzles/src/index.js:1
+App 30971 output: import React from 'react';
+App 30971 output: ^^^^^^
+App 30971 output: SyntaxError: Cannot use import statement outside a module
+App 30971 output:     at wrapSafe (internal/modules/cjs/loader.js:915:16)
+App 30971 output:     at Module._compile (internal/modules/cjs/loader.js:963:27)
+App 30971 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+App 30971 output:     at Module.load (internal/modules/cjs/loader.js:863:32)
+App 30971 output:     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+App 30971 output:     at Module.require (internal/modules/cjs/loader.js:887:19)
+App 30971 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 30971 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 30971 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 30971 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)
+App 24883 output: /home/dead1435/reactPizzles/src/index.js:1
+App 24883 output: import React from 'react';
+App 24883 output: ^^^^^^
+App 24883 output: SyntaxError: Cannot use import statement outside a module
+App 24883 output:     at wrapSafe (internal/modules/cjs/loader.js:915:16)
+App 24883 output:     at Module._compile (internal/modules/cjs/loader.js:963:27)
+App 24883 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+App 24883 output:     at Module.load (internal/modules/cjs/loader.js:863:32)
+App 24883 output:     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+App 24883 output:     at Module.require (internal/modules/cjs/loader.js:887:19)
+App 24883 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 24883 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 24883 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 24883 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)
+App 19071 output: /home/dead1435/reactPizzles/src/index.js:1
+App 19071 output: import React from 'react';
+App 19071 output: ^^^^^^
+App 19071 output: SyntaxError: Cannot use import statement outside a module
+App 19071 output:     at wrapSafe (internal/modules/cjs/loader.js:915:16)
+App 19071 output:     at Module._compile (internal/modules/cjs/loader.js:963:27)
+App 19071 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+App 19071 output:     at Module.load (internal/modules/cjs/loader.js:863:32)
+App 19071 output:     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+App 19071 output:     at Module.require (internal/modules/cjs/loader.js:887:19)
+App 19071 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 19071 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 19071 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 19071 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)
+App 19301 output: /home/dead1435/reactPizzles/src/index.js:1
+App 19301 output: import React from 'react';
+App 19301 output: ^^^^^^
+App 19301 output: SyntaxError: Cannot use import statement outside a module
+App 19301 output:     at wrapSafe (internal/modules/cjs/loader.js:915:16)
+App 19301 output:     at Module._compile (internal/modules/cjs/loader.js:963:27)
+App 19301 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+App 19301 output:     at Module.load (internal/modules/cjs/loader.js:863:32)
+App 19301 output:     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+App 19301 output:     at Module.require (internal/modules/cjs/loader.js:887:19)
+App 19301 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 19301 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 19301 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 19301 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)
+App 19404 output: /home/dead1435/reactPizzles/src/index.js:1
+App 19404 output: import React from 'react';
+App 19404 output: ^^^^^^
+App 19404 output: SyntaxError: Cannot use import statement outside a module
+App 19404 output:     at wrapSafe (internal/modules/cjs/loader.js:915:16)
+App 19404 output:     at Module._compile (internal/modules/cjs/loader.js:963:27)
+App 19404 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+App 19404 output:     at Module.load (internal/modules/cjs/loader.js:863:32)
+App 19404 output:     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+App 19404 output:     at Module.require (internal/modules/cjs/loader.js:887:19)
+App 19404 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 19404 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 19404 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 19404 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)

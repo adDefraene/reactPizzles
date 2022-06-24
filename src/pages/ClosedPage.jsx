@@ -13,7 +13,7 @@ const ClosedPage = () => {
                         <img src="/images/svg/Sorry_Closed.svg" alt="" />
                     </div>
                     <div className="col-12 my-3">
-                        <p className="pizzles-txt-closed text-center mx-auto mt-5 mb-5">Nous sommes désolés, nous fermons le dimanche et le lundi. <br />Vous pouvez néanmoins sonsulter le menu pour votre prochaine commande !</p>
+                        <p className="pizzles-txt-closed text-center mx-auto mt-5 mb-5">Nous sommes désolés, nous fermons le dimanche et le lundi. <br />Vous pouvez néanmoins consulter le menu pour votre prochaine commande !</p>
                     </div>
                     <div className="col-12 mt-2 mb-4">
                         <div className="row px-5 justify-content-around">

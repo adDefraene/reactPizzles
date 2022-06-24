@@ -97,7 +97,6 @@ const LoginPage = (props) => {
                         required={true}
                         error=""
                     />
-                    <Link to="/register" className="pizzles-btn pizzles-btn-white mx-auto my-2">Mot de passe oublié ?<i className="fas fa-dizzy"></i></Link>
                     <hr />
                     <button className="pizzles-btn pizzles-btn-yellow mt-4 mb-1">Se connecter <i className="fas fa-sign-in-alt"></i></button>
                 </form>

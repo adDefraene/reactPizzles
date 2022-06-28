@@ -1038,6 +1038,12 @@ ul.pagination.pagination-pizzles > li.page-item.active > button.page-link{
     background: var(--reddark) !important;
 }
 
+@media all and (max-width : 768px){
+    .pizzles-menu-pizzas-promos{
+        margin: 25px 0;
+    }
+}
+
 .pizzles-menu-pizzas-pdm{
     background: var(--yellowPale) !important;
 }

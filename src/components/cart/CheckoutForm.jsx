@@ -151,9 +151,9 @@ const CheckoutForm = (props) => {
     };
   
     return (
-      <form id="payment-form" onSubmit={handleSubmit} className="mx-auto">
-        <PaymentElement id="payment-element" />
-        <button disabled={isLoading || !stripe || !elements} id="submit">
+      <form id="payment-form" onSubmit={handleSubmit} className="mx-auto row">
+        <PaymentElement id="payment-element" className="col-12" />
+        <button disabled={isLoading || !stripe || !elements} id="submit" className="col-12">
           <span id="button-text">
             {isLoading ? <div className="spinner" id="spinner"></div> : "Payer maintenant"}
           </span>

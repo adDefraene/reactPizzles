@@ -20,7 +20,7 @@ const PrivateRoute = (props) => {
         (props.component.name !== "DeliveryPage" && props.component.name !== "SummaryPage" && props.component.name !== "HourPage" && props.component.name !== "CheckoutPage" && props.component.name !== "AddPizzaPage") ?
             (<Route path={props.path} component={props.component} />)
         :
-            ((props.cart.orderItems.length === 0 && (props.component.name === "DeliveryPage" || props.component.name === "HourPage")) || ((props.cart.orderItems.length === 0 || props.cart.date === "" || props.cart.ifDelivered === "") && (props.component.name === "SummaryPage" && props.component.name === "CheckoutPage")))
+            ((props.cart.orderItems.length === 0 && (props.component.name === "DeliveryPage" || props.component.name === "HourPage")) || ((props.cart.orderItems.length === 0 || props.cart.date === "" || props.cart.ifDelivered === "") && (props.component.name === "SummaryPage" || props.component.name === "CheckoutPage")))
             ?
                 (<Redirect to="/menu" />)
             :

@@ -135,7 +135,7 @@ const MenuPage = (props) => {
         <div className="row">
             <div className="col-12 order-2 order-lg-1 col-lg-6 offset-lg-1">
                 <p className="my-5 pizzles-subtitles text-center">Promotions de la semaine</p>
-                <div className="row my-4">
+                <div className="row my-4 d-flex justify-content-center">
                 {/* Displays the pizzas in discount */}
                     {menuPizzas.map(menuPizza => {
                         if(menuPizza.type === "PROMO"){
